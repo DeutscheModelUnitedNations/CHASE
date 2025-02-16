@@ -318,7 +318,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/mnt/codingssd/Coding/CHASE/prisma/generated/client",
+      "value": "/home/m1212e/Coding/munify-chase/prisma/generated/client",
       "fromEnvVar": null
     },
     "config": {
@@ -336,7 +336,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/mnt/codingssd/Coding/CHASE/prisma/schema.prisma",
+    "sourceFilePath": "/home/m1212e/Coding/munify-chase/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
