@@ -3,9 +3,10 @@ import { languageTag } from "@/paraglide/runtime.js";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { PrimeReactProvider } from "primereact/api";
-import Head from "next/head";
 import "./globals.css";
-import "@/themes/theme_light.scss";
+import "@/styles/theme_light.scss";
+import "@/styles/fontawesome/css/all.css";
+import Footer from "./Footer";
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -31,37 +32,11 @@ export default function RootLayout({
 		<PrimeReactProvider>
 			<LanguageProvider>
 				<html lang={languageTag()}>
-					<Head>
-						<link
-							href="/fontawesome/css/fontawesome.css"
-							rel="stylesheet"
-						/>
-						<link
-							href="/fontawesome/css/brands.css"
-							rel="stylesheet"
-						/>
-						<link
-							href="/fontawesome/css/solid.css"
-							rel="stylesheet"
-						/>
-						<link
-							href="/fontawesome/css/sharp-thin.css"
-							rel="stylesheet"
-						/>
-						<link
-							href="/fontawesome/css/duotone-thin.css"
-							rel="stylesheet"
-						/>
-						<link
-							href="/fontawesome/css/sharp-duotone-thin.css"
-							rel="stylesheet"
-						/>
-					</Head>
-
 					<body
 						className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 					>
 						{children}
+						<Footer />
 					</body>
 				</html>
 			</LanguageProvider>
