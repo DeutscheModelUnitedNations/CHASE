@@ -15,5 +15,16 @@
     "docs": "Dokumentation",
     "login": "Login",
     "privacy": "Datenschutzbestimmungen",
-    "imprint": "Impressum"
+    "imprint": "Impressum",
+    "weUseCookies": "Wir verwenden Cookies",
+	"weUseCookiesDescription": "Wir verwenden technisch notwendige Cookies, um das Benutzen der App zu ermöglichen.",
+	"acceptAll": "Alle akzeptieren",
+	"rejectAll": "Alle ablehnen",
+	"managePreferences": "Einstellungen verwalten",
+	"close": "Schließen",
+	"technicalNecessary": "Technisch notwendig",
+	"technicalNecessaryDescription": "CHASE verwendet technisch notwendige Cookies um das Benutzen der App zu ermöglichen.",
+	"yes": "Ja",
+	"no": "Nein",
+    "save": "Speichern"
 }
