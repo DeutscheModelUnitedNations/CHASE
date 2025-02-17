@@ -1,0 +1,18 @@
+{
+    "$schema": "https://inlang.com/schema/inlang-message-format",
+    "loading": "Lade...",
+    "error": "Fehler",
+    "notFound": "Nicht gefunden",
+    "backToHome": "Zurück zur Startseite",
+    "back": "Zurück",
+    "usageOfCookies": "Verwendung von Cookies",
+    "cookieText": "Um unsere Webseite für Sie optimal zu gestalten und fortlaufend verbessern zu können, verwenden wir Cookies. Durch die weitere Nutzung der Webseite und der Web App stimmen Sie der Verwendung von Cookies zu.",
+    "moreInformationInOur": "Mehr Informationen in unserer",
+    "privacyPolicy": "Datenschutzerklärung",
+    "sitemap": "Sitemap",
+    "home": "Startseite",
+    "faq": "FAQs",
+    "docs": "Dokumentation",
+    "login": "Login",
+    "privacy": "Datenschutzbestimmungen"
+}
