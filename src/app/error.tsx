@@ -1,11 +1,10 @@
-"use client";
-import React from "react";
+"use client"
 import Image from "next/image";
 import { Button } from "primereact/button";
 import Link from "next/link";
 import * as m from "@/paraglide/messages.js";
 
-export default function Home() {
+export default function Err() {
 	return (
 		<>
 			<div className="flex flex-col bg-primary-950 items-center">

@@ -3,7 +3,7 @@ import { languageTag } from "@/paraglide/runtime.js";
 import type { Metadata } from "next";
 import { Inter, Vollkorn, Noto_Sans_Mono } from "next/font/google";
 import { PrimeReactProvider } from "primereact/api";
-import "./globals.css";
+import "./globals.scss";
 import "@/styles/theme_light.scss";
 import "@/styles/fontawesome/css/all.css";
 import Footer from "./Footer";
