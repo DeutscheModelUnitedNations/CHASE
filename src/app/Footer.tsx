@@ -1,11 +1,15 @@
-import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import * as m from "@/paraglide/messages";
 
 export default function Footer() {
   return (
-    <footer className="bg-primary-300 py-6">
+    <footer
+      className="bg-primary-300 py-6"
+      style={{
+        boxShadow: `0 0 ${0.4 * 20}px rgba(0, 0, 0, ${0.5 / 6})`,
+      }}
+    >
       <div className="container mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {/* Sitemap */}

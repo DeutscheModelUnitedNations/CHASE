@@ -11,18 +11,18 @@ export default function Err() {
         <div className="align-center bg-primary flex h-screen w-screen justify-center">
           <div className="flex flex-col items-center justify-center">
             <Image
-              src="/logo/png/chase_logo_white_text.png"
+              src="/logo/png/chase_logo_blue_text.png"
               alt="Logo"
               width={400}
               height={128}
               className="mb-10"
             />
-            <p className="mt-10 mb-3 text-9xl text-white">500</p>
-            <p className="text-1xl mb-10 text-white">{m.error()}</p>
+            <p className="mt-10 mb-3 text-9xl ">500</p>
+            <p className="text-1xl mb-10 ">{m.error()}</p>
             <Link href="/">
               <Button
                 severity="warning"
-                label={m.notFound()}
+                label={m.backToHome()}
                 icon="pi pi-link"
               />
             </Link>

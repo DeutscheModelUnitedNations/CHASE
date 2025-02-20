@@ -1,11 +1,10 @@
 "use client";
-import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import Button from "@/lib/Button";
 import * as m from "@/paraglide/messages";
+import { useEffect, useState } from "react";
 
 export default function Navbar({
   isDocs = false,
@@ -36,7 +35,7 @@ export default function Navbar({
   return (
     <>
       <motion.div
-        className="left fixed top-0 z-30 mb-8 flex hidden h-24 w-full items-center justify-center gap-4 px-8 py-4 md:block"
+        className="left fixed top-0 z-30 mb-8 hidden h-24 w-full items-center justify-center gap-4 px-8 py-4 md:flex"
         style={{
           backgroundColor: `rgba(255, 255, 255, ${modificator})`,
           boxShadow: `0 0 ${modificator * 20}px rgba(0, 0, 0, ${
@@ -75,109 +74,104 @@ export default function Navbar({
           <NavButtons isDocs={isDocs} isFAQ={isFAQ} />
         </div>
       </motion.div>
-      {isTabletOrMobile && (
-        <>
+      <motion.div
+        className="left fixed top-0 z-40 mb-8 flex h-24 w-full items-center justify-end gap-4 px-8 py-4 md:hidden"
+        style={{
+          backgroundColor: `rgba(255, 255, 255, ${modificator})`,
+          boxShadow: `0 0 ${modificator * 20}px rgba(0, 0, 0, ${
+            modificator / 6
+          })`,
+        }}
+        initial={{ opacity: 0.5, y: -150 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={
+          animate
+            ? {
+                duration: 2,
+                delay: 2,
+                type: "spring",
+                damping: 20,
+                stiffness: 70,
+              }
+            : {
+                duration: 0,
+                delay: 0,
+              }
+        }
+      >
+        <Link href="/">
+          <Image
+            src="/logo/png/chase_logo_blue.png"
+            alt="Logo"
+            width={110}
+            height={110}
+            className="absolute top-5 left-[calc(50%-55px)] z-40 md:left-5"
+          />
+        </Link>
+        <Button
+          faIcon="bars"
+          onClick={() => {
+            setShowMenu(!showMenu);
+          }}
+          outlined
+        />
+      </motion.div>
+      <AnimatePresence>
+        {showMenu && (
           <motion.div
-            className="left fixed top-0 z-40 mb-8 flex h-24 w-full items-center justify-end gap-4 px-8 py-4"
-            style={{
-              backgroundColor: `rgba(255, 255, 255, ${modificator})`,
-              boxShadow: `0 0 ${modificator * 20}px rgba(0, 0, 0, ${
-                modificator / 6
-              })`,
+            className="fixed top-0 left-0 z-30 flex w-full items-center justify-center bg-white px-8 pt-40 pb-4 shadow-xl"
+            initial={{ y: -600 }}
+            animate={{ y: 0 }}
+            exit={{ y: -600 }}
+            transition={{
+              duration: 2,
+              type: "spring",
+              damping: 20,
+              stiffness: 70,
             }}
-            initial={{ opacity: 0.5, y: -150 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={
-              animate
-                ? {
-                    duration: 2,
-                    delay: 2,
-                    type: "spring",
-                    damping: 20,
-                    stiffness: 70,
-                  }
-                : {
-                    duration: 0,
-                    delay: 0,
-                  }
-            }
           >
-            <Link href="/">
-              <Image
-                src="/logo/png/chase_logo_blue.png"
-                alt="Logo"
-                width={110}
-                height={110}
-                className="absolute top-5 left-[calc(50%-55px)] z-40 md:left-5"
-              />
-            </Link>
-            <Button
-              faIcon="bars"
-              onClick={() => {
-                setShowMenu(!showMenu);
-              }}
-              outlined
-            />
+            <div className="flex w-full flex-col items-center justify-center gap-4">
+              <NavButtons isDocs={isDocs} isFAQ={isFAQ} />
+            </div>
           </motion.div>
-          <AnimatePresence>
-            {showMenu && (
-              <motion.div
-                className="fixed top-0 left-0 z-30 flex w-full items-center justify-center bg-white px-8 pt-40 pb-4 shadow-xl"
-                initial={{ y: -600 }}
-                animate={{ y: 0 }}
-                exit={{ y: -600 }}
-                transition={{
-                  duration: 2,
-                  type: "spring",
-                  damping: 20,
-                  stiffness: 70,
-                }}
-              >
-                <div className="flex w-full flex-col items-center justify-center gap-4">
-                  <NavButtons isDocs={isDocs} isFAQ={isFAQ} />
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </>
-      )}
+        )}
+      </AnimatePresence>
     </>
   );
 }
 
-function NavButtons({
-  isDocs = false,
-  isFAQ = false,
-}: {
-  isDocs?: boolean;
-  isFAQ?: boolean;
-}) {
-  const router = useRouter();
-
+function NavButtons() {
+// {
+// isDocs = false,
+// isFAQ = false,
+// }: {
+//   isDocs?: boolean;
+//   isFAQ?: boolean;
+// }
   return (
     <>
-      <Button
-        label={m.docs()}
-        onClick={() => router.push("/docs")}
-        severity="secondary"
-        faIcon="book"
-        disabled={isDocs}
-        size="small"
-      />
-      <Button
-        label={m.faq()}
-        onClick={() => router.push("/faq")}
-        severity="secondary"
-        faIcon="question-circle"
-        disabled={isFAQ}
-        size="small"
-      />
-      <Button
-        label={"login but maybe not?"}
-        onClick={() => router.push("/login")}
-        faIcon="right-to-bracket"
-        size="small"
-      />
+      {/* TODO implement */}
+      {/* <Link href="/docs">
+        <Button
+          label={m.docs()}
+          severity="secondary"
+          faIcon="book"
+          disabled={isDocs}
+          size="small"
+        />
+      </Link>
+      <Link href="/faq">
+        <Button
+          label={m.faq()}
+          severity="secondary"
+          faIcon="question-circle"
+          disabled={isFAQ}
+          size="small"
+        />
+      </Link> */}
+      <Link href="/app">
+        <Button label={m.dashboard()} faIcon="home" size="small" />
+      </Link>
     </>
   );
 }

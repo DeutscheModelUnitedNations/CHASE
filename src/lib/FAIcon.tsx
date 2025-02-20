@@ -1,11 +1,11 @@
-import type React from "react";
+import type { CSSProperties, HTMLAttributes, ReactNode } from "react";
 
-interface FAIconProps extends React.HTMLAttributes<HTMLElement> {
+interface FAIconProps extends HTMLAttributes<HTMLElement> {
   icon: string;
   // Literal set of classes to add to the icon
   set?: "solid" | "regular" | "light" | "duotone" | "brands";
   className?: string;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
   size?:
     | "2xs"
     | "xs"
@@ -113,7 +113,7 @@ export function FAIconStack({
   className = "",
   style,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   size?:
     | "2xs"
     | "xs"
@@ -130,7 +130,7 @@ export function FAIconStack({
     | "9x"
     | "10x";
   className?: string;
-  style: React.CSSProperties;
+  style: CSSProperties;
 }) {
   return (
     <>
@@ -151,7 +151,7 @@ export function FAIconLayer({
   fixedWidth,
   style,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   size?:
     | "2xs"
     | "xs"
@@ -169,7 +169,7 @@ export function FAIconLayer({
     | "10x";
   className?: string;
   fixedWidth?: boolean;
-  style: React.CSSProperties;
+  style: CSSProperties;
 }) {
   return (
     <>
@@ -190,7 +190,7 @@ export function FAIconCounter({
 }: {
   label: string;
   className?: string;
-  style: React.CSSProperties;
+  style: CSSProperties;
 }) {
   return (
     <>

@@ -9,6 +9,7 @@ import "@/styles/theme_light.scss";
 import "@/styles/fontawesome/css/all.css";
 import Footer from "./Footer";
 import CookieConsent from "./CookieConsent";
+import type { ReactNode } from "react";
 
 const sans = Inter({
   subsets: ["latin"],
@@ -36,7 +37,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
     <PrimeReactProvider>

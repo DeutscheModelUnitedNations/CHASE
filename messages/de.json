@@ -49,5 +49,15 @@
   "theme": "Theme",
   "language": "Sprache",
   "german": "Deutsch",
-  "english": "Englisch"
+  "english": "Englisch",
+  "heroTitle": " im 21. Jahrhundert",
+  "heroText": "Debattenmanagement bei Model United Nations Konferenzen bekommt endlich ein Upgrade.",
+  "comingSoon": "Bald verfügbar",
+  "debates": "Debatten",
+  "debatesText": "Verwalte Rede- und Kurzbemerkungsliste einfach und effizient. Keine Papierlisten mehr!",
+  "votes": "Abstimmungen",
+  "votesText": "Verwalte Anträge und Abstimmungen elektronisch und mit vorbereiteten Anträgen nach Ihrer Geschäftsordnung.",
+  "resolutions": "Resolutionen",
+  "resolutionsText": "Erstelle und bearbeite Resolutionen gemeinsam mit anderen Delegierten. Kein Papier oder Google Docs mehr!",
+  "dashboard": "Dashboard"
 }

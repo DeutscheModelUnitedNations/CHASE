@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import LandingHero from "@/components/home/landing_hero";
-import CardSection from "@/components/home/card_section";
+import React from "react";
 import Image from "next/image";
-import VersionModal from "@/components/version_modal";
 import * as m from "@/paraglide/messages";
 import TextSection from "@/lib/TextSection";
-import Navbar from "../lib/navbar/Navbar";
+import HomeNavigation from "./HomeNavigation";
+import LandingHero from "./LandingHero";
+import CardSection from "./CardSection";
 
 export default function Home() {
-  const [versionModalVisible, setVersionModalVisible] = useState(false);
+  // TODO: Re-Add version modal
+  // const [versionModalVisible, setVersionModalVisible] = useState(false);
 
   return (
     <>
-      <Navbar animate />
+      <HomeNavigation animate />
       <div className="bg-primary-950 flex flex-col items-center">
         <div className="max-w-7xl">
           <LandingHero />
@@ -37,7 +37,8 @@ export default function Home() {
               text={m.aboutChaseText()}
               button={{
                 label: m.versionAndChanges(),
-                onClick: () => setVersionModalVisible(true),
+                // onClick: () => setVersionModalVisible(true),
+                link: "https://github.com/DeutscheModelUnitedNations/munify/releases",
                 faIcon: "stars",
               }}
             />
@@ -62,10 +63,10 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <VersionModal
+      {/* <VersionModal
         visible={versionModalVisible}
         setVisible={setVersionModalVisible}
-      />
+      /> */}
     </>
   );
 }
