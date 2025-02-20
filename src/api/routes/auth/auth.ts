@@ -1,15 +1,11 @@
 import { t, Elysia } from "elysia";
-import { db } from "../../../../prisma/db";
 import { nanoid } from "nanoid";
-import { appConfiguration } from "../../util/config";
-import { passwords } from "./passwords";
 import { sessionPlugin } from "../../auth/session";
 import { permissionsPlugin } from "../../auth/permissions";
 
 export const auth = new Elysia({
   prefix: "/auth",
 })
-  .use(passwords)
   .use(sessionPlugin)
   .use(permissionsPlugin)
   .get(
