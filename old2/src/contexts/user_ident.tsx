@@ -40,7 +40,9 @@ export const MyDelegationContext = createContext({} as MyDelegationContextType);
 
 export const UserIdentProvider = ({
   children,
-}: { children: React.ReactNode }) => {
+}: {
+  children: React.ReactNode;
+}) => {
   const router = useRouter();
   const { backend } = useBackend();
 

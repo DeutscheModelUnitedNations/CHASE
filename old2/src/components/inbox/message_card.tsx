@@ -44,8 +44,7 @@ export default function MessageCard({
           status: "UNREAD",
         })
         .then((res) => {
-          if (res.status !== 200)
-            throw res.error;
+          if (res.status !== 200) throw res.error;
         })
         .catch((err) => {
           toastError(err);

@@ -31,5 +31,5 @@ Incoming error report by ${session.data?.user?.name} (${
         error: t.Optional(t.Any()),
       }),
       detail: {},
-    }
+    },
   );

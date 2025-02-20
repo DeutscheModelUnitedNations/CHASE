@@ -1,5 +1,3 @@
-@import "tailwindcss";
-
 :root {
   --dmun-primary: #3d7dd2;
   --dmun-black: #000;
@@ -14,10 +12,8 @@
 }
 
 .custom-scrollbar {
-
   .p-scrollpanel,
   .p-scrollpanel:active {
-
     .p-scrollpanel-bar,
     .p-scrollpanel-bar-x,
     .p-scrollpanel-bar-y {

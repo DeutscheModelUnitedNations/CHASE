@@ -11,7 +11,10 @@ import FAIcon from "../font_awesome_icon";
 export default function CommitteeStatusWidget({
   currentDebateStep,
   nextDebateStep,
-}: { currentDebateStep: string; nextDebateStep: string | undefined }) {
+}: {
+  currentDebateStep: string;
+  nextDebateStep: string | undefined;
+}) {
   const { LL } = useI18nContext();
 
   return (

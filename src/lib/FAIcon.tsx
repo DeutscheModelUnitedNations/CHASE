@@ -135,11 +135,7 @@ export function FAIconStack({
   return (
     <>
       <span
-        className={`
-          fa-stack
-          ${className}
-          ${size ? `fa-${size}` : ""}
-        `}
+        className={`fa-stack ${className} ${size ? `fa-${size}` : ""} `}
         style={style}
       >
         {children}
@@ -178,12 +174,7 @@ export function FAIconLayer({
   return (
     <>
       <span
-        className={`
-          fa-layers
-          ${className}
-          ${size ? `fa-${size}` : ""}
-          ${fixedWidth ? "fa-fw" : ""}
-        `}
+        className={`fa-layers ${className} ${size ? `fa-${size}` : ""} ${fixedWidth ? "fa-fw" : ""} `}
         style={style}
       >
         {children}
@@ -203,13 +194,7 @@ export function FAIconCounter({
 }) {
   return (
     <>
-      <span
-        className={`
-          fa-layers-counter
-          ${className}
-        `}
-        style={style}
-      >
+      <span className={`fa-layers-counter ${className} `} style={style}>
         {label}
       </span>
     </>

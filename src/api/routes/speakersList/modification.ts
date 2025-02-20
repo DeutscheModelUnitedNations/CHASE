@@ -5,7 +5,7 @@ import { permissionsPlugin } from "../../auth/permissions";
 function calculateTimeLeft(
   startTimestamp: Date | null | undefined,
   stopTimestamp: Date,
-  speakingTime: number | null | undefined
+  speakingTime: number | null | undefined,
 ): number {
   if (startTimestamp && speakingTime) {
     const timeElapsed =
@@ -41,7 +41,7 @@ export const speakersListModification = new Elysia({
       detail: {
         description: "Set the time for a speakers list",
       },
-    }
+    },
   )
 
   .post(
@@ -63,7 +63,7 @@ export const speakersListModification = new Elysia({
       detail: {
         description: "Close a speakers list",
       },
-    }
+    },
   )
 
   .post(
@@ -85,7 +85,7 @@ export const speakersListModification = new Elysia({
       detail: {
         description: "Open a speakers list",
       },
-    }
+    },
   )
   .post(
     "/startTimer",
@@ -119,7 +119,7 @@ export const speakersListModification = new Elysia({
           await tx.speakersList.update({
             where: {
               id: speakersList.agendaItem.speakerLists.find(
-                (sl) => sl.type === "SPEAKERS_LIST"
+                (sl) => sl.type === "SPEAKERS_LIST",
               )?.id,
             },
             data: {
@@ -131,7 +131,7 @@ export const speakersListModification = new Elysia({
           await tx.speakersList.update({
             where: {
               id: speakersList.agendaItem.speakerLists.find(
-                (sl) => sl.type === "COMMENT_LIST"
+                (sl) => sl.type === "COMMENT_LIST",
               )?.id,
             },
             data: {
@@ -155,7 +155,7 @@ export const speakersListModification = new Elysia({
       detail: {
         description: "Start the timer for a speakers list",
       },
-    }
+    },
   )
 
   .post(
@@ -176,7 +176,7 @@ export const speakersListModification = new Elysia({
           timeLeft: calculateTimeLeft(
             speakersList?.startTimestamp,
             new Date(Date.now()),
-            speakersList?.timeLeft
+            speakersList?.timeLeft,
           ),
           startTimestamp: null,
         },
@@ -186,7 +186,7 @@ export const speakersListModification = new Elysia({
       detail: {
         description: "Stop the timer for a speakers list",
       },
-    }
+    },
   )
 
   .post(
@@ -215,7 +215,7 @@ export const speakersListModification = new Elysia({
       detail: {
         description: "Reset the timer for a speakers list",
       },
-    }
+    },
   )
 
   .post(
@@ -249,7 +249,7 @@ export const speakersListModification = new Elysia({
       detail: {
         description: "Increase the speaking time for a speakers list",
       },
-    }
+    },
   )
 
   .post(
@@ -283,5 +283,5 @@ export const speakersListModification = new Elysia({
       detail: {
         description: "Decrease the speaking time for a speakers list",
       },
-    }
+    },
   );

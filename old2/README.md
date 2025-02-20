@@ -1,11 +1,11 @@
 # MUNify CHASE
 
-> CHASE stands for *CHAiring SoftwarE*
+> CHASE stands for _CHAiring SoftwarE_
 
 MUNify CHASE is a Software to managing Debates of Model United Nations Conferences with tools like speakers lists, digital voting and resolution editing. It is part of the MUNify Project, which aims to provide a comprehensive Software Suite for Model United Nations Conferences. MUNify is an Open Source Project by the german non-profit organization [Deutsche Model United Nations (DMUN) e.V.](https://dmun.de).
 
 ![munify](./screenshots/chase_landing_page.png)
-*(Landing page of the CHASE software component)*
+_(Landing page of the CHASE software component)_
 
 The project is still under development. It is currently not recommended to use it for a conference. If you are interested in using it, please contact us via the discussion section of this repository.
 
@@ -41,6 +41,7 @@ Now go to the component you would like to run and follow the instructions/run th
 All root level scripts can be found in the [package.json](./package.json) file. Run them with `bun run <nameOfScript>`.
 
 ### Development in a Devcontainer
+
 A devcontainer is a containerized development environment. It is a good way to ensure that all developers have the same environment and to avoid the "it works on my machine" problem. A devcontainer is defined in the [.devcontainer](./.devcontainer) directory. To use it, you need to have [Docker](https://www.docker.com/get-started/) and [VSCode](https://code.visualstudio.com/) installed. The Container is preconfigured with all the tools you need to develop the project.
 
 ## FAQ
@@ -75,11 +76,12 @@ By contributing you agree to release your contributtion under the projects licen
 
 ## License
 
-*This aspect is work in progress since the project is currently in its development phase. If you want to use the project or one of its components nonetheless, please contact us via the discussion section.*
+_This aspect is work in progress since the project is currently in its development phase. If you want to use the project or one of its components nonetheless, please contact us via the discussion section._
 
 [LICENSE](./LICENSE)
 
 ## Support us / Donations
+
 You can support our work by donating to our non-profit organization [Deutsche Model United Nations (DMUN) e.V.](https://dmun.de).
 Please contact our board for details on how to donate by sending an email to [vorstand@dmun.de](mailto:vorstand@dmun.de).
 

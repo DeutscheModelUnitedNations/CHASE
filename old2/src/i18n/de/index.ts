@@ -690,7 +690,8 @@ const de = {
       "Dieses Änderungsprotokoll zeigt die Änderungen in der aktuellen und den letzten 4 Versionen. Aktuell ist das Änderungsprotokoll ausschließlich auf Englisch verfügbar. Für weitere Informationen besuchen Sie unser GitHub-Repository, indem Sie auf den Link unten klicken.",
     ALL_RELEASES: "Alle Versionen",
     NEW_VERSION_AVAILABLE: "Neue Version verfügbar",
-    NEW_VERSION_AVAILABLE_TEXT: "Bitte wenden Sie sich an den Administrator, um die App zu aktualisieren.",
+    NEW_VERSION_AVAILABLE_TEXT:
+      "Bitte wenden Sie sich an den Administrator, um die App zu aktualisieren.",
     LATEST_VERSION: "Neueste Version",
     LATEST_VERSION_TEXT: "Sie verwenden die neueste Version von CHASE.",
     DEVELOPMENT_VERSION: "Entwicklerversion",

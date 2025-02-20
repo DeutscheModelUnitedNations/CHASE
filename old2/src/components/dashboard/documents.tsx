@@ -19,7 +19,9 @@ import FlipMove from "react-flip-move";
 
 export default function DocumentsWidget({
   documents,
-}: { documents: Document[] }) {
+}: {
+  documents: Document[];
+}) {
   const { LL } = useI18nContext();
 
   return (

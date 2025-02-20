@@ -70,7 +70,10 @@ export function SmallFlag({
 export function NormalFlag({
   countryCode,
   showNameOnHover = false,
-}: { countryCode?: string; showNameOnHover?: boolean }) {
+}: {
+  countryCode?: string;
+  showNameOnHover?: boolean;
+}) {
   const { locale } = useI18nContext();
 
   const [isHovered, setIsHovered] = useState(false);
@@ -137,11 +140,7 @@ export function LargeFlag({
   );
 }
 
-export function FlagPlaceholder({
-  widthRem,
-}: {
-  widthRem: number;
-}) {
+export function FlagPlaceholder({ widthRem }: { widthRem: number }) {
   const globeIcon = useFaGlobe();
 
   return (

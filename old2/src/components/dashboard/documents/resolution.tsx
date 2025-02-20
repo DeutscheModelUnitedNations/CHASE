@@ -10,7 +10,10 @@ import Document from "@components/dashboard/documents/document_template";
 export default function Resolution({
   documentId,
   topic,
-}: { documentId: string; topic?: string }) {
+}: {
+  documentId: string;
+  topic?: string;
+}) {
   return (
     <Document documentId={documentId} icon="file-contract" topic={topic} />
   );

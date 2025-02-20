@@ -41,7 +41,10 @@ export default function Teampool() {
   const addTeammember = ({
     role,
     count,
-  }: { role: $Enums.ConferenceRole; count: number }) => {
+  }: {
+    role: $Enums.ConferenceRole;
+    count: number;
+  }) => {
     if (!conferenceId) return;
     backend
       .conference({ conferenceId })

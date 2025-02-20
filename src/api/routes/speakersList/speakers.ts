@@ -8,7 +8,7 @@ import {
 
 async function calculatePosition(
   speakersListId: string,
-  permissions: PermissionsType
+  permissions: PermissionsType,
 ) {
   const maxPosition = await db.speakerOnList.aggregate({
     _max: {
@@ -28,7 +28,7 @@ async function calculatePosition(
 async function createSpeakerOnList(
   speakersListId: string,
   committeeMemberId: string,
-  permissions: PermissionsType
+  permissions: PermissionsType,
 ) {
   permissions.checkIf((a) => a.can("create", "SpeakerOnList"));
   return await db.speakerOnList.create({
@@ -90,7 +90,7 @@ export const speakersListSpeakers = new Elysia({
       detail: {
         description: "Get all speakers on the speakers list",
       },
-    }
+    },
   )
 
   .post(
@@ -99,7 +99,7 @@ export const speakersListSpeakers = new Elysia({
       return await createSpeakerOnList(
         speakersListId,
         committeeMemberId,
-        permissions
+        permissions,
       );
     },
     {
@@ -107,7 +107,7 @@ export const speakersListSpeakers = new Elysia({
         description:
           "Add a speaker to the speakers list by chairs via committeeMemberId",
       },
-    }
+    },
   )
 
   .post(
@@ -164,7 +164,7 @@ export const speakersListSpeakers = new Elysia({
       ) {
         set.status = "Forbidden";
         throw new Error(
-          "Speakers list does not allow speakers to add themselves"
+          "Speakers list does not allow speakers to add themselves",
         );
       }
 
@@ -180,7 +180,7 @@ export const speakersListSpeakers = new Elysia({
 
       if (
         speakersList.speakers.some(
-          (speaker) => speaker.committeeMember.id === committeeMember.id
+          (speaker) => speaker.committeeMember.id === committeeMember.id,
         )
       ) {
         set.status = "Conflict";
@@ -190,7 +190,7 @@ export const speakersListSpeakers = new Elysia({
       return await createSpeakerOnList(
         speakersListId,
         committeeMember.id,
-        permissions
+        permissions,
       ).catch((e) => {
         if (e.code === "P2002") {
           set.status = "Conflict";
@@ -204,7 +204,7 @@ export const speakersListSpeakers = new Elysia({
       detail: {
         description: "Add a speaker to the speakers list",
       },
-    }
+    },
   )
 
   .post(
@@ -229,7 +229,7 @@ export const speakersListSpeakers = new Elysia({
       return await createSpeakerOnList(
         speakersListId,
         committeeMember.id,
-        permissions
+        permissions,
       );
     },
     {
@@ -237,7 +237,7 @@ export const speakersListSpeakers = new Elysia({
         description:
           "Add a speaker to the speakers list for chairs via countryCode",
       },
-    }
+    },
   )
 
   .delete(
@@ -254,7 +254,7 @@ export const speakersListSpeakers = new Elysia({
       detail: {
         description: "Remove a speaker from the speakers list",
       },
-    }
+    },
   )
 
   .delete(
@@ -284,7 +284,7 @@ export const speakersListSpeakers = new Elysia({
       detail: {
         description: "Remove a speaker from the speakers list",
       },
-    }
+    },
   )
 
   .delete(
@@ -301,7 +301,7 @@ export const speakersListSpeakers = new Elysia({
       detail: {
         description: "Clear the speakers list",
       },
-    }
+    },
   )
 
   .post(
@@ -365,7 +365,7 @@ export const speakersListSpeakers = new Elysia({
       detail: {
         description: "Move a speaker up in the list",
       },
-    }
+    },
   )
 
   .post(
@@ -429,7 +429,7 @@ export const speakersListSpeakers = new Elysia({
       detail: {
         description: "Move a speaker down in the list",
       },
-    }
+    },
   )
 
   .post(
@@ -516,7 +516,7 @@ export const speakersListSpeakers = new Elysia({
       detail: {
         description: "Move a speaker to the top of the list",
       },
-    }
+    },
   )
 
   .post(
@@ -616,5 +616,5 @@ export const speakersListSpeakers = new Elysia({
         description:
           "Remove the current speaker from a speakersList, making the next speaker the current speaker. Also resetting the timer and commentList",
       },
-    }
+    },
   );

@@ -89,9 +89,9 @@ export function ActionsOverlayChairMessage({
         metaCommittee: committeeData?.name,
         author: {
           connect: {
-            id: userIdent.id
-          }
-        }
+            id: userIdent.id,
+          },
+        },
       })
       .then((res) => {
         if (res.status === 200) {
@@ -267,8 +267,8 @@ export function ActionsOverlayResearchService({
         message: message,
         author: {
           connect: {
-            id: userIdent.id
-          }
+            id: userIdent.id,
+          },
         },
         metaEmail: userIdent?.emails[0]?.email,
         metaDelegation:

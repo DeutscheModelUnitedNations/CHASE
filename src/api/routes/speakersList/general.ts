@@ -48,7 +48,7 @@ export const speakersListGeneral = new Elysia({
       detail: {
         description: "Get all speakers lists in this committee",
       },
-    }
+    },
   )
   .get(
     "/speakersList/:type",
@@ -108,5 +108,5 @@ export const speakersListGeneral = new Elysia({
       detail: {
         description: "Get a single speakers list by type",
       },
-    }
+    },
   );

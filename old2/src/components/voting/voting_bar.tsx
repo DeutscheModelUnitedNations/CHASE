@@ -108,7 +108,10 @@ function VotingBarSection({
 function MajorityMarking({
   majority,
   numberOfVotes,
-}: { majority: VotingMajority; numberOfVotes: number }) {
+}: {
+  majority: VotingMajority;
+  numberOfVotes: number;
+}) {
   const getMajorityPercentage = (): number => {
     switch (majority) {
       case "simple":

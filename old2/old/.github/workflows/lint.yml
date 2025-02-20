@@ -12,7 +12,7 @@ jobs:
 
       - name: Setup Bun.js
         uses: oven-sh/setup-bun@v1
-      
+
       - name: Install biome
         run: bun add biome
 

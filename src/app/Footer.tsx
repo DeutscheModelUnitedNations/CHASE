@@ -4,47 +4,47 @@ import Image from "next/image";
 import * as m from "@/paraglide/messages";
 
 export default function Footer() {
-	return (
-		<footer className="bg-primary-300 py-6">
-			<div className="container mx-auto px-4 md:px-8">
-				<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-					{/* Sitemap */}
-					<div>
-						<h3 className="text-lg font-semibold mb-4">{m.sitemap()}</h3>
-						<ul className="space-y-1">
-							<li>
-								<Link href="/" className="hover:underline">
-									{m.home()}
-								</Link>
-							</li>
-							<li>
-								<Link href="/faq" className="hover:underline">
-									{m.faq()}
-								</Link>
-							</li>
-							<li>
-								<Link href="/docs" className="hover:underline">
-									{m.docs()}
-								</Link>
-							</li>
-							<li>
-								<Link href="/login" className="hover:underline">
-									{m.login()}
-								</Link>
-							</li>
-							<li>
-								<Link
-									href="https://www.dmun.de/impressum/"
-									className="hover:underline"
-								>
-									{m.privacy()}
-								</Link>
-							</li>
-						</ul>
-					</div>
+  return (
+    <footer className="bg-primary-300 py-6">
+      <div className="container mx-auto px-4 md:px-8">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          {/* Sitemap */}
+          <div>
+            <h3 className="mb-4 text-lg font-semibold">{m.sitemap()}</h3>
+            <ul className="space-y-1">
+              <li>
+                <Link href="/" className="hover:underline">
+                  {m.home()}
+                </Link>
+              </li>
+              <li>
+                <Link href="/faq" className="hover:underline">
+                  {m.faq()}
+                </Link>
+              </li>
+              <li>
+                <Link href="/docs" className="hover:underline">
+                  {m.docs()}
+                </Link>
+              </li>
+              <li>
+                <Link href="/login" className="hover:underline">
+                  {m.login()}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="https://www.dmun.de/impressum/"
+                  className="hover:underline"
+                >
+                  {m.privacy()}
+                </Link>
+              </li>
+            </ul>
+          </div>
 
-					{/* We disable lang picking for now */}
-					{/* <div>
+          {/* We disable lang picking for now */}
+          {/* <div>
 						<h3 className="text-lg font-semibold mb-4">
 							<FAIcon icon="globe" />
 						</h3>
@@ -97,27 +97,27 @@ export default function Footer() {
 						</ul>
 					</div> */}
 
-					{/* Impressum */}
-					<div>
-						<h3 className="text-lg font-semibold mb-4">{m.imprint()}</h3>
-						<p>Deutsche Model United Nations (DMUN) e.V.</p>
-						<p>Birkenweg 1, 24235 Laboe</p>
-						<p>
-							<Link href="mailto:vorstand@dmun.de">vorstand@dmun.de</Link>
-						</p>
-						<p>
-							<Link href="https://dmun.de">dmun.de</Link>
-						</p>
-						<Image
-							src={"/dmunlogo/default.png"}
-							alt="DMUN e.V. Logo"
-							width={128}
-							height={128}
-							className="my-2"
-						/>
-					</div>
-				</div>
-			</div>
-		</footer>
-	);
+          {/* Impressum */}
+          <div>
+            <h3 className="mb-4 text-lg font-semibold">{m.imprint()}</h3>
+            <p>Deutsche Model United Nations (DMUN) e.V.</p>
+            <p>Birkenweg 1, 24235 Laboe</p>
+            <p>
+              <Link href="mailto:vorstand@dmun.de">vorstand@dmun.de</Link>
+            </p>
+            <p>
+              <Link href="https://dmun.de">dmun.de</Link>
+            </p>
+            <Image
+              src={"/dmunlogo/default.png"}
+              alt="DMUN e.V. Logo"
+              width={128}
+              height={128}
+              className="my-2"
+            />
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
 }

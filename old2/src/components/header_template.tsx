@@ -7,7 +7,9 @@ import type React from "react";
 
 export default function HeaderTemplate({
   children,
-}: { children: React.ReactNode }) {
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <>
       <div className=" h-32 bg-slate-200 dark:bg-primary-200 flex justify-between items-center p-4">

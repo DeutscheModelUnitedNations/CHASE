@@ -15,7 +15,10 @@ type AddTeammemberDialogProps = {
   addTeammemberToList: ({
     role,
     count,
-  }: { role: ConferenceRole; count: number }) => void;
+  }: {
+    role: ConferenceRole;
+    count: number;
+  }) => void;
 };
 
 export default function AddTeammemberDialog({

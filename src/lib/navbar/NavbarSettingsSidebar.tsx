@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import { Sidebar } from "primereact/sidebar";
 import { SelectButton } from "primereact/selectbutton";
 import { Dropdown } from "primereact/dropdown";
-import { SmallFlag } from "../flag_templates";
-import { useI18nContext } from "@/i18n/i18n-react";
-import FAIcon from "../font_awesome_icon";
+import FAIcon from "@/lib/FAIcon";
+import * as m from "@/paraglide/messages";
+import { SmallFlag } from "@/lib/Flag";
 
 interface ColormodeOption {
   name: string;
@@ -25,30 +25,28 @@ interface SettingsSidebarProps {
  * - Language
  */
 
-export default function SettingsSidebar({
+export default function NavbarSettingsSidebar({
   settingsSidebarVisible,
   setSettingsSidebarVisible,
 }: SettingsSidebarProps) {
-  const { LL } = useI18nContext();
-
   const colortheme_items: ColormodeOption[] = [
     {
-      name: LL.settings.colorTheme.SYSTEM(),
+      name: m.system(),
       icon: "display",
       value: "system",
     },
     {
-      name: LL.settings.colorTheme.LIGHT(),
+      name: m.light(),
       icon: "sun",
       value: "light",
     },
     {
-      name: LL.settings.colorTheme.DARK(),
+      name: m.dark(),
       icon: "moon",
       value: "dark",
     },
     {
-      name: LL.settings.colorTheme.CONTRAST(),
+      name: m.contrast(),
       icon: "diamond-half-stroke",
       value: "contrast",
     },
@@ -56,14 +54,14 @@ export default function SettingsSidebar({
 
   const [colortheme, setColortheme] = useState(
     typeof window !== "undefined"
-      ? localStorage.getItem("theme") ?? "system"
+      ? (localStorage.getItem("theme") ?? "system")
       : "system",
   );
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   const [language, setLanguage] = useState(
     typeof window !== "undefined"
-      ? localStorage.getItem("lang") ?? "system"
+      ? (localStorage.getItem("lang") ?? "system")
       : "system",
   );
 
@@ -131,42 +129,38 @@ export default function SettingsSidebar({
       position="top"
     >
       {/* TODO Settings */}
-      <div className="flex w-full justify-center items-center pt-2 gap-2">
+      <div className="flex w-full items-center justify-center gap-2 pt-2">
         <div className="flex flex-col">
-          <div className="text-sm text-gray-500">
-            {LL.settings.colorTheme.HEADLINE()}
-          </div>
+          <div className="text-sm text-gray-500">{m.theme()}</div>
           <SelectButton
             value={colortheme}
             onChange={(e) => {
               setColortheme(e.value);
             }}
             itemTemplate={colorModeTemplate}
-            optionLabel={LL.settings.colorTheme.HEADLINE()}
+            optionLabel={m.theme()}
             options={colortheme_items}
             unselectable={false}
           />
         </div>
         <div className="flex flex-col">
-          <div className="text-sm text-gray-500">
-            {LL.settings.language.HEADLINE()}
-          </div>
+          <div className="text-sm text-gray-500">{m.language()}</div>
           <Dropdown
             value={language}
             options={[
               {
                 flag: "uno",
-                label: LL.settings.language.SYSTEM(),
+                label: m.system(),
                 value: "system",
               },
               {
                 flag: "deu",
-                label: LL.settings.language.GERMAN(),
+                label: m.german(),
                 value: "de",
               },
               {
                 flag: "usa",
-                label: LL.settings.language.ENGLISH(),
+                label: m.english(),
                 value: "en",
               },
             ]}

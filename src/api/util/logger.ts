@@ -23,7 +23,7 @@ export const logger = new Elysia({
     if (set.status === "Unavailable For Legal Reasons") {
       return error;
     }
-    
+
     if (statusCode === 401) {
       return error;
     }

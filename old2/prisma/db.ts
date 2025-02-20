@@ -17,7 +17,7 @@ const brandExtension = Prisma.defineExtension((client) => {
 
   const result = {} as Result;
   const modelKeys = Object.keys(client).filter(
-    (key) => !key.startsWith("__")
+    (key) => !key.startsWith("__"),
   ) as ModelKey[];
 
   for (const k of modelKeys) {
@@ -36,22 +36,25 @@ export const db = new PrismaClient({
 }).$extends(brandExtension);
 
 // maintanance
-setInterval(async () => {
-  await db.pendingCredentialCreateTask.deleteMany({
-    where: {
-      token: {
+setInterval(
+  async () => {
+    await db.pendingCredentialCreateTask.deleteMany({
+      where: {
+        token: {
+          expiresAt: {
+            lte: new Date(),
+          },
+        },
+      },
+    });
+
+    await db.token.deleteMany({
+      where: {
         expiresAt: {
           lte: new Date(),
         },
       },
-    },
-  });
-
-  await db.token.deleteMany({
-    where: {
-      expiresAt: {
-        lte: new Date(),
-      },
-    },
-  });
-}, 1000 * 60 * 11);
+    });
+  },
+  1000 * 60 * 11,
+);

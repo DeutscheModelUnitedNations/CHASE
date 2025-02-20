@@ -27,7 +27,7 @@ export const agendaItem = new Elysia({
       detail: {
         description: "Get all agenda items in this committee",
       },
-    }
+    },
   )
   .post(
     "/agendaItem",
@@ -74,7 +74,7 @@ export const agendaItem = new Elysia({
       detail: {
         description: "Create a new agenda item in this committee",
       },
-    }
+    },
   )
   .get(
     "/agendaItem/active",
@@ -96,7 +96,7 @@ export const agendaItem = new Elysia({
       detail: {
         description: "Get all active agenda items in this committee",
       },
-    }
+    },
   )
   .get(
     "/agendaItem/active/:type",
@@ -125,7 +125,7 @@ export const agendaItem = new Elysia({
       detail: {
         description: "Get all active agenda items in this committee",
       },
-    }
+    },
   )
   .get(
     "/agendaItem/:agendaItemId",
@@ -143,7 +143,7 @@ export const agendaItem = new Elysia({
       detail: {
         description: "Get a single agenda item by id",
       },
-    }
+    },
   )
   .post(
     "/agendaItem/:agendaItemId/activate",
@@ -173,7 +173,7 @@ export const agendaItem = new Elysia({
       detail: {
         description: "Activate an agenda item by id",
       },
-    }
+    },
   )
   .delete(
     "/agendaItem/:agendaItemId",
@@ -189,7 +189,7 @@ export const agendaItem = new Elysia({
       detail: {
         description: "Delete an agenda item by id",
       },
-    }
+    },
   )
   .patch(
     "/agendaItem/:agendaItemId",
@@ -216,5 +216,5 @@ export const agendaItem = new Elysia({
       detail: {
         description: "Update an agenda item by id",
       },
-    }
+    },
   );

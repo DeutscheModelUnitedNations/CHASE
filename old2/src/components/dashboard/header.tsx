@@ -51,11 +51,11 @@ export default function DashboardHeader({
                   LL,
                   conferenceMembership(conferenceId)?.role,
                 )
-              : getCountryNameByCode(
+              : (getCountryNameByCode(
                   committeeMembership(conferenceId)?.delegation?.nation
                     ?.alpha3Code ?? "xxx",
                   locale,
-                ) ?? <Skeleton width="15rem" height="2rem" />)}
+                ) ?? <Skeleton width="15rem" height="2rem" />))}
         </h1>
         <h2 className="text-md font-bold my-1">
           {alternativeHeadline2 ?? committeeName ?? (

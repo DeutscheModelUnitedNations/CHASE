@@ -45,7 +45,7 @@ export const auth = new Elysia({
         description:
           "Returns some info on the user in the system. Can be used to check if the user is existing and validated.",
       },
-    }
+    },
   )
   .get(
     "/myInfo",
@@ -83,7 +83,7 @@ export const auth = new Elysia({
       detail: {
         description: "Returns the user info when they are logged in",
       },
-    }
+    },
   )
   .post(
     "/validateEmail",
@@ -114,7 +114,7 @@ export const auth = new Elysia({
       if (
         !(await Bun.password.verify(
           token,
-          foundEmail.validationToken.tokenHash
+          foundEmail.validationToken.tokenHash,
         ))
       ) {
         return "invalidToken";
@@ -169,7 +169,7 @@ export const auth = new Elysia({
         description:
           "Validates the email of a user. The token is the token that was sent to the user via email. Returns a token which can be used to create credentials",
       },
-    }
+    },
   )
   .post(
     "/createUser",
@@ -203,7 +203,7 @@ export const auth = new Elysia({
       detail: {
         description: "Creates a user",
       },
-    }
+    },
   )
   //TODO spam protection?
   .get(
@@ -241,7 +241,7 @@ export const auth = new Elysia({
       detail: {
         description: "Sends a credential creation token to the users email",
       },
-    }
+    },
   )
   .get(
     "/logout",
@@ -253,5 +253,5 @@ export const auth = new Elysia({
         description:
           "Logs the user out. The user will be logged out on the next request",
       },
-    }
+    },
   );

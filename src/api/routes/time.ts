@@ -13,5 +13,5 @@ export const time = new Elysia().use(permissionsPlugin).get(
       description:
         "Get the timestamp of the current time in the backend. Can be used for sync with frontend system timers",
     },
-  }
+  },
 );

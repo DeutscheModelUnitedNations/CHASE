@@ -11,7 +11,10 @@
     "lint:error-only": "biome check . --apply --diagnostic-level=error",
     "test": "echo TODO"
   },
-  "workspaces": ["chase/backend", "chase/frontend"],
+  "workspaces": [
+    "chase/backend",
+    "chase/frontend"
+  ],
   "devDependencies": {
     "@biomejs/biome": "^1.6.3",
     "bun-types": "latest",

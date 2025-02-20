@@ -28,7 +28,7 @@ export const delegation = new Elysia({
       detail: {
         description: "Get all delegations in this conference",
       },
-    }
+    },
   )
   .post(
     "/delegation",
@@ -46,7 +46,7 @@ export const delegation = new Elysia({
       detail: {
         description: "Create a new delegation in this conference",
       },
-    }
+    },
   )
   .get(
     "/delegation/:delegationId",
@@ -65,7 +65,7 @@ export const delegation = new Elysia({
       detail: {
         description: "Get a specific delegation in this conference",
       },
-    }
+    },
   )
   .delete(
     "/delegation/:delegationId",
@@ -90,7 +90,7 @@ export const delegation = new Elysia({
         description:
           "Delete a delegation and all its committee members in this conference",
       },
-    }
+    },
   )
   .post(
     "/delegation/:delegationId/committee/:committeeId",
@@ -129,7 +129,7 @@ export const delegation = new Elysia({
         description:
           "Connect a committee to a delegation in this conference. If the committee is already connected to the delegation, it will be disconnected.",
       },
-    }
+    },
   )
 
   // Presence
@@ -160,7 +160,7 @@ export const delegation = new Elysia({
       detail: {
         description: "Update a member's presence in a delegation",
       },
-    }
+    },
   )
 
   .post(
@@ -181,7 +181,7 @@ export const delegation = new Elysia({
         description:
           "Get all delegations in a committee with all members absent",
       },
-    }
+    },
   )
   .post(
     "/committee/:committeeId/presence/allPresent",
@@ -201,5 +201,5 @@ export const delegation = new Elysia({
         description:
           "Get all delegations in a committee with all members absent",
       },
-    }
+    },
   );

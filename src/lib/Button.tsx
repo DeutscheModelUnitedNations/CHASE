@@ -4,12 +4,12 @@ import type { ButtonProps as PrimeReactButtonProps } from "primereact/button";
 import FAIcon from "./FAIcon";
 
 interface ExtendedButtonProps extends PrimeReactButtonProps {
-	label?: string;
-	faIcon?: string;
-	faIconClassName?: string;
-	keyboardShortcut?: string;
-	text?: boolean;
-	loading?: boolean;
+  label?: string;
+  faIcon?: string;
+  faIconClassName?: string;
+  keyboardShortcut?: string;
+  text?: boolean;
+  loading?: boolean;
 }
 
 /**
@@ -26,40 +26,40 @@ interface ExtendedButtonProps extends PrimeReactButtonProps {
  * @returns A Button Component
  */
 export default function Button({
-	label,
-	faIcon,
-	faIconClassName,
-	keyboardShortcut,
-	text,
-	loading,
-	...other
+  label,
+  faIcon,
+  faIconClassName,
+  keyboardShortcut,
+  text,
+  loading,
+  ...other
 }: ExtendedButtonProps) {
-	return (
-		<PrimeReactButton
-			{...other}
-			icon={
-				faIcon && (
-					<FAIcon
-						icon={loading ? "fa-spinner-third" : faIcon}
-						spin={!!loading}
-						className={`${label && "mr-3"} ${faIconClassName}`}
-					/>
-				)
-			}
-			text={text}
-		>
-			<div className="flex flex-row items-center justify-center w-full">
-				<span className="font-bold">{label}</span>
-				{keyboardShortcut && (
-					<span
-						className={`text-xs ml-2 ${
-							!text ? "bg-white/30" : "bg-black/5"
-						} dark:bg-black/25 px-2 py-1 rounded-md`}
-					>
-						{keyboardShortcut}
-					</span>
-				)}
-			</div>
-		</PrimeReactButton>
-	);
+  return (
+    <PrimeReactButton
+      {...other}
+      icon={
+        faIcon && (
+          <FAIcon
+            icon={loading ? "fa-spinner-third" : faIcon}
+            spin={!!loading}
+            className={`${label && "mr-3"} ${faIconClassName}`}
+          />
+        )
+      }
+      text={text}
+    >
+      <div className="flex w-full flex-row items-center justify-center">
+        <span className="font-bold">{label}</span>
+        {keyboardShortcut && (
+          <span
+            className={`ml-2 text-xs ${
+              !text ? "bg-white/30" : "bg-black/5"
+            } rounded-md px-2 py-1 dark:bg-black/25`}
+          >
+            {keyboardShortcut}
+          </span>
+        )}
+      </div>
+    </PrimeReactButton>
+  );
 }

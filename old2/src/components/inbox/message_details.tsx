@@ -95,8 +95,7 @@ export default function MessageDetails({
                 status: "UNREAD",
               })
               .then((res) => {
-                if (res.status !== 200)
-                  throw res.error;
+                if (res.status !== 200) throw res.error;
                 getMessagesFunction();
               })
               .catch((err) => {
@@ -109,8 +108,7 @@ export default function MessageDetails({
                 status: "UNREAD",
               })
               .then((res) => {
-                if (res.status !== 200)
-                  throw res.error;
+                if (res.status !== 200) throw res.error;
                 getMessagesFunction();
               })
               .catch((err) => {
@@ -137,8 +135,7 @@ export default function MessageDetails({
                 status: "PRIORITY",
               })
               .then((res) => {
-                if (res.status !== 200)
-                  throw res.error;
+                if (res.status !== 200) throw res.error;
                 getMessagesFunction();
               })
               .catch((err) => {
@@ -151,8 +148,7 @@ export default function MessageDetails({
                 status: "PRIORITY",
               })
               .then((res) => {
-                if (res.status !== 200)
-                  throw res.error;
+                if (res.status !== 200) throw res.error;
                 getMessagesFunction();
               })
               .catch((err) => {
@@ -183,8 +179,7 @@ export default function MessageDetails({
                 status: "ASSIGNED",
               })
               .then((res) => {
-                if (res.status !== 200)
-                  throw res.error;
+                if (res.status !== 200) throw res.error;
                 getMessagesFunction();
               })
               .catch((err) => {
@@ -197,8 +192,7 @@ export default function MessageDetails({
                 status: "ASSIGNED",
               })
               .then((res) => {
-                if (res.status !== 200)
-                  throw res.error;
+                if (res.status !== 200) throw res.error;
                 getMessagesFunction();
               })
               .catch((err) => {
@@ -220,8 +214,7 @@ export default function MessageDetails({
               status: "ARCHIVED",
             })
             .then((res) => {
-              if (res.status !== 200)
-                throw res.error;
+              if (res.status !== 200) throw res.error;
               showToast({
                 severity: "warn",
                 summary: LL.messageBoard.toast.ARCHIVED_SUMMARY(),
@@ -249,8 +242,7 @@ export default function MessageDetails({
             .message({ messageId: message.id })
             .forwardToResearchService.post()
             .then((res) => {
-              if (res.status !== 200)
-                throw res.error;
+              if (res.status !== 200) throw res.error;
               showToast({
                 severity: "success",
                 summary: LL.messageBoard.toast.FORWARDED_SUMMARY(),

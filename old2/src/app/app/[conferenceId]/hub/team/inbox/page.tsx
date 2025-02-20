@@ -8,33 +8,33 @@ import { usePollBackendCall } from "@/hooks/pollBackendCall";
 //TODO we should use a context for message storage
 
 export default function InboxPageResearchService() {
-	const conferenceId = useContext(ConferenceIdContext);
-	const { backend } = useBackend();
+  const conferenceId = useContext(ConferenceIdContext);
+  const { backend } = useBackend();
 
-	const [messages, trigger] = usePollBackendCall(
-		// biome-ignore lint/style/noNonNullAssertion: we assume the conference id is set
-		backend.conference({ conferenceId: conferenceId! }).messages.researchService
-			.get,
-		10000,
-	);
+  const [messages, trigger] = usePollBackendCall(
+    // biome-ignore lint/style/noNonNullAssertion: we assume the conference id is set
+    backend.conference({ conferenceId: conferenceId! }).messages.researchService
+      .get,
+    10000,
+  );
 
-	const [selectedMessage, setSelectedMessage] =
-		useState<(typeof messages)[number]>();
+  const [selectedMessage, setSelectedMessage] =
+    useState<(typeof messages)[number]>();
 
-	useEffect(() => {
-		setSelectedMessage(messages?.find((m) => m.id === selectedMessage?.id));
-	}, [messages]);
+  useEffect(() => {
+    setSelectedMessage(messages?.find((m) => m.id === selectedMessage?.id));
+  }, [messages]);
 
-	return (
-		<>
-			<InboxTemplate
-				isResearchService
-				messages={messages}
-				// biome-ignore lint/style/noNonNullAssertion: <explanation>
-				selectedMessage={selectedMessage!}
-				setSelectedMessage={setSelectedMessage}
-				getMessagesFunction={trigger}
-			/>
-		</>
-	);
+  return (
+    <>
+      <InboxTemplate
+        isResearchService
+        messages={messages}
+        // biome-ignore lint/style/noNonNullAssertion: <explanation>
+        selectedMessage={selectedMessage!}
+        setSelectedMessage={setSelectedMessage}
+        getMessagesFunction={trigger}
+      />
+    </>
+  );
 }

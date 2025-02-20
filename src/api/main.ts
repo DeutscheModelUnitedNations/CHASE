@@ -12,7 +12,4 @@ if (appConfiguration.production) {
   app.use(helmet());
 }
 
-app
-  .use(logger)
-  .use(api)
-  .compile();
+app.use(logger).use(api).compile();

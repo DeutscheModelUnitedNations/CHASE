@@ -31,7 +31,7 @@ export const committee = new Elysia({
         description:
           "Get all committees in this conference, including their agenda items",
       },
-    }
+    },
   )
   .get(
     "/committee/:committeeId",
@@ -51,7 +51,7 @@ export const committee = new Elysia({
       detail: {
         description: "Get a single committee by id including the agenda items",
       },
-    }
+    },
   )
   .get(
     "/committee/:committeeId/nations",
@@ -79,7 +79,7 @@ export const committee = new Elysia({
         description:
           "Get all nations of a committee (all delegations represented in this committee)",
       },
-    }
+    },
   )
   .post(
     "/committee",
@@ -107,7 +107,7 @@ export const committee = new Elysia({
       detail: {
         description: "Create a new committee in this conference",
       },
-    }
+    },
   )
   .delete(
     "/committee",
@@ -122,7 +122,7 @@ export const committee = new Elysia({
       detail: {
         description: "Delete all committees in this conference",
       },
-    }
+    },
   )
 
   .delete(
@@ -139,7 +139,7 @@ export const committee = new Elysia({
       detail: {
         description: "Delete a committee by id",
       },
-    }
+    },
   )
   .patch(
     "/committee/:committeeId",
@@ -158,7 +158,7 @@ export const committee = new Elysia({
       detail: {
         description: "Update a committee by id",
       },
-    }
+    },
   )
   .patch(
     "/committee/:committeeId/status",
@@ -183,7 +183,7 @@ export const committee = new Elysia({
       detail: {
         description: "Update a committee status by id",
       },
-    }
+    },
   )
   .get(
     "/committee/:committeeId/delegations",
@@ -217,5 +217,5 @@ export const committee = new Elysia({
       detail: {
         description: "Get all delegations of a committee",
       },
-    }
+    },
   );

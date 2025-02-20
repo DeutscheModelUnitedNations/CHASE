@@ -67,7 +67,9 @@ export default function RegionalGroups() {
 
   const checkInRegionalGroup = (alpha3Code: string, group: any) => {
     try {
-      return (regionalGroups as any)[group].includes(alpha3ToAlpha2(alpha3Code));
+      return (regionalGroups as any)[group].includes(
+        alpha3ToAlpha2(alpha3Code),
+      );
     } catch {
       return false;
     }
@@ -157,7 +159,11 @@ export default function RegionalGroups() {
           {(currentGroupIndex === Object.keys(groupNames).indexOf(group) * 2 ||
             currentGroupIndex ===
               Object.keys(groupNames).indexOf(group) * 2 + 1) && (
-            <Group key={group} group={group} groupName={(groupNames as any)[group]} />
+            <Group
+              key={group}
+              group={group}
+              groupName={(groupNames as any)[group]}
+            />
           )}
         </AnimatePresence>
       ))}

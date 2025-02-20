@@ -26,7 +26,7 @@ jobs:
       - name: Typecheck backend
         working-directory: ./chase/backend
         run: bun run typecheck
-        
+
       - name: Run build
         run: bun run build
         working-directory: ./chase/frontend

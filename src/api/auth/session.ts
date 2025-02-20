@@ -40,7 +40,7 @@ export const sessionPlugin = new Elysia({ name: "session" })
         sameSite: appConfiguration.development ? "none" : "strict",
         secure: true,
         path: "/",
-      }
+      },
     ),
   })
   .derive(
@@ -60,5 +60,5 @@ export const sessionPlugin = new Elysia({ name: "session" })
         return { session };
       }
       return { session };
-    }
+    },
   );

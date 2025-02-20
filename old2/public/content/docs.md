@@ -1,10 +1,13 @@
 # Hello World
+
 This is a short demonstration of markdown.
 
 ## Subtitle
+
 This is a subtitle.
 
 ### Subsubtitle
+
 This is a subsubtitle.
 
 - This is a list
@@ -21,12 +24,12 @@ This is a `code` block.
 
 This is a **bold** word.
 
-This is an *italic* word.
+This is an _italic_ word.
 
 This is a ~~strikethrough~~ word.
 
 ```javascript
-console.log('This is a code block');
+console.log("This is a code block");
 ```
 
 > This is a blockquote.

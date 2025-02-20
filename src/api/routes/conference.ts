@@ -25,7 +25,7 @@ export const conference = new Elysia()
       detail: {
         description: "Get all conferences",
       },
-    }
+    },
   )
   .post(
     "/conference",
@@ -63,7 +63,7 @@ export const conference = new Elysia()
       detail: {
         description: "Create a new conference, consumes a token",
       },
-    }
+    },
   )
   .get(
     "/conference/:conferenceId",
@@ -78,7 +78,7 @@ export const conference = new Elysia()
       detail: {
         description: "Get a single conference by id",
       },
-    }
+    },
   )
   .patch(
     "/conference/:conferenceId",
@@ -95,7 +95,7 @@ export const conference = new Elysia()
       detail: {
         description: "Update a conference by id",
       },
-    }
+    },
   )
   .patch(
     "/conference/:conferenceId/addAdmin",
@@ -135,7 +135,7 @@ export const conference = new Elysia()
       detail: {
         description: "Add an admin to a conference",
       },
-    }
+    },
   )
   .delete(
     "/conference/:conferenceId",
@@ -150,7 +150,7 @@ export const conference = new Elysia()
       detail: {
         description: "Delete a conference by id",
       },
-    }
+    },
   )
   .get(
     "/conference/:conferenceId/getOwnRole",
@@ -167,7 +167,7 @@ export const conference = new Elysia()
       detail: {
         description: "Check if you are an admin of a conference.",
       },
-    }
+    },
   )
   .post(
     "/conference/:conferenceId/populateMembers",
@@ -223,8 +223,8 @@ export const conference = new Elysia()
                 role: userData.role,
               },
             });
-          })
-        )
+          }),
+        ),
       );
     },
     {
@@ -233,10 +233,10 @@ export const conference = new Elysia()
           name: t.Index(User, ["name"]),
           role: t.Index(ConferenceMember, ["role"]),
           email: t.Index(Email, ["email"]),
-        })
+        }),
       ),
       detail: {
         description: "Add conference members based on input data.",
       },
-    }
+    },
   );

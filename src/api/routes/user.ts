@@ -24,5 +24,5 @@ export const user = new Elysia().use(permissionsPlugin).get(
     detail: {
       description: "Get the delegation of a user in this conference",
     },
-  }
+  },
 );
