@@ -2,7 +2,6 @@ import { t, Elysia } from "elysia";
 import { db } from "../../../prisma/db";
 import {
   MessageInputCreate,
-  MessagePlainInputCreate,
 } from "@prisma/generated/schema/Message";
 import { $Enums } from "../../../prisma/generated/client";
 import { MessageStatus } from "../../../prisma/generated/schema/MessageStatus";
@@ -30,8 +29,9 @@ export const messages = new Elysia()
           author: {
             select: {
               id: true,
-              name: true,
-              emails: true,
+              email: true,
+              family_name: true,
+              given_name: true
             },
           },
         },
@@ -64,8 +64,9 @@ export const messages = new Elysia()
           author: {
             select: {
               id: true,
-              name: true,
-              emails: true,
+              email: true,
+              family_name: true,
+              given_name: true
             },
           },
         },

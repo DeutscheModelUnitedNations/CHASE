@@ -1,4 +1,3 @@
-import Cryptr from "cryptr";
 import {
   allowInsecureRequests,
   authorizationCodeGrant,
@@ -50,7 +49,7 @@ export const codeVerifierCookieName = "code_verifier";
 export const oidcStateCookieName = "oidc_state";
 export const tokensCookieName = "token_set";
 
-const { config, cryptr, jwks } = await (async () => {
+const { config, jwks } = await (async () => {
   // this runs statically but we don't have access to the dynamic config values at build time
   // so we need to return dummy values
   if (process.env.NEXT_BUILD) {
@@ -59,7 +58,6 @@ const { config, cryptr, jwks } = await (async () => {
       jwks: undefined as unknown as
         | Awaited<ReturnType<typeof createRemoteJWKSet>>
         | undefined,
-      cryptr: undefined as unknown as Cryptr,
     };
   }
   const execute = [];
@@ -68,7 +66,7 @@ const { config, cryptr, jwks } = await (async () => {
   }
   const config = await discovery(
     new URL(process.env.NEXT_PUBLIC_OIDC_AUTHORITY!),
-    process.env.PUBLIC_OIDC_CLIENT_ID!,
+    process.env.NEXT_PUBLIC_OIDC_CLIENT_ID!,
     {
       client_secret: process.env.OIDC_CLIENT_SECRET,
       token_endpoint_auth_method: process.env.OIDC_CLIENT_SECRET
@@ -80,36 +78,34 @@ const { config, cryptr, jwks } = await (async () => {
       execute,
     },
   );
-  const cryptr = new Cryptr(
-    process.env.OIDC_CLIENT_SECRET ?? process.env.SECRET!,
-  );
   const jwks_uri = config.serverMetadata().jwks_uri;
   const jwks = jwks_uri
     ? await createRemoteJWKSet(new URL(jwks_uri))
     : undefined;
 
-  return { config, cryptr, jwks };
+  return { config, jwks };
 })();
 
-export async function startSignin(visitedUrl: URL) {
+export async function startSignin(
+  visitedUrl: URL,
+  loginRoute = "/auth/login-callback",
+) {
   //TODO https://github.com/gornostay25/svelte-adapter-bun/issues/62
   if (process.env.NODE_ENV === "production") {
     visitedUrl.protocol = "https:";
   }
 
   const code_verifier = randomPKCECodeVerifier();
-  const encrypted_verifier = cryptr.encrypt(code_verifier);
   const code_challenge = await calculatePKCECodeChallenge(code_verifier);
   const state: OIDCFlowState = {
     visitedUrl: visitedUrl.toString(),
     random: randomState(),
   };
   const serialized_state = JSON.stringify(state);
-  const encrypted_state = cryptr.encrypt(serialized_state);
 
   const parameters: Record<string, string> = {
-    redirect_uri: `${visitedUrl.origin}/auth/login-callback`,
-    scope: process.env.OIDC_SCOPES!,
+    redirect_uri: `${visitedUrl.origin}${loginRoute}`,
+    scope: process.env.OIDC_SCOPES! ?? "openid email profile",
     code_challenge,
     code_challenge_method: "S256",
     state: serialized_state,
@@ -118,25 +114,24 @@ export async function startSignin(visitedUrl: URL) {
   const redirect_uri = buildAuthorizationUrl(config, parameters);
 
   return {
-    encrypted_verifier,
+    code_verifier,
     redirect_uri,
-    encrypted_state,
+    state: serialized_state,
   };
 }
 
 export async function resolveSignin(
   visitedUrl: URL,
-  encrypted_verifier: string,
-  encrypted_state: string,
+  code_verifier: string,
+  raw_state: string,
 ) {
   //TODO https://github.com/gornostay25/svelte-adapter-bun/issues/62
   if (process.env.NODE_ENV === "production") {
     visitedUrl.protocol = "https:";
   }
-  const verifier = cryptr.decrypt(encrypted_verifier);
-  const state = JSON.parse(cryptr.decrypt(encrypted_state)) as OIDCFlowState;
+  const state = JSON.parse(raw_state) as OIDCFlowState;
   const tokens = await authorizationCodeGrant(config, visitedUrl, {
-    pkceCodeVerifier: verifier,
+    pkceCodeVerifier: code_verifier,
     expectedState: JSON.stringify(state),
   });
   (state as any).random = undefined;

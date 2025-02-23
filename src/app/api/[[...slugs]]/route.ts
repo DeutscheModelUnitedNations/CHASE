@@ -1,6 +1,7 @@
 import { app } from "@/api/main";
 
 export const dynamic = "force-dynamic";
+export const runtime = 'nodejs'
 
 export const GET = app.handle;
 export const POST = app.handle;

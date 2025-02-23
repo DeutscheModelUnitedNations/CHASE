@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<title>DELEGATOR Mock OAuth2 Server</title>
+
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+			integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+			crossorigin="anonymous"
+		/>
+		<style>
+			.presets-container {
+				margin-bottom: 20px;
+			}
+			.preset-btn {
+				margin: 0 5px 5px 0;
+			}
+		</style>
+		<script>
+			const presets = [
+				{
+					id: 'admin',
+					claims: {
+						email: 'm.musterfrau@mail.com',
+						family_name: 'Musterfrau',
+						given_name: 'Maria',
+						preferred_username: 'AdminUser',
+						locale: 'de',
+						'urn:zitadel:iam:org:project:275671427955294244:roles': {
+							admin: {}
+						}
+					}
+				},
+				{
+					id: 'user',
+					claims: {
+						email: 'm.mustermann@mail.com',
+						family_name: 'Mustermann',
+						given_name: 'Max',
+						preferred_username: 'NormalUser',
+						locale: 'de'
+					}
+				}
+			];
+
+			function selectPreset(preset) {
+				const usernameInput = document.querySelector('input[name="username"]');
+				const claimsTextarea = document.querySelector('textarea[name="claims"]');
+
+				usernameInput.value = preset.claims.preferred_username;
+				claimsTextarea.value = JSON.stringify(preset.claims, null, 2);
+			}
+		</script>
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="row justify-content-md-center mt-5">
+				<div class="col-md-5">
+					<h4>MUNify DELEGATOR Mock OAuth2</h4>
+					<div class="presets-container">
+						<script>
+							presets.forEach((preset, index) => {
+								document.write(`
+									<button type="button" 
+											class="btn btn-secondary btn-sm preset-btn" 
+											onclick="selectPreset(presets[${index}])">
+										${preset.id}
+									</button>
+								`);
+							});
+						</script>
+					</div>
+					<form method="post">
+						<hr class="divisor" />
+						<div class="form-group">
+							<input
+								type="text"
+								class="form-control"
+								name="username"
+								autofocus="on"
+								placeholder="Enter any user/subject"
+							/>
+						</div>
+						<div class="form-group">
+							<textarea
+								class="form-control"
+								name="claims"
+								rows="15"
+								placeholder='Optional claims JSON value, example:
+{
+  "acr": "reference"
+}'
+							></textarea>
+						</div>
+						<div style="display: flex; justify-content: space-between">
+							<a href="http://localhost:5173" class="topBtn btn btn-error">Cancel</a>
+							<button type="submit" class="topBtn btn btn-primary">Sign-in</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

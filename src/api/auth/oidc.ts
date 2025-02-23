@@ -9,6 +9,7 @@ const TokenCookieSchema = t.Object(
     id_token: t.String(),
     scope: t.String(),
     expires_in: t.Number(),
+    expires_at: t.Number(),
     session_state: t.Any(),
   },
   { additionalProperties: false },
@@ -23,6 +24,7 @@ export type OidcResponse = Partial<{
     Required<Pick<TokenCookieSchemaType, "access_token">>;
   user: Awaited<ReturnType<typeof validateTokens>> & {
     hasRole: (role: (typeof oidcRoles)[number]) => boolean;
+    OIDCRoleNames: (typeof oidcRoles)[number][];
   };
 }>;
 

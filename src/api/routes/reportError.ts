@@ -7,13 +7,11 @@ export const reportError = new Elysia()
   .use(permissionsPlugin)
   .post(
     "/report-error",
-    async ({ permissions, body, session }) => {
+    async ({ permissions, body, oidc: { user } }) => {
       permissions.getLoggedInUserOrThrow();
       console.error(`
 ==============
-Incoming error report by ${session.data?.user?.name} (${
-        session.data?.user?.email
-      }) :
+Incoming error report by ${user?.name} (${user?.email}) :
     message: ${body.message}
     source: ${body.source}
     lineno: ${body.lineno}

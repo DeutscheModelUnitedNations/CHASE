@@ -1,6 +1,17 @@
-import { t, Elysia } from "elysia";
+import { Elysia } from "elysia";
 import { oidcPlugin } from "../../auth/oidc";
 import { permissionsPlugin } from "../../auth/permissions";
+import {
+  codeVerifierCookieName,
+  fetchUserInfoFromIssuer,
+  getLogoutUrl,
+  oidcStateCookieName,
+  resolveSignin,
+  startSignin,
+  tokensCookieName,
+  validateTokens,
+} from "@/api/services/OIDC";
+import { db } from "@prisma/db";
 
 export const auth = new Elysia({
   prefix: "/auth",
@@ -8,71 +19,10 @@ export const auth = new Elysia({
   .use(oidcPlugin)
   .use(permissionsPlugin)
   .get(
-    "/userState",
-    async ({ query: { email } }) => {
-      const foundEmail = await db.email.findUnique({
-        where: {
-          email,
-        },
-        include: { user: true },
-      });
-
-      if (!foundEmail?.user) {
-        return "userNotFound";
-      }
-
-      if (!foundEmail.validated) {
-        return "emailNotValidated";
-      }
-
-      return "ok";
-    },
-    {
-      query: t.Object({
-        email: t.String(),
-      }),
-      response: t.Union([
-        t.Literal("userNotFound"),
-        t.Literal("emailNotValidated"),
-        t.Literal("ok"),
-      ]),
-      detail: {
-        description:
-          "Returns some info on the user in the system. Can be used to check if the user is existing and validated.",
-      },
-    },
-  )
-  .get(
-    "/myInfo",
-    async ({ session, permissions }) => {
-      permissions.getLoggedInUserOrThrow();
-      return db.user.findUniqueOrThrow({
-        where: { id: session.data?.user?.id },
-        include: {
-          emails: true,
-          conferenceMemberships: {
-            select: {
-              id: true,
-              role: true,
-              conference: true,
-            },
-          },
-          committeeMemberships: {
-            include: {
-              committee: {
-                include: {
-                  conference: true,
-                },
-              },
-              delegation: {
-                select: {
-                  nation: true,
-                },
-              },
-            },
-          },
-        },
-      });
+    "/my-oidc-roles",
+    async ({ permissions }) => {
+      const user = permissions.getLoggedInUserOrThrow();
+      return user.OIDCRoleNames;
     },
     {
       detail: {
@@ -81,14 +31,72 @@ export const auth = new Elysia({
     },
   )
   .get(
-    "/logout",
-    ({ session }) => {
-      session.setData({ loggedIn: false });
+    "/logout-url",
+    ({ request: { url } }) => {
+      getLogoutUrl(new URL(url)).toString();
     },
     {
       detail: {
-        description:
-          "Logs the user out. The user will be logged out on the next request",
+        description: "The url to visit to log out",
+      },
+    },
+  )
+  .get(
+    "/offline-user-refresh",
+    ({ permissions, oidc }) => {
+      const user = permissions.getLoggedInUserOrThrow();
+      return { user, nextTokenRefreshDue: oidc.nextTokenRefreshDue };
+    },
+    {
+      detail: {
+        description: "Refreshes the current user auth using the refresh token",
+      },
+    },
+  )
+  .post(
+    "/upsert-self",
+    async ({ permissions, oidc }) => {
+      const user = permissions.getLoggedInUserOrThrow();
+
+      const issuerUserData = await fetchUserInfoFromIssuer(
+        oidc.tokenSet!.access_token,
+        user.sub,
+      );
+
+      if (
+        !issuerUserData.email ||
+        !issuerUserData.family_name ||
+        !issuerUserData.given_name ||
+        !issuerUserData.preferred_username
+      ) {
+        throw new Error("OIDC result is missing required fields!");
+      }
+
+      await db.user.upsert({
+        where: { id: issuerUserData.sub },
+        create: {
+          id: issuerUserData.sub,
+          email: issuerUserData.email,
+          family_name: issuerUserData.family_name,
+          given_name: issuerUserData.given_name,
+          preferred_username: issuerUserData.preferred_username,
+          locale:
+            issuerUserData.locale ?? process.env.PUBLIC_DEFAULT_LOCALE ?? "de",
+        },
+        update: {
+          email: issuerUserData.email,
+          family_name: issuerUserData.family_name,
+          given_name: issuerUserData.given_name,
+          preferred_username: issuerUserData.preferred_username,
+          locale: issuerUserData.locale ?? process.env.PUBLIC_DEFAULT_LOCALE,
+        },
+      });
+
+      return { user };
+    },
+    {
+      detail: {
+        description: "Refreshes the current user auth using the refresh token",
       },
     },
   );

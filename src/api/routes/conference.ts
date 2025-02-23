@@ -4,8 +4,6 @@ import { ConferenceCreateToken } from "../../../prisma/generated/schema/Conferen
 import { User } from "../../../prisma/generated/schema/User";
 import { permissionsPlugin } from "../auth/permissions";
 import { oidcPlugin } from "../auth/oidc";
-import { ConferenceMember } from "../../../prisma/generated/schema/ConferenceMember";
-import { Email } from "../../../prisma/generated/schema/Email";
 import {
   ConferencePlainInputCreate,
   ConferencePlainInputUpdate,
@@ -29,7 +27,7 @@ export const conference = new Elysia()
   )
   .post(
     "/conference",
-    ({ body, session, permissions }) =>
+    ({ body, oidc, permissions }) =>
       db.$transaction(async (tx) => {
         permissions.checkIf((a) => a.can("create", "Conference"));
 
@@ -47,7 +45,7 @@ export const conference = new Elysia()
                 role: "ADMIN",
                 user: {
                   connect: {
-                    id: session.data?.user?.id,
+                    id: oidc?.user?.id,
                   },
                 },
               },
@@ -154,11 +152,11 @@ export const conference = new Elysia()
   )
   .get(
     "/conference/:conferenceId/getOwnRole",
-    async ({ session, permissions }) =>
+    async ({ oidc, permissions }) =>
       (
         await db.conferenceMember.findFirstOrThrow({
           where: {
-            userId: session.data?.user?.id,
+            userId: oidc?.user?.id,
             AND: [permissions.allowDatabaseAccessTo("read").ConferenceMember],
           },
         })
@@ -169,74 +167,74 @@ export const conference = new Elysia()
       },
     },
   )
-  .post(
-    "/conference/:conferenceId/populateMembers",
-    async ({ body, params, permissions }) => {
-      return Promise.all(
-        body.map((userData) =>
-          db.$transaction(async (tx) => {
-            const email = await tx.email.findFirst({
-              where: { email: userData.email },
-              include: { user: true },
-            });
-            let user = email?.user;
-            if (!email) {
-              user = await tx.user.create({
-                data: {
-                  name: userData.name,
-                  emails: {
-                    create: {
-                      email: userData.email,
-                      validated: true,
-                    },
-                  },
-                },
-              });
-            }
+  // .post(
+  //   "/conference/:conferenceId/populateMembers",
+  //   async ({ body, params, permissions }) => {
+  //     return Promise.all(
+  //       body.map((userData) =>
+  //         db.$transaction(async (tx) => {
+  //           const email = await tx.email.findFirst({
+  //             where: { email: userData.email },
+  //             include: { user: true },
+  //           });
+  //           let user = email?.user;
+  //           if (!email) {
+  //             user = await tx.user.create({
+  //               data: {
+  //                 name: userData.name,
+  //                 emails: {
+  //                   create: {
+  //                     email: userData.email,
+  //                     validated: true,
+  //                   },
+  //                 },
+  //               },
+  //             });
+  //           }
 
-            return tx.conferenceMember.upsert({
-              where: {
-                userId_conferenceId: {
-                  conferenceId: params.conferenceId,
-                  // biome-ignore lint/style/noNonNullAssertion: <explanation>
-                  userId: user!.id,
-                },
-                AND: [
-                  permissions.allowDatabaseAccessTo("create").ConferenceMember,
-                ],
-              },
-              create: {
-                role: userData.role,
-                user: {
-                  connect: {
-                    // biome-ignore lint/style/noNonNullAssertion: <explanation>
-                    id: user!.id,
-                  },
-                },
-                conference: {
-                  connect: {
-                    id: params.conferenceId,
-                  },
-                },
-              },
-              update: {
-                role: userData.role,
-              },
-            });
-          }),
-        ),
-      );
-    },
-    {
-      body: t.Array(
-        t.Object({
-          name: t.Index(User, ["name"]),
-          role: t.Index(ConferenceMember, ["role"]),
-          email: t.Index(Email, ["email"]),
-        }),
-      ),
-      detail: {
-        description: "Add conference members based on input data.",
-      },
-    },
-  );
+  //           return tx.conferenceMember.upsert({
+  //             where: {
+  //               userId_conferenceId: {
+  //                 conferenceId: params.conferenceId,
+  //                 // biome-ignore lint/style/noNonNullAssertion: <explanation>
+  //                 userId: user!.id,
+  //               },
+  //               AND: [
+  //                 permissions.allowDatabaseAccessTo("create").ConferenceMember,
+  //               ],
+  //             },
+  //             create: {
+  //               role: userData.role,
+  //               user: {
+  //                 connect: {
+  //                   // biome-ignore lint/style/noNonNullAssertion: <explanation>
+  //                   id: user!.id,
+  //                 },
+  //               },
+  //               conference: {
+  //                 connect: {
+  //                   id: params.conferenceId,
+  //                 },
+  //               },
+  //             },
+  //             update: {
+  //               role: userData.role,
+  //             },
+  //           });
+  //         }),
+  //       ),
+  //     );
+  //   },
+  //   {
+  //     body: t.Array(
+  //       t.Object({
+  //         name: t.Index(User, ["name"]),
+  //         role: t.Index(ConferenceMember, ["role"]),
+  //         email: t.Index(Email, ["email"]),
+  //       }),
+  //     ),
+  //     detail: {
+  //       description: "Add conference members based on input data.",
+  //     },
+  //   },
+  // );

@@ -2,7 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider      = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -19,73 +19,19 @@ generator prismabox {
   plainAdditionalFields       = ["__typename: String"]
 }
 
-// model Authenticator {
-//   id     String @id @default(uuid())
-//   user   User   @relation(fields: [userId], references: [id])
-//   userId String
-
-//   credentialID         String   @db.Text
-//   credentialPublicKey  Bytes
-//   counter              BigInt
-//   credentialDeviceType String   @db.VarChar(32)
-//   credentialBackedUp   Boolean
-//   transports           String[] @db.VarChar(255)
-// }
-
-// TODO a max amount for passwords would make sense
-
-model Password {
-  id           String @id @default(uuid())
-  user         User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  userId       String
-  /// @prismabox.hide
-  passwordHash String
-}
-
-/// A token which can be used to grant one time access to something in the app
-/// e.g. confirming an email, resetting a password
-model Token {
-  id        String   @id @default(uuid())
-  /// @prismabox.hide
-  tokenHash String
-  expiresAt DateTime
-
-  pendingEmailConfirmations  Email[]
-  pendingCredentialCreations PendingCredentialCreateTask[]
-}
-
-model PendingCredentialCreateTask {
+model User {
   id String @id @default(uuid())
 
-  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  userId  String
-  token   Token  @relation(fields: [tokenId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  tokenId String
-}
+  // these are OIDC fields and only will be updated by the issuer in the login flow
+  email              String @unique
+  family_name        String
+  given_name         String
+  locale             String
+  preferred_username String
 
-model Email {
-  email  String @id
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  userId String
-
-  validated         Boolean @default(false)
-  validationToken   Token?  @relation(fields: [validationTokenId], references: [id])
-  validationTokenId String?
-
-  @@unique([userId, email])
-}
-
-/// A user in the system
-model User {
-  id                             String                        @id @default(uuid())
-  name                           String
-  conferenceMemberships          ConferenceMember[]
-  committeeMemberships           CommitteeMember[]
-  messages                       Message[]
-  emails                         Email[]
-  passwords                      Password[]
-  // authenticators Authenticator[]
-  pendingCredentialCreationTasks PendingCredentialCreateTask[]
+  conferenceMemberships ConferenceMember[]
+  committeeMemberships  CommitteeMember[]
+  messages              Message[]
 }
 
 /// Consumeable token which grants the creation of a conference
@@ -252,11 +198,11 @@ model Delegation {
   id           String            @id @default(uuid())
   conference   Conference        @relation(fields: [conferenceId], references: [id])
   conferenceId String
-  nation       Nation            @relation(fields: [nationId], references: [id])
-  nationId     String
+  nation       Nation            @relation(fields: [nationAlpha3Code], references: [alpha3Code])
+  nationAlpha3Code     String
   members      CommitteeMember[]
 
-  @@unique([conferenceId, nationId])
+  @@unique([conferenceId, nationAlpha3Code])
 }
 
 enum NationVariant {
@@ -268,8 +214,8 @@ enum NationVariant {
 //TODO should we allow for customizing these per conference and just allow loading template at creation?
 /// A nation in the system. E.g. Germany
 model Nation {
-  id          String        @id @default(uuid())
-  alpha3Code  String        @unique
+  alpha3Code  String        @id
+  alpha2Code  String        @unique
   variant     NationVariant @default(NATION)
   delegations Delegation[]
 }
