@@ -11,7 +11,7 @@ export const baseData = new Elysia({ prefix: "/baseData" })
   .get(
     "/countries",
     ({ permissions }) => {
-      permissions.mustBeLoggedIn();
+      permissions.getLoggedInUserOrThrow();
       return db.nation.findMany();
     },
     {

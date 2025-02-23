@@ -1,18 +1,18 @@
 import type { AbilityBuilder } from "@casl/ability";
 import type { AppAbility } from "../abilities";
-import type { Session } from "../../session";
+import type { OidcResponse } from "../../oidc";
 
 export const defineAbilitiesForSpeakersList = (
-  session: Session,
+  oidc: OidcResponse,
   { can }: AbilityBuilder<AppAbility>,
 ) => {
-  if (session.data?.loggedIn && session.data.user) {
-    const user = session.data.user;
+  if (oidc.user) {
+    const user = oidc.user;
     can(["create", "delete"], "SpeakersList", {
       agendaItem: {
         committee: {
           conference: {
-            members: { some: { user: { id: user.id }, role: "ADMIN" } },
+            members: { some: { user: { id: user.sub }, role: "ADMIN" } },
           },
         },
       },
@@ -22,8 +22,8 @@ export const defineAbilitiesForSpeakersList = (
       agendaItem: {
         committee: {
           OR: [
-            { conference: { members: { some: { user: { id: user.id } } } } },
-            { members: { some: { user: { id: user.id } } } },
+            { conference: { members: { some: { user: { id: user.sub } } } } },
+            { members: { some: { user: { id: user.sub } } } },
           ],
         },
       },
@@ -36,7 +36,7 @@ export const defineAbilitiesForSpeakersList = (
           conference: {
             members: {
               some: {
-                user: { id: user.id },
+                user: { id: user.sub },
                 role: { in: ["ADMIN", "CHAIR", "COMMITTEE_ADVISOR"] },
               },
             },

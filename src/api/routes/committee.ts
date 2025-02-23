@@ -1,6 +1,6 @@
 import { t, Elysia } from "elysia";
 import { db } from "../../../prisma/db";
-import { sessionPlugin } from "../auth/session";
+import { oidcPlugin } from "../auth/oidc";
 import { permissionsPlugin } from "../auth/permissions";
 import {
   CommitteeInputCreate,
@@ -10,7 +10,7 @@ import {
 export const committee = new Elysia({
   prefix: "/conference/:conferenceId",
 })
-  .use(sessionPlugin)
+  .use(oidcPlugin)
   .use(permissionsPlugin)
   .get(
     "/committee",

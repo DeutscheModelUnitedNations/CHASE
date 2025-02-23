@@ -3,7 +3,7 @@ import { db } from "../../../prisma/db";
 import { ConferenceCreateToken } from "../../../prisma/generated/schema/ConferenceCreateToken";
 import { User } from "../../../prisma/generated/schema/User";
 import { permissionsPlugin } from "../auth/permissions";
-import { sessionPlugin } from "../auth/session";
+import { oidcPlugin } from "../auth/oidc";
 import { ConferenceMember } from "../../../prisma/generated/schema/ConferenceMember";
 import { Email } from "../../../prisma/generated/schema/Email";
 import {
@@ -13,7 +13,7 @@ import {
 // import { ConferenceRole } from "../../prisma/generated/schema/ConferenceRole";
 
 export const conference = new Elysia()
-  .use(sessionPlugin)
+  .use(oidcPlugin)
   .use(permissionsPlugin)
   .get(
     "/conference",

@@ -4,7 +4,7 @@ import { permissionsPlugin } from "../auth/permissions";
 export const time = new Elysia().use(permissionsPlugin).get(
   "/timestamp",
   async ({ permissions }) => {
-    permissions.mustBeLoggedIn();
+    permissions.getLoggedInUserOrThrow();
     return Date.now();
   },
   {

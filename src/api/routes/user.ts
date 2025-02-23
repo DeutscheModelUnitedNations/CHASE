@@ -5,7 +5,7 @@ import { permissionsPlugin } from "../auth/permissions";
 export const user = new Elysia().use(permissionsPlugin).get(
   "/conference/:conferenceId/user/:userId/delegation",
   async ({ params: { conferenceId, userId }, permissions }) => {
-    permissions.mustBeLoggedIn(); // TODO
+    permissions.getLoggedInUserOrThrow(); // TODO
     return await db.delegation.findFirst({
       where: {
         conferenceId,

@@ -1,14 +1,14 @@
 import { Elysia, t } from "elysia";
 import { permissionsPlugin } from "../auth/permissions";
-import { sessionPlugin } from "../auth/session";
+import { oidcPlugin } from "../auth/oidc";
 
 export const reportError = new Elysia()
-  .use(sessionPlugin)
+  .use(oidcPlugin)
   .use(permissionsPlugin)
   .post(
     "/report-error",
     async ({ permissions, body, session }) => {
-      permissions.mustBeLoggedIn();
+      permissions.getLoggedInUserOrThrow();
       console.error(`
 ==============
 Incoming error report by ${session.data?.user?.name} (${

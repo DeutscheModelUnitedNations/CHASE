@@ -1,13 +1,13 @@
 import type { AbilityBuilder } from "@casl/ability";
 import type { AppAbility } from "../abilities";
-import type { Session } from "../../session";
+import type { OidcResponse } from "../../oidc";
 
 export const defineAbilitiesForMessages = (
-  session: Session,
+  oidc: OidcResponse,
   { can }: AbilityBuilder<AppAbility>,
 ) => {
-  if (session.data?.loggedIn && session.data.user) {
-    const user = session.data.user;
+  if (oidc.user) {
+    const user = oidc.user;
     can("create", "Message", {
       committee: {
         OR: [
@@ -15,7 +15,7 @@ export const defineAbilitiesForMessages = (
             conference: {
               members: {
                 some: {
-                  user: { id: user.id },
+                  user: { id: user.sub },
                   role: {
                     in: [
                       "ADMIN",
@@ -32,7 +32,7 @@ export const defineAbilitiesForMessages = (
           {
             members: {
               some: {
-                user: { id: user.id },
+                user: { id: user.sub },
               },
             },
           },
@@ -45,7 +45,7 @@ export const defineAbilitiesForMessages = (
         conference: {
           members: {
             some: {
-              user: { id: user.id },
+              user: { id: user.sub },
               role: {
                 in: ["ADMIN", "CHAIR", "COMMITTEE_ADVISOR", "SECRETARIAT"],
               },

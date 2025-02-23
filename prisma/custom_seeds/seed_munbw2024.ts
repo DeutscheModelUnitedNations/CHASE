@@ -1,5 +1,5 @@
 import { $Enums, PrismaClient } from "../generated/client";
-import { alpha2ToAlpha3 } from "../countryCodeUtils";
+import { alpha2ToAlpha3 } from "../../src/lib/countryCodeUtils";
 import delegationData from "./munbw2024_delegations.json";
 const prisma = new PrismaClient();
 

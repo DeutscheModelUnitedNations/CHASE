@@ -1,13 +1,13 @@
 import type { AbilityBuilder } from "@casl/ability";
 import type { AppAbility } from "../abilities";
-import type { Session } from "../../session";
+import type { OidcResponse } from "../../oidc";
 
 export const defineAbilitiesForSpeakerOnList = (
-  session: Session,
+  oidc: OidcResponse,
   { can }: AbilityBuilder<AppAbility>,
 ) => {
-  if (session.data?.loggedIn && session.data.user) {
-    const user = session.data.user;
+  if (oidc.user) {
+    const user = oidc.user;
     can(["create", "list", "read"], "SpeakerOnList", {
       speakersList: {
         agendaItem: {
@@ -17,14 +17,14 @@ export const defineAbilitiesForSpeakerOnList = (
                 conference: {
                   members: {
                     some: {
-                      user: { id: user.id },
+                      user: { id: user.sub },
                       role: { in: ["ADMIN", "CHAIR", "COMMITTEE_ADVISOR"] },
                     },
                   },
                 },
               },
               {
-                members: { some: { user: { id: user.id } } },
+                members: { some: { user: { id: user.sub } } },
               },
             ],
           },
@@ -41,7 +41,7 @@ export const defineAbilitiesForSpeakerOnList = (
                 conference: {
                   members: {
                     some: {
-                      user: { id: user.id },
+                      user: { id: user.sub },
                       role: { in: ["ADMIN", "CHAIR", "COMMITTEE_ADVISOR"] },
                     },
                   },
@@ -52,7 +52,7 @@ export const defineAbilitiesForSpeakerOnList = (
         },
         {
           committeeMember: {
-            user: { id: user.id },
+            user: { id: user.sub },
           },
         },
       ],
@@ -65,7 +65,7 @@ export const defineAbilitiesForSpeakerOnList = (
             conference: {
               members: {
                 some: {
-                  user: { id: user.id },
+                  user: { id: user.sub },
                   role: { in: ["ADMIN", "CHAIR", "COMMITTEE_ADVISOR"] },
                 },
               },
