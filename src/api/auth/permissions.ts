@@ -8,7 +8,7 @@ export const permissionsPlugin = new Elysia({
   name: "permissions",
 })
   .use(oidcPlugin)
-  .derive({ as: "scoped" }, ({ oidc, error }) => {
+  .resolve(({ oidc, error }) => {
     const abilities = defineAbilitiesForSession(oidc);
     let hasBeenCalled = false;
     return {
@@ -67,7 +67,8 @@ export const permissionsPlugin = new Elysia({
         },
       },
     };
-  });
+  })
+  .as("plugin");
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const _typeDummy = new Elysia().use(permissionsPlugin);
