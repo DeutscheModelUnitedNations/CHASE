@@ -17,8 +17,8 @@ export const conferenceMember = new Elysia({
   .use(permissionsPlugin)
   .get(
     "/member",
-    ({ params: { conferenceId }, permissions }) => {
-      return db.conferenceMember.findMany({
+    async ({ params: { conferenceId }, permissions }) => {
+      return await db.conferenceMember.findMany({
         where: {
           conferenceId,
           AND: [permissions.allowDatabaseAccessTo("list").ConferenceMember],
@@ -33,9 +33,9 @@ export const conferenceMember = new Elysia({
   )
   .post(
     "/member",
-    ({ params: { conferenceId }, body, permissions }) => {
+   async ({ params: { conferenceId }, body, permissions }) => {
       permissions.checkIf((user) => user.can("create", "ConferenceMember"));
-      return db.conferenceMember.createMany({
+      return await db.conferenceMember.createMany({
         data: new Array(body.count).fill({
           role: body.data.role,
           conferenceId,
@@ -52,8 +52,8 @@ export const conferenceMember = new Elysia({
   )
   .delete(
     "/member",
-    ({ params: { conferenceId }, permissions }) => {
-      return db.conferenceMember.deleteMany({
+    async ({ params: { conferenceId }, permissions }) => {
+      return await db.conferenceMember.deleteMany({
         where: {
           conferenceId,
           AND: [permissions.allowDatabaseAccessTo("delete").ConferenceMember],
@@ -68,8 +68,8 @@ export const conferenceMember = new Elysia({
   )
   .delete(
     "/member/:memberId",
-    ({ params: { memberId }, permissions }) => {
-      return db.conferenceMember.delete({
+   async ({ params: { memberId }, permissions }) => {
+      return await db.conferenceMember.delete({
         where: {
           id: memberId,
           AND: [permissions.allowDatabaseAccessTo("delete").ConferenceMember],

@@ -22,7 +22,7 @@ export const speakersListModification = new Elysia({
   .post(
     "/setSpeakingTime",
     async ({ params: { speakersListId }, body, permissions }) => {
-      const speakersList = await db.speakersList.update({
+      return await db.speakersList.update({
         where: {
           id: speakersListId,
           AND: [permissions.allowDatabaseAccessTo("update").SpeakersList],
@@ -32,7 +32,6 @@ export const speakersListModification = new Elysia({
         },
       });
 
-      return speakersList;
     },
     {
       body: t.Object({
@@ -47,7 +46,7 @@ export const speakersListModification = new Elysia({
   .post(
     "/close",
     async ({ params: { speakersListId }, permissions }) => {
-      const speakersList = await db.speakersList.update({
+      return await db.speakersList.update({
         where: {
           id: speakersListId,
           AND: [permissions.allowDatabaseAccessTo("update").SpeakersList],
@@ -57,7 +56,6 @@ export const speakersListModification = new Elysia({
         },
       });
 
-      return speakersList;
     },
     {
       detail: {
@@ -69,7 +67,7 @@ export const speakersListModification = new Elysia({
   .post(
     "/open",
     async ({ params: { speakersListId }, permissions }) => {
-      const speakersList = await db.speakersList.update({
+      return await db.speakersList.update({
         where: {
           id: speakersListId,
           AND: [permissions.allowDatabaseAccessTo("update").SpeakersList],
@@ -79,7 +77,6 @@ export const speakersListModification = new Elysia({
         },
       });
 
-      return speakersList;
     },
     {
       detail: {

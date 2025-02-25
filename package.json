@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "concurrently \"bun run dev:server\" \"bun run dev:docker\"",
-    "dev:server": "while true; do next dev; echo 'Server crashed, restarting...'; sleep 1; done",
+    "dev:server": "next dev",
     "dev:docker": "docker compose -f ./dev.docker-compose.yml up",
     "build": "next build",
     "start": "next start",
@@ -34,7 +34,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.0",
     "@inlang/paraglide-js": "1.11.8",
-    "@types/node": "^22.13.5",
+    "@types/bun": "^1.2.3",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "eslint": "^9.21.0",

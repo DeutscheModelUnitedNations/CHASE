@@ -15,10 +15,11 @@ export const conference = new Elysia()
   .use(permissionsPlugin)
   .get(
     "/conference",
-    ({ permissions }) =>
-      db.conference.findMany({
+    async ({ permissions }) => {
+      return await db.conference.findMany({
         where: permissions.allowDatabaseAccessTo("list").Conference,
-      }),
+      });
+    },
     {
       detail: {
         description: "Get all conferences",
@@ -27,8 +28,8 @@ export const conference = new Elysia()
   )
   .post(
     "/conference",
-    ({ body, oidc, permissions }) =>
-      db.$transaction(async (tx) => {
+    async ({ body, oidc, permissions }) => {
+      return await db.$transaction(async (tx) => {
         permissions.checkIf((a) => a.can("create", "Conference"));
 
         await tx.conferenceCreateToken.delete({
@@ -52,7 +53,8 @@ export const conference = new Elysia()
             },
           },
         });
-      }),
+      });
+    },
     {
       body: t.Composite([
         ConferencePlainInputCreate,
@@ -65,13 +67,14 @@ export const conference = new Elysia()
   )
   .get(
     "/conference/:conferenceId",
-    ({ params, permissions }) =>
-      db.conference.findUniqueOrThrow({
+    async ({ params, permissions }) => {
+      return await db.conference.findUniqueOrThrow({
         where: {
           id: params.conferenceId,
           AND: [permissions.allowDatabaseAccessTo().Conference],
         },
-      }),
+      });
+    },
     {
       detail: {
         description: "Get a single conference by id",
@@ -80,14 +83,15 @@ export const conference = new Elysia()
   )
   .patch(
     "/conference/:conferenceId",
-    ({ params, permissions, body }) =>
-      db.conference.update({
+    async ({ params, permissions, body }) => {
+      return await db.conference.update({
         where: {
           id: params.conferenceId,
           AND: [permissions.allowDatabaseAccessTo("update").Conference],
         },
         data: body,
-      }),
+      });
+    },
     {
       body: ConferencePlainInputUpdate,
       detail: {
@@ -97,8 +101,8 @@ export const conference = new Elysia()
   )
   .patch(
     "/conference/:conferenceId/addAdmin",
-    ({ params, body, permissions }) =>
-      db.conferenceMember.upsert({
+    async ({ params, body, permissions }) => {
+      return await db.conferenceMember.upsert({
         where: {
           userId_conferenceId: {
             conferenceId: params.conferenceId,
@@ -125,7 +129,8 @@ export const conference = new Elysia()
             },
           },
         },
-      }),
+      });
+    },
     {
       body: t.Object({
         user: t.Pick(User, ["id"]),
@@ -137,13 +142,14 @@ export const conference = new Elysia()
   )
   .delete(
     "/conference/:conferenceId",
-    ({ params, permissions }) =>
-      db.conference.delete({
+    async ({ params, permissions }) => {
+      return await db.conference.delete({
         where: {
           id: params.conferenceId,
           AND: [permissions.allowDatabaseAccessTo("delete").Conference],
         },
-      }),
+      });
+    },
     {
       detail: {
         description: "Delete a conference by id",
@@ -152,89 +158,90 @@ export const conference = new Elysia()
   )
   .get(
     "/conference/:conferenceId/getOwnRole",
-    async ({ oidc, permissions }) =>
-      (
+    async ({ oidc, permissions }) => {
+      return (
         await db.conferenceMember.findFirstOrThrow({
           where: {
             userId: oidc?.user?.id,
             AND: [permissions.allowDatabaseAccessTo("read").ConferenceMember],
           },
         })
-      ).role,
+      ).role;
+    },
     {
       detail: {
         description: "Check if you are an admin of a conference.",
       },
     },
-  )
-  // .post(
-  //   "/conference/:conferenceId/populateMembers",
-  //   async ({ body, params, permissions }) => {
-  //     return Promise.all(
-  //       body.map((userData) =>
-  //         db.$transaction(async (tx) => {
-  //           const email = await tx.email.findFirst({
-  //             where: { email: userData.email },
-  //             include: { user: true },
-  //           });
-  //           let user = email?.user;
-  //           if (!email) {
-  //             user = await tx.user.create({
-  //               data: {
-  //                 name: userData.name,
-  //                 emails: {
-  //                   create: {
-  //                     email: userData.email,
-  //                     validated: true,
-  //                   },
-  //                 },
-  //               },
-  //             });
-  //           }
+  );
+// .post(
+//   "/conference/:conferenceId/populateMembers",
+//   async ({ body, params, permissions }) => {
+//     return Promise.all(
+//       body.map((userData) =>
+//         db.$transaction(async (tx) => {
+//           const email = await tx.email.findFirst({
+//             where: { email: userData.email },
+//             include: { user: true },
+//           });
+//           let user = email?.user;
+//           if (!email) {
+//             user = await tx.user.create({
+//               data: {
+//                 name: userData.name,
+//                 emails: {
+//                   create: {
+//                     email: userData.email,
+//                     validated: true,
+//                   },
+//                 },
+//               },
+//             });
+//           }
 
-  //           return tx.conferenceMember.upsert({
-  //             where: {
-  //               userId_conferenceId: {
-  //                 conferenceId: params.conferenceId,
-  //                 // biome-ignore lint/style/noNonNullAssertion: <explanation>
-  //                 userId: user!.id,
-  //               },
-  //               AND: [
-  //                 permissions.allowDatabaseAccessTo("create").ConferenceMember,
-  //               ],
-  //             },
-  //             create: {
-  //               role: userData.role,
-  //               user: {
-  //                 connect: {
-  //                   // biome-ignore lint/style/noNonNullAssertion: <explanation>
-  //                   id: user!.id,
-  //                 },
-  //               },
-  //               conference: {
-  //                 connect: {
-  //                   id: params.conferenceId,
-  //                 },
-  //               },
-  //             },
-  //             update: {
-  //               role: userData.role,
-  //             },
-  //           });
-  //         }),
-  //       ),
-  //     );
-  //   },
-  //   {
-  //     body: t.Array(
-  //       t.Object({
-  //         name: t.Index(User, ["name"]),
-  //         role: t.Index(ConferenceMember, ["role"]),
-  //         email: t.Index(Email, ["email"]),
-  //       }),
-  //     ),
-  //     detail: {
-  //       description: "Add conference members based on input data.",
-  //     },
-  //   },
-  // );
+//           return tx.conferenceMember.upsert({
+//             where: {
+//               userId_conferenceId: {
+//                 conferenceId: params.conferenceId,
+//                 // biome-ignore lint/style/noNonNullAssertion: <explanation>
+//                 userId: user!.id,
+//               },
+//               AND: [
+//                 permissions.allowDatabaseAccessTo("create").ConferenceMember,
+//               ],
+//             },
+//             create: {
+//               role: userData.role,
+//               user: {
+//                 connect: {
+//                   // biome-ignore lint/style/noNonNullAssertion: <explanation>
+//                   id: user!.id,
+//                 },
+//               },
+//               conference: {
+//                 connect: {
+//                   id: params.conferenceId,
+//                 },
+//               },
+//             },
+//             update: {
+//               role: userData.role,
+//             },
+//           });
+//         }),
+//       ),
+//     );
+//   },
+//   {
+//     body: t.Array(
+//       t.Object({
+//         name: t.Index(User, ["name"]),
+//         role: t.Index(ConferenceMember, ["role"]),
+//         email: t.Index(Email, ["email"]),
+//       }),
+//     ),
+//     detail: {
+//       description: "Add conference members based on input data.",
+//     },
+//   },
+// );

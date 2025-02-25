@@ -13,8 +13,8 @@ export const agendaItem = new Elysia({
   .use(permissionsPlugin)
   .get(
     "/agendaItem",
-    async ({ params, permissions }) =>
-      db.agendaItem.findMany({
+    async ({ params, permissions }) => {
+      return await db.agendaItem.findMany({
         where: {
           committee: {
             id: params.committeeId,
@@ -22,7 +22,8 @@ export const agendaItem = new Elysia({
           },
           AND: [permissions.allowDatabaseAccessTo("list").AgendaItem],
         },
-      }),
+      });
+    },
     {
       detail: {
         description: "Get all agenda items in this committee",
@@ -129,8 +130,11 @@ export const agendaItem = new Elysia({
   )
   .get(
     "/agendaItem/:agendaItemId",
-    ({ params: { conferenceId, committeeId, agendaItemId }, permissions }) =>
-      db.agendaItem
+    async ({
+      params: { conferenceId, committeeId, agendaItemId },
+      permissions,
+    }) => {
+      return await db.agendaItem
         .findUniqueOrThrow({
           where: {
             id: agendaItemId,
@@ -138,7 +142,8 @@ export const agendaItem = new Elysia({
             AND: [permissions.allowDatabaseAccessTo().AgendaItem],
           },
         })
-        .then((a) => ({ ...a, description: a.description || undefined })),
+        .then((a) => ({ ...a, description: a.description || undefined }));
+    },
     {
       detail: {
         description: "Get a single agenda item by id",
@@ -147,8 +152,11 @@ export const agendaItem = new Elysia({
   )
   .post(
     "/agendaItem/:agendaItemId/activate",
-    ({ params: { conferenceId, committeeId, agendaItemId }, permissions }) =>
-      db.$transaction([
+    async ({
+      params: { conferenceId, committeeId, agendaItemId },
+      permissions,
+    }) => {
+      return await db.$transaction([
         db.agendaItem.update({
           where: {
             id: agendaItemId,
@@ -168,7 +176,8 @@ export const agendaItem = new Elysia({
             isActive: false,
           },
         }),
-      ]),
+      ]);
+    },
     {
       detail: {
         description: "Activate an agenda item by id",
@@ -177,14 +186,18 @@ export const agendaItem = new Elysia({
   )
   .delete(
     "/agendaItem/:agendaItemId",
-    ({ params: { conferenceId, committeeId, agendaItemId }, permissions }) =>
-      db.agendaItem.delete({
+    async ({
+      params: { conferenceId, committeeId, agendaItemId },
+      permissions,
+    }) => {
+      return await db.agendaItem.delete({
         where: {
           id: agendaItemId,
           committee: { id: committeeId, conferenceId },
           AND: [permissions.allowDatabaseAccessTo("delete").AgendaItem],
         },
-      }),
+      });
+    },
     {
       detail: {
         description: "Delete an agenda item by id",

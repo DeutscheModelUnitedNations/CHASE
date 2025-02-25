@@ -59,5 +59,7 @@
   "votesText": "Verwalte Anträge und Abstimmungen elektronisch und mit vorbereiteten Anträgen nach Ihrer Geschäftsordnung.",
   "resolutions": "Resolutionen",
   "resolutionsText": "Erstelle und bearbeite Resolutionen gemeinsam mit anderen Delegierten. Kein Papier oder Google Docs mehr!",
-  "dashboard": "Dashboard"
+  "dashboard": "Dashboard",
+  "conferences": "Konferenzen",
+  "noConferencesFound": "Keine Konferenzen gefunden"
 }

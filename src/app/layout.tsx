@@ -46,7 +46,7 @@ export default function RootLayout({
           <body
             className={`${sans.variable} ${serif.variable} ${mono.variable} antialiased`}
           >
-            {children}
+            <main className="min-h-screen w-screen flex justify-center">{children}</main>
             <Footer />
             <CookieConsent />
           </body>

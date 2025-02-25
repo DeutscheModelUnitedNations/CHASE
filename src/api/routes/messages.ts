@@ -1,8 +1,6 @@
 import { t, Elysia } from "elysia";
 import { db } from "../../../prisma/db";
-import {
-  MessageInputCreate,
-} from "@prisma/generated/schema/Message";
+import { MessageInputCreate } from "@prisma/generated/schema/Message";
 import { $Enums } from "../../../prisma/generated/client";
 import { MessageStatus } from "../../../prisma/generated/schema/MessageStatus";
 import { permissionsPlugin } from "../auth/permissions";
@@ -11,8 +9,8 @@ export const messages = new Elysia()
   .use(permissionsPlugin)
   .get(
     "/conference/:conferenceId/messages/researchService",
-    ({ params: { conferenceId }, permissions }) =>
-      db.message.findMany({
+    async ({ params: { conferenceId }, permissions }) => {
+      return await db.message.findMany({
         where: {
           committee: {
             conferenceId,
@@ -31,14 +29,15 @@ export const messages = new Elysia()
               id: true,
               email: true,
               family_name: true,
-              given_name: true
+              given_name: true,
             },
           },
         },
         orderBy: {
           timestamp: "asc",
         },
-      }),
+      });
+    },
     {
       detail: {
         description: "Get all research service messages in this conference",
@@ -48,8 +47,8 @@ export const messages = new Elysia()
 
   .get(
     "/conference/:conferenceId/committee/:committeeId/messages",
-    ({ params: { committeeId }, permissions }) => {
-      return db.message.findMany({
+    async ({ params: { committeeId }, permissions }) => {
+      return await db.message.findMany({
         where: {
           committeeId,
           forwarded: false,
@@ -66,7 +65,7 @@ export const messages = new Elysia()
               id: true,
               email: true,
               family_name: true,
-              given_name: true
+              given_name: true,
             },
           },
         },
@@ -84,9 +83,9 @@ export const messages = new Elysia()
 
   .post(
     "/conference/:conferenceId/committee/:committeeId/messages",
-    ({ body, params: { committeeId }, permissions }) => {
+    async ({ body, params: { committeeId }, permissions }) => {
       permissions.checkIf((user) => user.can("create", "Message"));
-      return db.message.create({
+      return await db.message.create({
         data: {
           committee: { connect: { id: committeeId } },
           subject: body.subject,
@@ -144,8 +143,8 @@ export const messages = new Elysia()
 
   .get(
     "/conference/:conferenceId/committee/:committeeId/messages/count",
-    ({ params: { committeeId }, permissions }) => {
-      return db.message.count({
+    async ({ params: { committeeId }, permissions }) => {
+      return await db.message.count({
         where: {
           committeeId,
           forwarded: false,
@@ -166,8 +165,8 @@ export const messages = new Elysia()
 
   .post(
     "/message/:messageId/setStatus",
-    async ({ body, params, permissions }) =>
-      db.message.update({
+    async ({ body, params, permissions }) => {
+      return await db.message.update({
         where: {
           id: params.messageId,
           AND: [permissions.allowDatabaseAccessTo("update").Message],
@@ -177,7 +176,8 @@ export const messages = new Elysia()
             push: body.status,
           },
         },
-      }),
+      });
+    },
     {
       body: t.Object({ status: MessageStatus }),
       detail: {

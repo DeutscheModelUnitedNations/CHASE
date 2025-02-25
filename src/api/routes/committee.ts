@@ -35,8 +35,8 @@ export const committee = new Elysia({
   )
   .get(
     "/committee/:committeeId",
-    ({ params, permissions }) => {
-      return db.committee.findUniqueOrThrow({
+    async ({ params, permissions }) => {
+      return await db.committee.findUniqueOrThrow({
         where: {
           conferenceId: params.conferenceId,
           id: params.committeeId,
@@ -55,8 +55,8 @@ export const committee = new Elysia({
   )
   .get(
     "/committee/:committeeId/nations",
-    async ({ params, permissions }) =>
-      db.nation.findMany({
+    async ({ params, permissions }) => {
+      return await db.nation.findMany({
         where: {
           delegations: {
             some: {
@@ -73,7 +73,8 @@ export const committee = new Elysia({
           },
           AND: [permissions.allowDatabaseAccessTo("list").Nation],
         },
-      }),
+      });
+    },
     {
       detail: {
         description:
@@ -86,7 +87,7 @@ export const committee = new Elysia({
     async ({ body, params, permissions }) => {
       permissions.checkIf((user) => user.can("create", "Committee"));
 
-      return db.committee.create({
+      return await db.committee.create({
         data: {
           conference: {
             connect: {
@@ -111,13 +112,14 @@ export const committee = new Elysia({
   )
   .delete(
     "/committee",
-    async ({ params, permissions }) =>
-      db.committee.deleteMany({
+    async ({ params, permissions }) => {
+      return await db.committee.deleteMany({
         where: {
           conferenceId: params.conferenceId,
           AND: [permissions.allowDatabaseAccessTo("delete").Committee],
         },
-      }),
+      });
+    },
     {
       detail: {
         description: "Delete all committees in this conference",
@@ -127,14 +129,15 @@ export const committee = new Elysia({
 
   .delete(
     "/committee/:committeeId",
-    ({ params, permissions }) =>
-      db.committee.delete({
+    async ({ params, permissions }) => {
+      return await db.committee.delete({
         where: {
           id: params.committeeId,
           conferenceId: params.conferenceId,
           AND: [permissions.allowDatabaseAccessTo("delete").Committee],
         },
-      }),
+      });
+    },
     {
       detail: {
         description: "Delete a committee by id",
@@ -143,8 +146,8 @@ export const committee = new Elysia({
   )
   .patch(
     "/committee/:committeeId",
-    ({ params, body, permissions }) => {
-      return db.committee.update({
+    async ({ params, body, permissions }) => {
+      return await db.committee.update({
         where: {
           id: params.committeeId,
           conferenceId: params.conferenceId,
@@ -162,8 +165,8 @@ export const committee = new Elysia({
   )
   .patch(
     "/committee/:committeeId/status",
-    ({ params, body, permissions }) => {
-      return db.committee.update({
+    async ({ params, body, permissions }) => {
+      return await db.committee.update({
         where: {
           id: params.committeeId,
           conferenceId: params.conferenceId,
@@ -187,8 +190,8 @@ export const committee = new Elysia({
   )
   .get(
     "/committee/:committeeId/delegations",
-    ({ params, permissions }) => {
-      return db.delegation.findMany({
+    async ({ params, permissions }) => {
+      return await db.delegation.findMany({
         where: {
           conferenceId: params.conferenceId,
           members: {

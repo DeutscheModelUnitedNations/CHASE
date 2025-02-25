@@ -48,24 +48,22 @@ export type AppAbility = PureAbility<
   PrismaQuery
 >;
 
-export const defineAbilitiesForSession = (oidcResponse?: OidcResponse) => {
+export const defineAbilitiesForSession = (oidcResponse: OidcResponse) => {
   const builder = new AbilityBuilder<AppAbility>(createPrismaAbility);
 
-  if (oidcResponse) {
-    if (oidcResponse.user?.hasRole("admin")) {
-      console.info("Admin granted: ", oidcResponse.user.preferred_username);
-      builder.can("manage" as any, "all" as any);
-    }
-
-    defineAbilitiesForConference(oidcResponse, builder);
-    defineAbilitiesForCommittee(oidcResponse, builder);
-    defineAbilitiesForAgendaItem(oidcResponse, builder);
-    defineAbilitiesForConferenceMembers(oidcResponse, builder);
-    defineAbilitiesForDelegation(oidcResponse, builder);
-    defineAbilitiesForMessages(oidcResponse, builder);
-    defineAbilitiesForSpeakersList(oidcResponse, builder);
-    defineAbilitiesForSpeakerOnList(oidcResponse, builder);
+  if (oidcResponse.user?.hasRole("admin")) {
+    console.info("Admin granted: ", oidcResponse.user.preferred_username);
+    builder.can("manage" as any, "all" as any);
   }
+
+  defineAbilitiesForConference(oidcResponse, builder);
+  defineAbilitiesForCommittee(oidcResponse, builder);
+  defineAbilitiesForAgendaItem(oidcResponse, builder);
+  defineAbilitiesForConferenceMembers(oidcResponse, builder);
+  defineAbilitiesForDelegation(oidcResponse, builder);
+  defineAbilitiesForMessages(oidcResponse, builder);
+  defineAbilitiesForSpeakersList(oidcResponse, builder);
+  defineAbilitiesForSpeakerOnList(oidcResponse, builder);
 
   return builder.build({
     detectSubjectType: (object) => object.__typename,

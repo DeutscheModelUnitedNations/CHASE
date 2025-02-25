@@ -1,17 +1,9 @@
 import { Elysia } from "elysia";
 import { oidcPlugin } from "../../auth/oidc";
 import { permissionsPlugin } from "../../auth/permissions";
-import {
-  codeVerifierCookieName,
-  fetchUserInfoFromIssuer,
-  getLogoutUrl,
-  oidcStateCookieName,
-  resolveSignin,
-  startSignin,
-  tokensCookieName,
-  validateTokens,
-} from "@/api/services/OIDC";
+import { fetchUserInfoFromIssuer, getLogoutUrl } from "@/api/services/OIDC";
 import { db } from "@prisma/db";
+import { UserPlain } from "@prisma/generated/schema/User";
 
 export const auth = new Elysia({
   prefix: "/auth",
@@ -19,21 +11,9 @@ export const auth = new Elysia({
   .use(oidcPlugin)
   .use(permissionsPlugin)
   .get(
-    "/my-oidc-roles",
-    async ({ permissions }) => {
-      const user = permissions.getLoggedInUserOrThrow();
-      return user.OIDCRoleNames;
-    },
-    {
-      detail: {
-        description: "Returns the user info when they are logged in",
-      },
-    },
-  )
-  .get(
     "/logout-url",
-    ({ request: { url } }) => {
-      getLogoutUrl(new URL(url)).toString();
+    async ({ request: { url } }) => {
+      return getLogoutUrl(new URL(url)).toString();
     },
     {
       detail: {
@@ -43,7 +23,7 @@ export const auth = new Elysia({
   )
   .get(
     "/offline-user-refresh",
-    ({ permissions, oidc }) => {
+   async ({ permissions, oidc }) => {
       const user = permissions.getLoggedInUserOrThrow();
       return { user, nextTokenRefreshDue: oidc.nextTokenRefreshDue };
     },
@@ -72,7 +52,7 @@ export const auth = new Elysia({
         throw new Error("OIDC result is missing required fields!");
       }
 
-      await db.user.upsert({
+      return await db.user.upsert({
         where: { id: issuerUserData.sub },
         create: {
           id: issuerUserData.sub,
@@ -91,10 +71,9 @@ export const auth = new Elysia({
           locale: issuerUserData.locale ?? process.env.PUBLIC_DEFAULT_LOCALE,
         },
       });
-
-      return { user };
     },
     {
+      response: UserPlain,
       detail: {
         description: "Refreshes the current user auth using the refresh token",
       },

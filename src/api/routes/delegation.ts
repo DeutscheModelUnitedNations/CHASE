@@ -12,8 +12,8 @@ export const delegation = new Elysia({
   .use(permissionsPlugin)
   .get(
     "/delegation",
-    ({ params: { conferenceId }, permissions }) => {
-      return db.delegation.findMany({
+    async ({ params: { conferenceId }, permissions }) => {
+      return await db.delegation.findMany({
         where: {
           conferenceId,
           AND: [permissions.allowDatabaseAccessTo("list").Delegation],
@@ -32,9 +32,9 @@ export const delegation = new Elysia({
   )
   .post(
     "/delegation",
-    ({ body, params: { conferenceId }, permissions }) => {
+    async ({ body, params: { conferenceId }, permissions }) => {
       permissions.checkIf((user) => user.can("create", "Delegation"));
-      return db.delegation.create({
+      return await db.delegation.create({
         data: {
           conference: { connect: { id: conferenceId } },
           nation: { connect: { alpha3Code: body.alpha3Code } },
@@ -50,8 +50,8 @@ export const delegation = new Elysia({
   )
   .get(
     "/delegation/:delegationId",
-    ({ params: { delegationId }, permissions }) => {
-      return db.delegation.findUnique({
+    async ({ params: { delegationId }, permissions }) => {
+      return await db.delegation.findUnique({
         where: {
           id: delegationId,
           AND: [permissions.allowDatabaseAccessTo().Delegation],
@@ -69,8 +69,8 @@ export const delegation = new Elysia({
   )
   .delete(
     "/delegation/:delegationId",
-    ({ params: { delegationId }, permissions }) => {
-      return db.$transaction([
+    async ({ params: { delegationId }, permissions }) => {
+      return await db.$transaction([
         db.committeeMember.deleteMany({
           where: {
             id: delegationId,
@@ -95,7 +95,7 @@ export const delegation = new Elysia({
   .post(
     "/delegation/:delegationId/committee/:committeeId",
     async ({ params: { delegationId, committeeId }, permissions }) => {
-      return db.$transaction(async (tx) => {
+      return await db.$transaction(async (tx) => {
         const committeeMember = await tx.committeeMember.findFirst({
           where: {
             committeeId,
@@ -135,8 +135,8 @@ export const delegation = new Elysia({
   // Presence
   .post(
     "/delegation/:delegationId/presence/:memberId",
-    ({ body, params: { delegationId, memberId }, permissions }) => {
-      return db.delegation.update({
+    async ({ body, params: { delegationId, memberId }, permissions }) => {
+      return await db.delegation.update({
         where: {
           id: delegationId,
           AND: [permissions.allowDatabaseAccessTo("update").Delegation],

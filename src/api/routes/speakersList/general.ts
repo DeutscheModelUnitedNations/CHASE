@@ -10,7 +10,7 @@ export const speakersListGeneral = new Elysia({
   .get(
     "/speakersList",
     async ({ params: { committeeId }, permissions }) => {
-      const speakersList = await db.speakersList.findMany({
+      return await db.speakersList.findMany({
         where: {
           agendaItem: {
             committeeId,
@@ -41,8 +41,6 @@ export const speakersListGeneral = new Elysia({
           },
         },
       });
-
-      return speakersList;
     },
     {
       detail: {
