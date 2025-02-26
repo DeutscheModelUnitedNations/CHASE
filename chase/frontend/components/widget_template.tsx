@@ -6,6 +6,7 @@ interface WidgetTemplateProps {
   cardTitle?: string;
   autoStyle?: boolean;
   additionalClassNames?: string;
+  titleAdditionalContent?: () => React.ReactNode; // Changed to a function
 }
 
 /**
@@ -18,18 +19,22 @@ export default function WidgetTemplate({
   children,
   cardTitle = "",
   additionalClassNames,
+  titleAdditionalContent,
 }: WidgetTemplateProps) {
   return (
     <>
       <div
-        className={`flex w-full flex-col bg-primary-950 dark:bg-primary-200 rounded-lg p-3 transition-all duration-500 ${additionalClassNames}`}
-      >
-        {cardTitle &&
-          (cardTitle !== "" ? (
-            <div className=" font-bold mb-2 text-lg">{cardTitle}</div>
-          ) : (
-            <Skeleton width="5rem" height="1.75rem" />
-          ))}
+        className={`flex w-full flex-col bg-primary-950 dark:bg-primary-200 rounded-lg p-3 transition-all duration-500 ${additionalClassNames}`}>
+        {(cardTitle || titleAdditionalContent) && (
+          <div className="flex flex-row items-center justify-between mb-2">
+            {cardTitle !== "" ? (
+              <div className="font-bold text-lg">{cardTitle}</div>
+            ) : (
+              <Skeleton width="5rem" height="1.75rem" />
+            )}
+            {titleAdditionalContent && <div>{titleAdditionalContent()}</div>}
+          </div>
+        )}
         <div className="flex-1">{children}</div>
       </div>
     </>
