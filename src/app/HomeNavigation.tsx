@@ -2,9 +2,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import Button from "@/lib/Button";
 import * as m from "@/paraglide/messages";
 import { useEffect, useState } from "react";
+import Button from "@/lib/components/Button";
 
 export default function Navbar({
   isDocs = false,

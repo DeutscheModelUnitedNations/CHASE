@@ -1,6 +1,6 @@
-import nations from "@/data/nations";
-import nonStateActors from "@/data/nsa";
-import specialPersons from "@/data/specials";
+import nations from "@/lib/data/nations";
+import nonStateActors from "@/lib/data/nsa";
+import specialPersons from "@/lib/data/specials";
 
 /**
  * This function is used to get the name of a country in a given language.

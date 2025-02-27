@@ -3,10 +3,10 @@ import Image from "next/image";
 import { Skeleton } from "primereact/skeleton";
 import FAIcon from "./FAIcon";
 import * as m from "@/paraglide/messages";
-import { useFaGlobe } from "./useFaGlobe";
+import { useFaGlobe } from "../useFaGlobe";
 import getFlagPathByCode, {
   getFullTranslatedCountryNameFromISO3Code,
-} from "./nation";
+} from "../nation";
 
 /**
  * This Component is used whenever a section or widget has no data to display.

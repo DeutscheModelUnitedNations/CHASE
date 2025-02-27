@@ -1,5 +1,5 @@
 import * as m from "@/paraglide/messages";
-import FAIcon from "@/lib/FAIcon";
+import FAIcon from "@/lib/components/FAIcon";
 import { Card } from "primereact/card";
 import { serversideBackend } from "@/lib/backend/serversideBackend";
 import { redirect } from "next/navigation";
@@ -10,7 +10,7 @@ export default async function Page() {
     throw conferences.error;
   }
 
-  if(conferences.data.length === 1) {
+  if (conferences.data.length === 1) {
     redirect(`/app/${conferences.data[0].id}`);
   }
 

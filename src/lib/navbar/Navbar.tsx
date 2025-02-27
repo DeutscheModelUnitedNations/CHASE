@@ -7,10 +7,10 @@ import { confirmDialog, ConfirmDialog } from "primereact/confirmdialog";
 import * as m from "@/paraglide/messages";
 import NavbarButton from "./NavbarButton";
 import NavbarSettingsSidebar from "./NavbarSettingsSidebar";
+import { useClientSideBackendCall } from "../backend/useClientSideBackendCall";
 
 interface Props {
   children: ReactNode;
-  logoutUrl: string;
 }
 
 /**
@@ -19,9 +19,10 @@ interface Props {
  * It contains buttons to navigate to other pages and a button to open the settings sidebar.
  */
 
-export default function Navbar({ children, logoutUrl }: Props) {
+export default function Navbar({ children }: Props) {
   const router = useRouter();
   const [settingsSidebarVisible, setSettingsSidebarVisible] = useState(false);
+  const { value: logoutUrl } = useClientSideBackendCall(backend => backend.auth["logout-url"].get);
 
   const confirmLogout = () => {
     confirmDialog({
@@ -33,7 +34,7 @@ export default function Navbar({ children, logoutUrl }: Props) {
       acceptClassName: "p-button-danger",
       rejectLabel: "Nein",
       rejectIcon: "pi pi-times",
-      accept: () => router.push(logoutUrl),
+      accept: () => router.push(logoutUrl ?? "/"),
     });
   };
 

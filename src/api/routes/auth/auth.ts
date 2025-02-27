@@ -23,13 +23,50 @@ export const auth = new Elysia({
   )
   .get(
     "/offline-user-refresh",
-   async ({ permissions, oidc }) => {
+    async ({ permissions, oidc }) => {
       const user = permissions.getLoggedInUserOrThrow();
       return { user, nextTokenRefreshDue: oidc.nextTokenRefreshDue };
     },
     {
       detail: {
         description: "Refreshes the current user auth using the refresh token",
+      },
+    },
+  )
+  .get(
+    "/myInfo",
+    async ({ permissions }) => {
+      const user = permissions.getLoggedInUserOrThrow();
+      return db.user.findUniqueOrThrow({
+        where: { id: user.id },
+        include: {
+          conferenceMemberships: {
+            select: {
+              id: true,
+              role: true,
+              conference: true,
+            },
+          },
+          committeeMemberships: {
+            include: {
+              committee: {
+                include: {
+                  conference: true,
+                },
+              },
+              delegation: {
+                select: {
+                  nation: true,
+                },
+              },
+            },
+          },
+        },
+      });
+    },
+    {
+      detail: {
+        description: "Returns the user info when they are logged in",
       },
     },
   )

@@ -3,7 +3,7 @@ import React, { useState, useEffect, useContext, useReducer } from "react";
 import { useI18nContext } from "@/i18n/i18n-react";
 import { useBackend } from "@/contexts/backend";
 import { useBackendCall } from "@/hooks/useBackendCall";
-import regionalGroups from "@/data/regional_groups.json";
+import regionalGroups from "@/lib/data/regional_groups.json";
 import {
   CommitteeIdContext,
   ConferenceIdContext,
@@ -93,15 +93,15 @@ export default function RegionalGroups() {
   function Group({ group, groupName }: { group: string; groupName: string }) {
     return (
       <motion.div
-        className="p-10 bg-primary-950 rounded-lg flex flex-col items-center absolute top-6 left-6 bottom-6 right-6"
+        className="bg-primary-950 absolute top-6 right-6 bottom-6 left-6 flex flex-col items-center rounded-lg p-10"
         key={group}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
       >
-        <h2 className="font-bold text-5xl">{groupName}</h2>
-        <div className="flex flex-wrap gap-2 mt-10 max-h-[70vh] justify-center items-center">
+        <h2 className="text-5xl font-bold">{groupName}</h2>
+        <div className="mt-10 flex max-h-[70vh] flex-wrap items-center justify-center gap-2">
           {currentGroupIndex % 2 === 0 ? (
             <WorldMap
               color={getMapColor(group)}
@@ -138,7 +138,7 @@ export default function RegionalGroups() {
               .map((delegation) => (
                 <div
                   key={delegation.id}
-                  className="bg-primary-900 rounded-lg p-4 flex gap-4 items-center"
+                  className="bg-primary-900 flex items-center gap-4 rounded-lg p-4"
                 >
                   <NormalFlag countryCode={delegation.nation.alpha3Code} />
                   <div className="text-xl font-bold">
@@ -153,7 +153,7 @@ export default function RegionalGroups() {
   }
 
   return (
-    <div className="flex flex-col justify-start items-center p-10 relative h-screen">
+    <div className="relative flex h-screen flex-col items-center justify-start p-10">
       {Object.keys(groupNames).map((group) => (
         <AnimatePresence key={group}>
           {(currentGroupIndex === Object.keys(groupNames).indexOf(group) * 2 ||

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext, useReducer } from "react";
 import { useI18nContext } from "@/i18n/i18n-react";
 import { useBackend } from "@/contexts/backend";
 import { useBackendCall } from "@/hooks/useBackendCall";
-import regionalGroups from "@/data/regional_groups.json";
+import regionalGroups from "@/lib/data/regional_groups.json";
 import {
   CommitteeIdContext,
   ConferenceIdContext,
@@ -68,11 +68,11 @@ export default function RegionalGroupsLookup({
   function Group({ group, groupName }: { group: string; groupName: string }) {
     return (
       <div
-        className="p-6 bg-primary-950 rounded-lg flex flex-col items-center"
+        className="bg-primary-950 flex flex-col items-center rounded-lg p-6"
         key={group}
       >
-        <h2 className="font-bold text-3xl">{groupName}</h2>
-        <div className="flex flex-wrap gap-2 mt-4 max-h-[70vh] justify-center items-center">
+        <h2 className="text-3xl font-bold">{groupName}</h2>
+        <div className="mt-4 flex max-h-[70vh] flex-wrap items-center justify-center gap-2">
           {presentDelegations
             ?.filter((delegation) =>
               checkInRegionalGroup(delegation.nation.alpha3Code, group),
@@ -85,7 +85,7 @@ export default function RegionalGroupsLookup({
             .map((delegation) => (
               <div
                 key={delegation.id}
-                className="bg-primary-900 rounded-lg p-2 flex gap-4 items-center"
+                className="bg-primary-900 flex items-center gap-4 rounded-lg p-2"
               >
                 <NormalFlag countryCode={delegation.nation.alpha3Code} />
                 <div className="text-md font-bold">
@@ -110,9 +110,9 @@ export default function RegionalGroupsLookup({
         placeholder={LL.chairs.dashboard.configurations.regionalGroups.FILTER()}
         value={filter}
         onChange={(e) => setFilter(e.target.value)}
-        className="w-full my-5"
+        className="my-5 w-full"
       />
-      <div className="flex gap-2 w-full flex-col">
+      <div className="flex w-full flex-col gap-2">
         {Object.keys(groupNames)
           .filter((group) =>
             presentDelegations?.some((delegation) =>

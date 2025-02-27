@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import * as m from "@/paraglide/messages";
-import TextSection from "@/lib/TextSection";
+import TextSection from "@/lib/components/TextSection";
 import HomeNavigation from "./HomeNavigation";
 import LandingHero from "./LandingHero";
 import CardSection from "./CardSection";

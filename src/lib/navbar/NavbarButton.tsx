@@ -3,7 +3,7 @@ import { useMemo } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Badge } from "primereact/badge";
-import FAIcon from "../FAIcon";
+import FAIcon from "../components/FAIcon";
 
 interface NavbarButtonProps {
   icon: string;

@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import { Sidebar } from "primereact/sidebar";
 import { SelectButton } from "primereact/selectbutton";
 import { Dropdown } from "primereact/dropdown";
-import FAIcon from "@/lib/FAIcon";
+import FAIcon from "@/lib/components/FAIcon";
 import * as m from "@/paraglide/messages";
-import { SmallFlag } from "@/lib/Flag";
+import { SmallFlag } from "@/lib/components/Flag";
 
 interface ColormodeOption {
   name: string;
