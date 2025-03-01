@@ -1,7 +1,7 @@
 "use client";
 import type React from "react";
 import { createContext, useContext, useEffect, useState } from "react";
-import { $Enums } from "@prisma/generated/client";
+import { $Enums } from "@prisma/client";
 import { ToastContext } from "./toast";
 import { useBackendTime } from "./backendTime";
 import { CommitteeDataContext } from "./committee_data";

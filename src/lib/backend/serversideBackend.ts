@@ -13,7 +13,7 @@ export const serversideBackend = treaty<Api>(
       credentials: "include",
     },
     headers: {
-      Cookie: await cookies().toString(),
+      Cookie: cookies().toString(),
     },
   },
 );

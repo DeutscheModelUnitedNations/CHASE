@@ -10,6 +10,7 @@ import FAIcon from "@/lib/components/FAIcon";
 import { conferenceRoleTranslation } from "@/lib/translationUtils";
 import { languageTag } from "@/paraglide/runtime";
 import { LargeFlag } from "@/lib/components/Flag";
+import * as m from "@/paraglide/messages";
 
 export default function ChairHub({
   params,
@@ -32,8 +33,9 @@ export default function ChairHub({
             <h1 className="text-2xl font-bold">{m.missionControl()}</h1>
             <h2 className="my-1 text-lg">
               {conferenceRoleTranslation(
-                //@ts-ignore
-                conferenceMembership(conferenceId)?.role,
+                conferenceMembership
+                  ? conferenceMembership(conferenceId)?.role
+                  : undefined,
               )}
             </h2>
           </div>
@@ -48,7 +50,7 @@ export default function ChairHub({
           <LargeFlag countryCode={"uno"} />
         </HeaderTemplate>
         <ScrollPanel style={{ width: "100%", height: "90vh" }}>
-          <CommitteeGrid conferenceId={params.conferenceId} isChair />
+          <CommitteeGrid conferenceId={conferenceId ?? ""} isChair />
         </ScrollPanel>
       </div>
     </>

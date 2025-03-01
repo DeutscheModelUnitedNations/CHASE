@@ -3,7 +3,7 @@ import React from "react";
 import { useBackend } from "@/contexts/backend";
 import { useRouter } from "next/navigation";
 import Button from "@/components/button";
-import { $Enums } from "@prisma/generated/client";
+import { ConferenceRole } from "../../../../../../prisma/generated/schema/ConferenceRole";
 import { LargeFlag } from "@/components/flag_templates";
 import getCountryNameByCode from "@/misc/get_country_name_by_code";
 import { useI18nContext } from "@/i18n/i18n-react";
@@ -29,23 +29,23 @@ export default function LoginRedirectPage() {
     if (
       (
         [
-          $Enums.ConferenceRole.ADMIN,
-          $Enums.ConferenceRole.SECRETARIAT,
-          $Enums.ConferenceRole.CHAIR,
-          $Enums.ConferenceRole.COMMITTEE_ADVISOR,
-          $Enums.ConferenceRole.PARTICIPANT_CARE,
-          $Enums.ConferenceRole.MISCELLANEOUS_TEAM,
-        ] as ($Enums.ConferenceRole | undefined)[]
+          ConferenceRole.ADMIN,
+          ConferenceRole.SECRETARIAT,
+          ConferenceRole.CHAIR,
+          ConferenceRole.COMMITTEE_ADVISOR,
+          ConferenceRole.PARTICIPANT_CARE,
+          ConferenceRole.MISCELLANEOUS_TEAM,
+        ] as (typeof ConferenceRole | undefined)[]
       ).includes(conferenceMembership.role)
     )
       return `/app/${conferenceMembership.conference.id}/hub/team/committees`;
-    if (conferenceMembership.role === $Enums.ConferenceRole.PRESS_CORPS) {
+    if (conferenceMembership.role === ConferenceRole.PRESS_CORPS) {
       return `/app/${conferenceMembership.conference.id}/hub/press`;
     }
-    if (conferenceMembership.role === $Enums.ConferenceRole.NON_STATE_ACTOR) {
+    if (conferenceMembership.role === ConferenceRole.NON_STATE_ACTOR) {
       return `/app/${conferenceMembership.conference.id}/hub/na`;
     }
-    if (conferenceMembership.role === $Enums.ConferenceRole.GUEST) {
+    if (conferenceMembership.role === ConferenceRole.GUEST) {
       return `/app/${conferenceMembership.conference.id}/hub/guests`;
     }
     throw new Error("Unknown role");
@@ -55,7 +55,7 @@ export default function LoginRedirectPage() {
     <div className="flex flex-col items-center justify-center">
       {myInfoData ? (
         <>
-          <h1 className="font-serif font-bold text-4xl mb-4">
+          <h1 className="mb-4 font-serif text-4xl font-bold">
             {LL.login.gateway.TITLE()}
           </h1>
           {myInfoData.conferenceMemberships.length > 0 && (
@@ -68,13 +68,13 @@ export default function LoginRedirectPage() {
               {myInfoData.conferenceMemberships.map((conferenceMembership) => (
                 <Link
                   href={conferenceMemberRedirectPath(conferenceMembership)}
-                  className="w-full flex flex-col justify-center items-center p-4 bg-primary-950 rounded-lg mb-4 hover:cursor-pointer pophover"
+                  className="bg-primary-950 pophover mb-4 flex w-full flex-col items-center justify-center rounded-lg p-4 hover:cursor-pointer"
                   key={conferenceMembership.id}
                 >
-                  <h2 className="text-2xl font-bold mb-2">
+                  <h2 className="mb-2 text-2xl font-bold">
                     {conferenceMembership.conference.name}
                   </h2>
-                  <h3 className="text-xl mb-4">
+                  <h3 className="mb-4 text-xl">
                     {conferenceRoleTranslation(LL, conferenceMembership.role)}
                   </h3>
                   <Button
@@ -101,16 +101,16 @@ export default function LoginRedirectPage() {
               {myInfoData.committeeMemberships.map((committeeMembership) => (
                 <Link
                   href={`/app/${committeeMembership.committee.conference.id}/committee/${committeeMembership.committee.id}/participant/dashboard`}
-                  className="w-full flex flex-col justify-center items-center p-4 bg-primary-950 rounded-lg mb-4 hover:cursor-pointer pophover"
+                  className="bg-primary-950 pophover mb-4 flex w-full flex-col items-center justify-center rounded-lg p-4 hover:cursor-pointer"
                   key={committeeMembership.committee.id}
                 >
                   <h3 className="text-xl">
                     {committeeMembership.committee.conference.name}
                   </h3>
-                  <h2 className="text-2xl font-bold mb-4">
+                  <h2 className="mb-4 text-2xl font-bold">
                     {committeeMembership.committee.name}
                   </h2>
-                  <div className="flex flex-col gap-4 justify-center items-center p-4 bg-white rounded-lg mb-6">
+                  <div className="mb-6 flex flex-col items-center justify-center gap-4 rounded-lg bg-white p-4">
                     <LargeFlag
                       countryCode={
                         committeeMembership.delegation?.nation.alpha3Code ??

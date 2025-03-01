@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { $Enums, PrismaClient } from "../generated/client";
+import { $Enums, PrismaClient } from "@prisma/client";
 
 //
 export async function SimSimSeed(prisma?: PrismaClient) {
@@ -235,18 +235,11 @@ export async function SimSimSeed(prisma?: PrismaClient) {
 
     const user = await prisma.user.create({
       data: {
-        name: data.email,
-        emails: {
-          create: {
-            email: data.email,
-            validated: true,
-          },
-        },
-        passwords: {
-          create: {
-            passwordHash: await Bun.password.hash(data.password),
-          },
-        },
+        family_name: data.email,
+        given_name: data.email,
+        email: data.email,
+        locale: "en",
+        preferred_username: data.email,
       },
     });
 
@@ -277,18 +270,11 @@ export async function SimSimSeed(prisma?: PrismaClient) {
 
     const user = await prisma.user.create({
       data: {
-        name: data.email,
-        emails: {
-          create: {
-            email: data.email,
-            validated: true,
-          },
-        },
-        passwords: {
-          create: {
-            passwordHash: await Bun.password.hash(data.password),
-          },
-        },
+        family_name: data.email,
+        given_name: data.email,
+        email: data.email,
+        locale: "en",
+        preferred_username: data.email,
       },
     });
 
@@ -336,18 +322,11 @@ export async function SimSimSeed(prisma?: PrismaClient) {
 
     const user = await prisma.user.create({
       data: {
-        name: data.email,
-        emails: {
-          create: {
-            email: data.email,
-            validated: true,
-          },
-        },
-        passwords: {
-          create: {
-            passwordHash: await Bun.password.hash(data.password),
-          },
-        },
+        family_name: data.email,
+        given_name: data.email,
+        email: data.email,
+        locale: "en",
+        preferred_username: data.email,
       },
     });
 

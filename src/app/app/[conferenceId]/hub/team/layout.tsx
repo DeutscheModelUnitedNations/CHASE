@@ -1,6 +1,6 @@
 "use client";
 import { useContext, useEffect, useState } from "react";
-import { $Enums } from "@prisma/generated/client";
+import { $Enums } from "@prisma/client";
 import Lockout from "@/lib/components/Lockout";
 import Navbar from "@/lib/navbar/Navbar";
 import NavbarButton from "@/lib/navbar/NavbarButton";

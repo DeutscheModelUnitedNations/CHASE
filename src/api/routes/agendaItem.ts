@@ -1,6 +1,6 @@
 import { t, Elysia } from "elysia";
 import { db } from "../../../prisma/db";
-import { $Enums } from "../../../prisma/generated/client";
+import { SpeakersListCategory } from "../../../prisma/generated/schema/SpeakersListCategory";
 import { permissionsPlugin } from "../auth/permissions";
 import {
   AgendaItemInputCreate,
@@ -57,12 +57,12 @@ export const agendaItem = new Elysia({
       await db.speakersList.createMany({
         data: [
           {
-            type: $Enums.SpeakersListCategory.SPEAKERS_LIST,
+            type: SpeakersListCategory.SPEAKERS_LIST,
             agendaItemId: agendaItem.id,
             speakingTime: 180,
           },
           {
-            type: $Enums.SpeakersListCategory.COMMENT_LIST,
+            type: SpeakersListCategory.COMMENT_LIST,
             agendaItemId: agendaItem.id,
             speakingTime: 30,
           },

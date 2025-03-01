@@ -9,6 +9,8 @@ import "@/styles/theme_light.scss";
 import Footer from "./Footer";
 import CookieConsent from "./CookieConsent";
 import type { ReactNode } from "react";
+import "@/styles/fontawesome/css/fontawesome.css";
+import "@/styles/fontawesome/css/solid.css";
 
 const sans = Inter({
   subsets: ["latin"],
@@ -45,7 +47,9 @@ export default function RootLayout({
           <body
             className={`${sans.variable} ${serif.variable} ${mono.variable} antialiased`}
           >
-            <main className="min-h-screen w-screen flex justify-center">{children}</main>
+            <main className="flex min-h-screen w-screen justify-center">
+              {children}
+            </main>
             <Footer />
             <CookieConsent />
           </body>

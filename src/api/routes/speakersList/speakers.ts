@@ -1,6 +1,6 @@
 import { Elysia } from "elysia";
 import { db } from "../../../../prisma/db";
-import { $Enums } from "../../../../prisma/generated/client";
+import { Presence } from "../../../../prisma/generated/schema/Presence";
 import {
   type PermissionsType,
   permissionsPlugin,
@@ -173,7 +173,7 @@ export const speakersListSpeakers = new Elysia({
         throw new Error("Speakers list is closed");
       }
 
-      if (committeeMember.presence !== $Enums.Presence.PRESENT) {
+      if (committeeMember.presence !== Presence.PRESENT) {
         set.status = "Forbidden";
         throw new Error("CommitteeMember is not present in this committee");
       }

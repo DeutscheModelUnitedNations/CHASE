@@ -5,7 +5,8 @@ export default async function Page({
 }: {
   params: Promise<{ conferenceId: string }>;
 }) {
-  redirect(`/app/${(await params).conferenceId}/hub/overview`);
+  // TODO add logic to redirect to the correct page, not just the team page
+  redirect(`/app/${(await params).conferenceId}/hub/team/committees`);
 
   return <></>;
 }

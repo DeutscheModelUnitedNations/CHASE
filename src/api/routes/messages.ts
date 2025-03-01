@@ -1,7 +1,7 @@
 import { t, Elysia } from "elysia";
 import { db } from "../../../prisma/db";
 import { MessageInputCreate } from "@prisma/generated/schema/Message";
-import { $Enums } from "../../../prisma/generated/client";
+import { MessageCategory } from "../../../prisma/generated/schema/MessageCategory";
 import { MessageStatus } from "../../../prisma/generated/schema/MessageStatus";
 import { permissionsPlugin } from "../auth/permissions";
 
@@ -18,7 +18,7 @@ export const messages = new Elysia()
           forwarded: true,
           NOT: {
             status: {
-              has: $Enums.MessageStatus.ARCHIVED,
+              has: MessageStatus.ARCHIVED,
             },
           },
           AND: [permissions.allowDatabaseAccessTo("list").Message],
@@ -54,7 +54,7 @@ export const messages = new Elysia()
           forwarded: false,
           NOT: {
             status: {
-              has: $Enums.MessageStatus.ARCHIVED,
+              has: MessageStatus.ARCHIVED,
             },
           },
           AND: [permissions.allowDatabaseAccessTo("list").Message],

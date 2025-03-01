@@ -1,4 +1,4 @@
-import { $Enums } from "@prisma/generated/client";
+import { $Enums } from "@prisma/client";
 import * as m from "@/paraglide/messages";
 
 export const conferenceRoleTranslation = (

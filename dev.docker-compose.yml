@@ -16,19 +16,6 @@ services:
     volumes:
       - chase-dev:/var/lib/postgresql/data
 
-  prisma_studio:
-    image: timothyjmiller/prisma-studio
-    restart: unless-stopped
-    depends_on:
-      - postgres
-    ports:
-      - '5555:5555'
-    environment:
-      PROJECT_NAME: 'MUNify chase'
-      POSTGRES_URL: postgres://postgres:postgres@postgres:5432/postgres
-      PRISMA_STUDIO_PORT: 5555
-      POSTGRES_PATH: /postgres
-
   # When using the mock server this can be helpful to paste into the form to create a valid token with claims etc.
   # {
   #  "email": "my@mail.com",
