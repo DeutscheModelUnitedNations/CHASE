@@ -77,9 +77,9 @@ export default function RootLayout({
         <script defer src="/fontawesome/js/sharp-regular.min.js" />
         <script defer src="/fontawesome/js/sharp-light.min.js" />
         <script defer src="/fontawesome/js/sharp-thin.min.js" /> */}
-        <link href="/fontawesome/css/fontawesome.css" rel="stylesheet" />
-        <link href="/fontawesome/css/brands.css" rel="stylesheet" />
-        <link href="/fontawesome/css/solid.css" rel="stylesheet" />
+        <link href="https://dmuncdnstorage.blob.core.windows.net/cdn/fontawesome-pro-6.7.2/css/fontawesome.css" rel="stylesheet" />
+        <link href="https://dmuncdnstorage.blob.core.windows.net/cdn/fontawesome-pro-6.7.2/css/brands.css" rel="stylesheet" />
+        <link href="https://dmuncdnstorage.blob.core.windows.net/cdn/fontawesome-pro-6.7.2/css/solid.css" rel="stylesheet" />
       </head>
 
       {/* <Head>

@@ -18,7 +18,6 @@ next-env.d.ts
 .redis-data
 
 chase/backend/prisma/generated
-fontawesome-pro-6.4.2/
 .env
 certificates
 .smtp4dev

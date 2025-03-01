@@ -28,7 +28,6 @@
     "ignore": [
       "chase/frontend/i18n/*.ts",
       "chase/frontend/i18n/*.tsx",
-      "chase/frontend/public/fontawesome/**",
       ".devcontainer",
       ".vscode"
     ]

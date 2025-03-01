@@ -6,7 +6,6 @@ import { PrimeReactProvider } from "primereact/api";
 import "./tailwind.css";
 import "./globals.scss";
 import "@/styles/theme_light.scss";
-import "@/styles/fontawesome/css/all.css";
 import Footer from "./Footer";
 import CookieConsent from "./CookieConsent";
 import type { ReactNode } from "react";

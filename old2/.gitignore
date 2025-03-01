@@ -20,7 +20,6 @@ next-env.d.ts
 users.csv
 
 chase/backend/prisma/generated
-fontawesome-pro-6.4.2/
 .env
 certificates
 .smtp4dev
