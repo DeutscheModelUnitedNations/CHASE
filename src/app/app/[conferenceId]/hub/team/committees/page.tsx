@@ -46,7 +46,7 @@ export default function ChairHub() {
           <LargeFlag countryCode={"uno"} />
         </HeaderTemplate>
         <ScrollPanel style={{ width: "100%", height: "90vh" }}>
-          <CommitteeGrid conferenceId={conferenceId} isChair />
+          <CommitteeGrid conferenceId={conferenceId!} isChair />
         </ScrollPanel>
       </div>
     </>
