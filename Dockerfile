@@ -10,6 +10,7 @@ ARG SHA
 ENV NEXT_PUBLIC_SHA=$SHA
 
 COPY . .
+RUN bun install --frozen-lockfile
 RUN bunx prisma generate
 RUN bun run build
 
