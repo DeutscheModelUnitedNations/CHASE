@@ -57,22 +57,21 @@ services:
     volumes:
       - ./mock-oidc-landingpage.html:/static/mock-oidc-landingpage.html
 
-  # app:
-  #   image: munifychase
-  #   depends_on:
-  #     - postgres
-  #   network_mode: host
-  #   environment:
-  #     - PORT=3000
-  #     - DATABASE_URL=postgres://postgres:postgres@localhost:5432/postgres
+  app:
+    image: deutschemodelunitednations/chase:latest
+    depends_on:
+      - postgres
+    network_mode: host
+    environment:
+      - PORT=3000
+      - DATABASE_URL=postgres://postgres:postgres@localhost:5432/postgres
+      - SECRET=123
 
-  #     - PUBLIC_OIDC_AUTHORITY=http://localhost:8080
-  #     # - PUBLIC_OIDC_AUTHORITY=https://guard.munify.cloud
+      - NEXT_PUBLIC_OIDC_AUTHORITY=https://guard.munify.cloud
+      - NEXT_PUBLIC_OIDC_CLIENT_ID=275671515582758948@dev
 
-  #     - PUBLIC_OIDC_CLIENT_ID=chase
-  #     # - PUBLIC_OIDC_CLIENT_ID=275671515582758948@dev
-
-  #     - SECRET=123
+      - OIDC_ROLE_CLAIM=urn:zitadel:iam:org:project:275671427955294244:roles
+      - NEXT_PUBLIC_HOST=http://localhost:3000
 
   # prisma_studio:
   #   image: timothyjmiller/prisma-studio
