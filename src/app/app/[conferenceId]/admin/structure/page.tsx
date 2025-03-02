@@ -8,7 +8,7 @@ import CommitteeTable from "@/lib/components/admin/structure/committee_table";
 import AddCommitteeDialog from "@/lib/components/admin/structure/add_committee_dialog";
 import useMousetrap from "mousetrap-react";
 import { useToast } from "@/lib/contexts/toast";
-import type { $Enums } from "@prisma/generated/client";
+import type { $Enums } from "@prisma/client";
 import { ConferenceIdContext } from "@/lib/contexts/committee_data";
 import { useClientSideBackendCall } from "@/lib/backend/useClientSideBackendCall";
 import * as m from "@/paraglide/messages";
@@ -30,7 +30,8 @@ export default function Structure() {
         backend
           //TODO
           // biome-ignore lint/style/noNonNullAssertion:
-          .conference({ conferenceId: conferenceId! }).committee.get(),
+          .conference({ conferenceId: conferenceId! })
+          .committee.get(),
       true,
     );
 

@@ -2,9 +2,13 @@ import React, { useState, useContext } from "react";
 import { Dropdown } from "primereact/dropdown";
 import { InputText } from "primereact/inputtext";
 import { Calendar } from "primereact/calendar";
-import type { $Enums } from "@prisma/generated/client";
+import type { $Enums } from "@prisma/client";
 import { ToastContext } from "@/lib/contexts/toast";
-import { CommitteeDataContext, CommitteeIdContext, ConferenceIdContext } from "@/lib/contexts/committee_data";
+import {
+  CommitteeDataContext,
+  CommitteeIdContext,
+  ConferenceIdContext,
+} from "@/lib/contexts/committee_data";
 import { useBackendTime } from "@/lib/contexts/backendTime";
 import { backend } from "@/lib/backend/clientsideBackend";
 import * as m from "@/paraglide/messages";
@@ -59,13 +63,12 @@ export default function SetStatusWidget() {
         if (res.status === 200) {
           showToast({
             severity: "success",
-            summary:
-              m.statusTillXSaved({
-                status: selectedStatusCustomText
-                  ? selectedStatusCustomText
-                  : selectedStatus || "",
-                date: selectedStatusUntil?.toLocaleString(languageTag()) ?? "",
-              }),
+            summary: m.statusTillXSaved({
+              status: selectedStatusCustomText
+                ? selectedStatusCustomText
+                : selectedStatus || "",
+              date: selectedStatusUntil?.toLocaleString(languageTag()) ?? "",
+            }),
           });
           setSelectedStatusButtonLoading(false);
         } else {
@@ -78,43 +81,36 @@ export default function SetStatusWidget() {
   }
 
   return (
-    <ConfigWrapper
-      title={m.statusTimer()}
-      description={m.setTheStatusTimer()}
-    >
+    <ConfigWrapper title={m.statusTimer()} description={m.setTheStatusTimer()}>
       <div className="flex flex-col items-end gap-2">
-        <div className="w-full flex gap-2">
+        <div className="flex w-full gap-2">
           <Dropdown
             value={selectedStatus || committeeData?.status || null}
             options={[
               {
-                label:
-                  m.formal(),
+                label: m.formal(),
                 value: "FORMAL",
                 icon: "podium",
               },
               {
-                label:
-                  m.informal(),
+                label: m.informal(),
                 value: "INFORMAL",
                 icon: "comments",
               },
               {
-                label:
-                  m.pause(),
+                label: m.pause(),
                 value: "PAUSE",
                 icon: "mug-hot",
               },
               {
-                label:
-                  m.suspension(),
+                label: m.suspension(),
                 value: "SUSPENSION",
                 icon: "forward-step",
               },
             ]}
             itemTemplate={(option) => (
-              <div className="flex flex-gap items-center">
-                <FAIcon icon={option.icon} className="w-8 mr-2" />
+              <div className="flex-gap flex items-center">
+                <FAIcon icon={option.icon} className="mr-2 w-8" />
                 {option.label}
               </div>
             )}
@@ -132,7 +128,7 @@ export default function SetStatusWidget() {
             className="flex-1"
           />
         </div>
-        <div className="w-full flex gap-2">
+        <div className="flex w-full gap-2">
           {TEMPLATE_TIMER_TIMEFRAMES.map((timeframe) => (
             <Button
               label={timeframe.label}

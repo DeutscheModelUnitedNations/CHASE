@@ -6,8 +6,11 @@ import SpeakersListWidget from "@/lib/components/dashboard/speakers_list";
 import TimerWidget from "@/lib/components/dashboard/timer";
 import WhiteboardWidget from "@/lib/components/dashboard/whiteboard";
 import ActionsWidget from "@/lib/components/dashboard/actions";
-import { $Enums } from "@prisma/generated/client";
-import { AgendaItemDataProvider, ConferenceIdContext } from "@/lib/contexts/committee_data";
+import { $Enums } from "@prisma/client";
+import {
+  AgendaItemDataProvider,
+  ConferenceIdContext,
+} from "@/lib/contexts/committee_data";
 import { useUserIdent } from "@/lib/contexts/user_ident";
 
 export default function participant_dashboard() {

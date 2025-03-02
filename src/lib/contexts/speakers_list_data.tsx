@@ -2,7 +2,7 @@
 import type React from "react";
 import { createContext, useState, useEffect, useContext } from "react";
 import { ConferenceIdContext, CommitteeIdContext } from "./committee_data";
-import type { $Enums } from "@prisma/generated/client";
+import type { $Enums } from "@prisma/client";
 import { useToast } from "./toast";
 import { backend } from "../backend/clientsideBackend";
 

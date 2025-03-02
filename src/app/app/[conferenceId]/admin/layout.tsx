@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import useMousetrap from "mousetrap-react";
 import { ScrollPanel } from "primereact/scrollpanel";
 import Lockout from "@/lib/components/Lockout";
-import { $Enums } from "@prisma/generated/client";
+import { $Enums } from "@prisma/client";
 import { useToast } from "@/lib/contexts/toast";
 import { ConferenceIdContext } from "@/lib/contexts/committee_data";
 import { backend } from "@/lib/backend/clientsideBackend";

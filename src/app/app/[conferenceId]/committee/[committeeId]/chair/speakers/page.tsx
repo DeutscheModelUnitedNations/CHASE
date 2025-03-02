@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { ScrollPanel } from "primereact/scrollpanel";
 import SpeakersListBlock from "@/lib/components/speakers_list/speakers_list_block";
 import { ChairSpeechButtons } from "@/lib/components/speakers_list/speech_buttons";
-import { $Enums } from "@prisma/generated/client";
+import { $Enums } from "@prisma/client";
 import NoDataPlaceholder from "@/lib/components/NoDataPlaceholder";
 import { CommitteeDataContext } from "@/lib/contexts/committee_data";
 import * as m from "@/paraglide/messages";
@@ -45,9 +45,7 @@ export default function ChairSpeakersList() {
             </SpeakersListBlock>
           </div>
         ) : (
-          <NoDataPlaceholder
-            title={m.noActiveAgendaItem()}
-          />
+          <NoDataPlaceholder title={m.noActiveAgendaItem()} />
         )}
       </ScrollPanel>
     </>

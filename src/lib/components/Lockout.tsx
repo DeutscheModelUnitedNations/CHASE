@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import type { $Enums } from "@prisma/generated/client";
+import type { $Enums } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import { useUserIdent } from "../contexts/user_ident";
 import { ConferenceIdContext } from "../contexts/committee_data";

@@ -1,7 +1,7 @@
 import React from "react";
 import "./markdown.scss";
 import { AnimatePresence, motion } from "framer-motion";
-import { $Enums } from "@prisma/generated/client";
+import { $Enums } from "@prisma/client";
 import { SpeakersListDataProvider } from "@/lib/contexts/speakers_list_data";
 import WidgetTemplate from "../WidgetTemplate";
 import * as m from "@/paraglide/messages";
@@ -18,16 +18,13 @@ import QueueBlock from "../speakers_list/queue_block";
  */
 
 export default function SpeakersListWidget() {
-
   return (
     <>
       <SpeakersListDataProvider
         typeOfList={$Enums.SpeakersListCategory.SPEAKERS_LIST}
       >
-        <WidgetTemplate
-          cardTitle={m.speakersList()}
-        >
-          <div className="flex-1 flex flex-col gap-3">
+        <WidgetTemplate cardTitle={m.speakersList()}>
+          <div className="flex flex-1 flex-col gap-3">
             <SpeakerBlock />
 
             <SpeakersListDataProvider

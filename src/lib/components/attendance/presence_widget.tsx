@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { HeaderInfoBox } from "../HeaderTemplate";
-import { $Enums } from "@prisma/generated/client";
+import { $Enums } from "@prisma/client";
 import { backend } from "@/lib/backend/clientsideBackend";
 import { useToast } from "@/lib/contexts/toast";
 import {

@@ -5,7 +5,7 @@ import { Toast } from "primereact/toast";
 import { InputText } from "primereact/inputtext";
 import { RadioButton } from "primereact/radiobutton";
 import useMousetrap from "mousetrap-react";
-import type { ConferenceRole } from "@prisma/generated/client";
+import type { ConferenceRole } from "@prisma/client";
 import * as m from "@/paraglide/messages";
 import Button from "../../Button";
 
@@ -95,7 +95,7 @@ export default function AddTeammemberDialog({
         className="w-3/4"
       >
         <form
-          className="flex flex-col items-stretch justify-center gap-4 w-full mt-2"
+          className="mt-2 flex w-full flex-col items-stretch justify-center gap-4"
           onSubmit={(e) => addCommittee(e)}
           onKeyDown={(e) => {
             if (e.key === "Enter") e.preventDefault();
@@ -103,7 +103,7 @@ export default function AddTeammemberDialog({
         >
           {roles.map((role) => {
             return (
-              <div key={role.value} className="flex align-items-center">
+              <div key={role.value} className="align-items-center flex">
                 <RadioButton
                   inputId={role.value}
                   name="role"

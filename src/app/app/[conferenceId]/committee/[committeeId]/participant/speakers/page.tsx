@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { ScrollPanel } from "primereact/scrollpanel";
 import SpeakersListBlock from "@/lib/components/speakers_list/speakers_list_block";
 import { ParticipantSpeechButtons } from "@/lib/components/speakers_list/speech_buttons";
-import { $Enums } from "@prisma/generated/client";
+import { $Enums } from "@prisma/client";
 import { apiTestData } from "@/lib/test_data";
 import { MyDelegationContext } from "@/lib/contexts/user_ident";
 import * as m from "@/paraglide/messages";

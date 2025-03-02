@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ScrollPanel } from "primereact/scrollpanel";
 import { Tag } from "primereact/tag";
 import { Toolbar } from "primereact/toolbar";
-import { $Enums } from "@prisma/generated/client";
+import { $Enums } from "@prisma/client";
 import { backend } from "@/lib/backend/clientsideBackend";
 import { useToast } from "@/lib/contexts/toast";
 import Button from "../Button";
@@ -322,15 +322,21 @@ export default function MessageDetails({
           </div>
           <h3 className="text-md truncate">
             {m.onDateAtTime({
-              date: new Date(message.timestamp).toLocaleDateString(languageTag(), {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              }),
-              time: new Date(message.timestamp).toLocaleTimeString(languageTag(), {
-                hour: "2-digit",
-                minute: "2-digit",
-              }),
+              date: new Date(message.timestamp).toLocaleDateString(
+                languageTag(),
+                {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                },
+              ),
+              time: new Date(message.timestamp).toLocaleTimeString(
+                languageTag(),
+                {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                },
+              ),
             })}
           </h3>
         </div>
@@ -347,11 +353,13 @@ export default function MessageDetails({
         <h1 className="my-4 text-2xl font-bold">{message.subject}</h1>
         <p>{message.message}</p>
 
-        <div className="bg-primary-950 my-4 flex items-center gap-4 rounded-xl p-4">
+        <div className="my-4 flex items-center gap-4 rounded-xl bg-primary-950 p-4">
           <LargeFlag countryCode={message.metaDelegation ?? "xxx"} />
           <div className="flex flex-1 flex-col">
             <h2 className="text-lg font-bold">
-              {getFullTranslatedCountryNameFromISO3Code(message.metaDelegation ?? "")}
+              {getFullTranslatedCountryNameFromISO3Code(
+                message.metaDelegation ?? "",
+              )}
             </h2>
             <h2 className="text-md">{message.metaCommittee}</h2>
           </div>

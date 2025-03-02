@@ -9,7 +9,7 @@ import {
   PDFDownloadLink,
 } from "@react-pdf/renderer";
 import { Dialog } from "primereact/dialog";
-import { $Enums } from "@prisma/generated/client";
+import { $Enums } from "@prisma/client";
 import type { backend } from "@/lib/backend/clientsideBackend";
 import Button from "../Button";
 import { getFullTranslatedCountryNameFromISO3Code } from "@/lib/nation";

@@ -3,7 +3,7 @@ import { SplitButton } from "primereact/splitbutton";
 import { Dialog } from "primereact/dialog";
 import AddSpeakerOverlay from "./add_speaker";
 import ChangeSpeechTimeOverlay from "./change_speech_time";
-import { $Enums } from "@prisma/generated/client";
+import { $Enums } from "@prisma/client";
 import type { MenuItem } from "primereact/menuitem";
 import { useToast } from "@/lib/contexts/toast";
 import { SpeakersListDataContext } from "@/lib/contexts/speakers_list_data";
@@ -168,7 +168,8 @@ export function ChairSpeechButtons({
         // biome-ignore lint/style/noNonNullAssertion:
         .conference({ conferenceId: conferenceId! })
         // biome-ignore lint/style/noNonNullAssertion:
-        .committee({ committeeId: committeeId! }).delegations.get(),
+        .committee({ committeeId: committeeId! })
+        .delegations.get(),
     false,
   );
 

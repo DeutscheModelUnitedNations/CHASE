@@ -5,7 +5,7 @@ import { InputSwitch } from "primereact/inputswitch";
 import { SelectButton } from "primereact/selectbutton";
 import { Dropdown } from "primereact/dropdown";
 import useMousetrap from "mousetrap-react";
-import type { $Enums } from "@prisma/generated/client";
+import type { $Enums } from "@prisma/client";
 import type { backend } from "@/lib/backend/clientsideBackend";
 import * as m from "@/paraglide/messages";
 import Button from "../../Button";
@@ -18,7 +18,7 @@ type AddCommitteePayloadType = {
 };
 
 type CommitteesType = Awaited<
-  ReturnType<ReturnType<typeof backend["conference"]>["committee"]["get"]>
+  ReturnType<ReturnType<(typeof backend)["conference"]>["committee"]["get"]>
 >["data"];
 
 export default function AddCommitteeDialog({
@@ -100,7 +100,7 @@ export default function AddCommitteeDialog({
         className="w-3/4"
       >
         <form
-          className="flex flex-col items-stretch justify-center gap-4 w-full mt-2"
+          className="mt-2 flex w-full flex-col items-stretch justify-center gap-4"
           onSubmit={(e) => addCommittee(e)}
           onKeyDown={(e) => {
             if (e.key === "Enter") e.preventDefault();
@@ -136,15 +136,13 @@ export default function AddCommitteeDialog({
             options={categories}
             allowEmpty={false}
           />
-          <div className="flex justify-start items-center">
+          <div className="flex items-center justify-start">
             <InputSwitch
               checked={newCommitteeIsSubcommittee}
               onChange={(e) => setNewCommitteeIsSubcommittee(e.value)}
               disabled={newCommitteeCategory !== "COMMITTEE"}
             />
-            <label className="ml-2">
-              {m.isSubcommittee()}
-            </label>
+            <label className="ml-2">{m.isSubcommittee()}</label>
           </div>
           <Dropdown
             value={committees?.find((c) => c.id === newCommitteeParent)}

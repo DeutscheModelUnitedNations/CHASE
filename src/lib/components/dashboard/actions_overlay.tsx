@@ -4,7 +4,7 @@ import { Dialog } from "primereact/dialog";
 import { InputText } from "primereact/inputtext";
 import { InputTextarea } from "primereact/inputtextarea";
 import { Dropdown } from "primereact/dropdown";
-import type { $Enums } from "@prisma/generated/client";
+import type { $Enums } from "@prisma/client";
 import {
   AgendaItemContext,
   CommitteeDataContext,
@@ -319,9 +319,7 @@ export function ActionsOverlayResearchService({
           />
           <p>
             <FAIcon icon="info-circle" />{" "}
-            <small>
-              {m.thisRequestWillBeFirstCheckedByTheChair()}
-            </small>
+            <small>{m.thisRequestWillBeFirstCheckedByTheChair()}</small>
           </p>
         </div>
       </Dialog>

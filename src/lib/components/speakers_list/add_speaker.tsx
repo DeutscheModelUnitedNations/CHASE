@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import useMousetrap from "mousetrap-react";
 import CountryAutoComplete from "./country_auto_complete";
-import type { $Enums } from "@prisma/generated/client";
+import type { $Enums } from "@prisma/client";
 import type {
   AllAvailableCountriesType,
   CountryDataType,

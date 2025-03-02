@@ -1,6 +1,6 @@
 import React from "react";
 import { SelectButton } from "primereact/selectbutton";
-import { $Enums } from "@prisma/generated/client";
+import { $Enums } from "@prisma/client";
 import type { backend } from "@/lib/backend/clientsideBackend";
 import FAIcon from "../FAIcon";
 import ConfigWrapper from "../dashboard/chair/config_wrapper";
@@ -73,7 +73,7 @@ export default function AttendanceTable({
           <WidgetBoxTemplate key={attendee.id}>
             <NormalFlag countryCode={attendee.nation.alpha3Code} />
             <div className="flex flex-col justify-center">
-              <div className="text-gray-text dark:text-primary-800 text-sm font-bold">
+              <div className="text-gray-text text-sm font-bold dark:text-primary-800">
                 <span className="mr-2 truncate">
                   {getFullTranslatedCountryNameFromISO3Code(
                     attendee.nation.alpha3Code,

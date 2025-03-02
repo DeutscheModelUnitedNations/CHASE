@@ -1,7 +1,7 @@
 "use client";
 
 import { useContext } from "react";
-import { $Enums } from "@prisma/generated/client";
+import { $Enums } from "@prisma/client";
 import { ConferenceIdContext } from "@/lib/contexts/committee_data";
 import { MyDelegationProvider, useUserIdent } from "@/lib/contexts/user_ident";
 import { useFaGlobe } from "@/lib/useFaGlobe";
@@ -21,7 +21,7 @@ export default function Participant_Pages_Layout({
 
   return (
     <MyDelegationProvider>
-      <div className="text-primary-100 dark:bg-primary-100 dark:text-primary-900 flex h-screen w-screen overflow-hidden bg-white shadow-md">
+      <div className="flex h-screen w-screen overflow-hidden bg-white text-primary-100 shadow-md dark:bg-primary-100 dark:text-primary-900">
         <Navbar>
           {conferenceMembership(conferenceId)?.role ===
             $Enums.ConferenceRole.NON_STATE_ACTOR && (

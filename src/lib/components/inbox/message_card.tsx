@@ -1,6 +1,6 @@
 import React from "react";
 import { Tag } from "primereact/tag";
-import { $Enums } from "@prisma/generated/client";
+import { $Enums } from "@prisma/client";
 import { backend } from "@/lib/backend/clientsideBackend";
 import { useToast } from "@/lib/contexts/toast";
 import { useBackendTime } from "@/lib/contexts/backendTime";
@@ -57,7 +57,7 @@ export default function MessageCard({
       className={`mx-2 flex flex-col justify-start rounded-md p-4 ${
         selected
           ? "bg-primary-500 text-white"
-          : "bg-primary-950 hover:bg-primary-900 text-black hover:cursor-pointer"
+          : "bg-primary-950 text-black hover:cursor-pointer hover:bg-primary-900"
       } pophover`}
       onClick={() => selectMessage()}
       onKeyUp={() => selectMessage()}

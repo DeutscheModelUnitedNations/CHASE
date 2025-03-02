@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import HeaderTemplate from "../HeaderTemplate";
 import { Skeleton } from "primereact/skeleton";
-import { $Enums } from "@prisma/generated/client";
+import { $Enums } from "@prisma/client";
 import { useUserIdent } from "@/lib/contexts/user_ident";
 import {
   AgendaItemContext,

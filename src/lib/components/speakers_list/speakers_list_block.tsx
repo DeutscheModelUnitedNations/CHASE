@@ -1,12 +1,12 @@
 import type React from "react";
-import type { $Enums } from "@prisma/generated/client";
+import type { $Enums } from "@prisma/client";
 import type { backend } from "@/lib/backend/clientsideBackend";
 import { SpeakersListDataProvider } from "@/lib/contexts/speakers_list_data";
 import SpeakerBlock from "./speaker_block";
 import SpeakerQueueList from "./queue_list";
 
 export type SpeakersListData = Awaited<
-  ReturnType<ReturnType<typeof backend["speakersList"]>["get"]>
+  ReturnType<ReturnType<(typeof backend)["speakersList"]>["get"]>
 >["data"];
 
 /**
@@ -31,8 +31,8 @@ export default function SpeakersListBlock({
 }) {
   return (
     <SpeakersListDataProvider typeOfList={typeOfList}>
-      <div className="flex w-full h-full flex-col bg-primary-950 dark:bg-primary-200 rounded-lg p-3 transition-all duration-500">
-        <div className="font-bold mb-2 text-lg">{listTitle}</div>
+      <div className="flex h-full w-full flex-col rounded-lg bg-primary-950 p-3 transition-all duration-500 dark:bg-primary-200">
+        <div className="mb-2 text-lg font-bold">{listTitle}</div>
         <SpeakerBlock />
         {children}
         <SpeakerQueueList myCountry={myCountry} chairOptions={chairOptions} />

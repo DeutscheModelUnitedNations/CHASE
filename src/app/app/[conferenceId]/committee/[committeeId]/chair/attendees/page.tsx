@@ -3,12 +3,15 @@ import React, { useEffect, useState, useContext } from "react";
 import HeaderTemplate from "@/lib/components/HeaderTemplate";
 import { ScrollPanel } from "primereact/scrollpanel";
 import { useToast } from "@/lib/contexts/toast";
-import { $Enums } from "@prisma/generated/client";
+import { $Enums } from "@prisma/client";
 import PresenceWidget from "@/lib/components/attendance/presence_widget";
 import AttendanceTable, {
   type DelegationDataType,
 } from "@/lib/components/attendance/attendance_table";
-import { CommitteeIdContext, ConferenceIdContext } from "@/lib/contexts/committee_data";
+import {
+  CommitteeIdContext,
+  ConferenceIdContext,
+} from "@/lib/contexts/committee_data";
 import { backend } from "@/lib/backend/clientsideBackend";
 import { getFullTranslatedCountryNameFromISO3Code } from "@/lib/nation";
 import { languageTag } from "@/paraglide/runtime";
@@ -40,7 +43,9 @@ export default function ChairAttendees() {
                 delegation.nation.variant === $Enums.NationVariant.NATION,
             )
             .sort((a, b) =>
-              getFullTranslatedCountryNameFromISO3Code(a.nation.alpha3Code).localeCompare(
+              getFullTranslatedCountryNameFromISO3Code(
+                a.nation.alpha3Code,
+              ).localeCompare(
                 getFullTranslatedCountryNameFromISO3Code(b.nation.alpha3Code),
                 languageTag(),
               ),

@@ -7,7 +7,7 @@ import TeamPoolTable from "@/lib/components/admin/teampool/teampool_table";
 import AddTeammemberDialog from "@/lib/components/admin/teampool/add_teammember_dialog";
 import { confirmPopup } from "primereact/confirmpopup";
 import { useToast } from "@/lib/contexts/toast";
-import type { $Enums } from "@prisma/generated/client";
+import type { $Enums } from "@prisma/client";
 import { useClientSideBackendCall } from "@/lib/backend/useClientSideBackendCall";
 import { ConferenceIdContext } from "@/lib/contexts/committee_data";
 import { backend } from "@/lib/backend/clientsideBackend";
