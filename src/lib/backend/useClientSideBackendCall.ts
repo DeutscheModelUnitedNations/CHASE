@@ -13,9 +13,9 @@ export function useClientSideBackendCall<
     | Promise<() => Promise<{ data: any | null; error: any | null }>>,
   TriggerManually extends boolean = false,
 >(apiCall: ApiCallCreator, triggerManually?: TriggerManually) {
-  type DataType = Awaited<
-    ReturnType<Awaited<ReturnType<ApiCallCreator>>>
-  >["data"];
+  type DataType = NonNullable<
+    Awaited<ReturnType<Awaited<ReturnType<ApiCallCreator>>>>["data"]
+  >;
   const [value, setValue] = useState<DataType>();
   const [pending, setPending] = useState<boolean>(true);
   const [loading, setLoading] = useState<boolean>(true);

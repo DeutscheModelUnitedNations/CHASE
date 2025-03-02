@@ -1,20 +1,24 @@
 "use client";
-import { CommitteeDataProvider, CommitteeIdContext } from "@/lib/contexts/committee_data";
+import {
+  CommitteeDataProvider,
+  CommitteeIdContext,
+} from "@/lib/contexts/committee_data";
 import { StatusTimerProvider } from "@/lib/contexts/status_timer";
 import type React from "react";
-
+import { useParams } from "next/navigation";
 export default function Participant_Pages_Layout({
   children,
-  params,
 }: {
   children: React.ReactNode;
-  params: { conferenceId: string; committeeId: string };
 }) {
-  return (
-    <CommitteeIdContext.Provider value={params.committeeId}>
+  const { committeeId } = useParams();
+  return committeeId ? (
+    <CommitteeIdContext.Provider value={committeeId as string}>
       <CommitteeDataProvider>
         <StatusTimerProvider>{children}</StatusTimerProvider>
       </CommitteeDataProvider>
     </CommitteeIdContext.Provider>
+  ) : (
+    <div>Loading...</div>
   );
 }

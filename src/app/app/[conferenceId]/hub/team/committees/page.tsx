@@ -12,11 +12,7 @@ import { languageTag } from "@/paraglide/runtime";
 import { LargeFlag } from "@/lib/components/Flag";
 import * as m from "@/paraglide/messages";
 
-export default function ChairHub({
-  params,
-}: {
-  params: { conferenceId: string };
-}) {
+export default function ChairHub() {
   const conferenceId = useContext(ConferenceIdContext);
   const { conferenceMembership } = useUserIdent();
   const { currentTime } = useBackendTime();
@@ -27,7 +23,7 @@ export default function ChairHub({
         <HeaderTemplate>
           <FAIcon
             icon="rocket-launch"
-            className="text-primary mr-8 ml-6 text-4xl"
+            className="mr-8 ml-6 text-4xl text-primary"
           />
           <div className="flex flex-col items-start justify-center">
             <h1 className="text-2xl font-bold">{m.missionControl()}</h1>
@@ -40,7 +36,7 @@ export default function ChairHub({
             </h2>
           </div>
           <div className="flex-1" />
-          <div className="text-primary-300 dark:text-primary-700 mr-10 font-mono text-5xl">
+          <div className="mr-10 font-mono text-5xl text-primary-300 dark:text-primary-700">
             {currentTime.toLocaleTimeString(languageTag(), {
               hour: "2-digit",
               minute: "numeric",

@@ -17,7 +17,7 @@ export default function AdminLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: { conferenceId: string };
+  params: Promise<{ conferenceId: string }>;
 }) {
   // const { LL } = useI18nContext();
   const { toastError } = useToast();
@@ -36,8 +36,8 @@ export default function AdminLayout({
   //   });
   // };
 
-  useMousetrap("ctrl+shift+s", () =>
-    router.push(`/app/${params.conferenceId}/hub/team/committees`),
+  useMousetrap("ctrl+shift+s", async () =>
+    router.push(`/app/${(await params).conferenceId}/hub/team/committees`),
   );
 
   useEffect(() => {
