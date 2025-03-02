@@ -26,7 +26,7 @@ export default function CommitteeGrid({
   isChair?: boolean;
 }) {
   const { value: committees } = useClientSideBackendCallPoller(
-    (backend) => backend.conference({ conferenceId }).committee.get,
+    (backend) => backend.conference({ conferenceId }).committee.get(),
     10000,
   );
 

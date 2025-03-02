@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { backend } from "./clientsideBackend";
+import { useToast } from "@/lib/contexts/toast";
 
 /**
  * Performs a backend call on the client side. Returns the value and a trigger to re-fetch if you enabled manual triggering.
@@ -8,23 +9,21 @@ import { backend } from "./clientsideBackend";
 export function useClientSideBackendCall<
   ApiCallCreator extends (
     arg: typeof backend,
-  ) =>
-    | (() => Promise<{ data: any | null; error: any | null }>)
-    | Promise<() => Promise<{ data: any | null; error: any | null }>>,
+  ) => Promise<{ data: any | null; error: any | null }>,
   TriggerManually extends boolean = false,
 >(apiCall: ApiCallCreator, triggerManually?: TriggerManually) {
-  type DataType = NonNullable<
-    Awaited<ReturnType<Awaited<ReturnType<ApiCallCreator>>>>["data"]
-  >;
+  type DataType = NonNullable<Awaited<ReturnType<ApiCallCreator>>["data"]>;
   const [value, setValue] = useState<DataType>();
   const [pending, setPending] = useState<boolean>(true);
   const [loading, setLoading] = useState<boolean>(true);
+  const { toastError } = useToast();
 
   const trigger = async () => {
     setLoading(true);
-    const response = await (await apiCall(backend))();
+    const response = await apiCall(backend);
     //TODO we could do some actual error handling instead of just throwing
     if (response.error) {
+      toastError(response.error);
       throw new Error(JSON.stringify(response.error));
     }
     if (response.data === null) {
@@ -92,9 +91,7 @@ export function useClientSideBackendCall<
 export function useClientSideBackendCallPoller<
   ApiCallCreator extends (
     arg: typeof backend,
-  ) =>
-    | (() => Promise<{ data: any | null; error: any | null }>)
-    | Promise<() => Promise<{ data: any | null; error: any | null }>>,
+  ) => Promise<{ data: any | null; error: any | null }>,
 >(apiCall: ApiCallCreator, intervalDuration = 5000) {
   const r = useClientSideBackendCall<ApiCallCreator, true>(apiCall, true);
 

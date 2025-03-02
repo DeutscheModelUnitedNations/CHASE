@@ -21,7 +21,7 @@ export default function Teampool() {
   const { value: team, trigger: triggerTeam } = useClientSideBackendCall(
     (backend) =>
       // biome-ignore lint/style/noNonNullAssertion:
-      backend.conference({ conferenceId: conferenceId! }).member.get,
+      backend.conference({ conferenceId: conferenceId! }).member.get(),
     true,
   );
   const [inputMaskVisible, setInputMaskVisible] = useState(false);

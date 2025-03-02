@@ -3,10 +3,10 @@ import Elysia from "elysia";
 export const logger = new Elysia({
   name: "logger",
 })
-  .onBeforeHandle({ as: "global" }, ({ request, path }) => {
-    console.info(`Received request ${request.method} ${path}`);
+  .onRequest(({ request: { method, url } }) => {
+    console.info(`Received request ${method} ${url}`);
   })
-  .onError({ as: "global" }, ({ error, code, path, set, request }) => {
+  .onError(({ error, code, path, set, request }) => {
     const statusCode: number = (error as any).code;
     console.error(
       `Error in ${request.method} ${path}: ${code} ${(error as any)?.message ?? ""}. Thrown at ${(error as any)?.stack ?? ""}`,
@@ -57,4 +57,5 @@ export const logger = new Elysia({
     console.error(JSON.stringify(error));
 
     return "Internal server error";
-  });
+  })
+  .as("global");

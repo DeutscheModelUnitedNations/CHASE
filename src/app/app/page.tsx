@@ -7,7 +7,7 @@ import { useClientSideBackendCall } from "@/lib/backend/useClientSideBackendCall
 
 export default function Page() {
   const { value: conferences, pending } = useClientSideBackendCall(
-    (backend) => backend.conference.get,
+    async (backend) => backend.conference.get(),
   );
 
   if (!pending) {
@@ -18,10 +18,10 @@ export default function Page() {
 
   //TODO this needs some stylish Tadification
   return (
-    <>
+    <div>
       {pending && <p>Loading...</p>}
       {!pending && (
-        <div className="flex h-screen items-center justify-center">
+        <div className="flex flex-col gap-3 h-screen items-center justify-center">
           {conferences.length === 0
             ? m.noConferencesFound()
             : conferences.map((conference) => (
@@ -44,6 +44,6 @@ export default function Page() {
               ))}
         </div>
       )}
-    </>
+    </div>
   );
 }

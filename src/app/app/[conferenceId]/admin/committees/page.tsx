@@ -5,7 +5,10 @@ import { useRouter } from "next/navigation";
 import ForwardBackButtons from "@/lib/components/admin/onboarding/forward_back_bar";
 import { Accordion, AccordionTab } from "primereact/accordion";
 import AgendaItems from "@/lib/components/admin/committee/agendaItems";
-import { CommitteeIdContext, ConferenceIdContext } from "@/lib/contexts/committee_data";
+import {
+  CommitteeIdContext,
+  ConferenceIdContext,
+} from "@/lib/contexts/committee_data";
 import { useClientSideBackendCall } from "@/lib/backend/useClientSideBackendCall";
 
 export default function OnboardingCommitteePage() {
@@ -15,10 +18,10 @@ export default function OnboardingCommitteePage() {
   const [saveLoading, setSaveLoading] = useState(false);
   const { value: committees, trigger: triggerCommittees } =
     useClientSideBackendCall(
-      (backend) =>
+      async (backend) =>
         //TODO
         // biome-ignore lint/style/noNonNullAssertion:
-        backend.conference({ conferenceId: conferenceId! }).committee.get,
+        backend.conference({ conferenceId: conferenceId! }).committee.get(),
       true,
     );
 

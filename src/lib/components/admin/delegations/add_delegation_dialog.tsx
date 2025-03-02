@@ -25,7 +25,7 @@ export default function AddDelegationDialog({
   addDelegationToList: (alpha3Code: string) => void;
 }) {
   const { value: allAvailableCountries } = useClientSideBackendCall(
-    (backend) => backend.baseData.countries.get,
+    (backend) => backend.baseData.countries.get(),
     false,
   );
   const [delegationData, setDelegationData] = useState<

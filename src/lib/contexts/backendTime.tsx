@@ -8,7 +8,7 @@ export const useBackendTime = () => useContext(BackendTimeContext);
 
 export const BackendTime = ({ children }: { children: React.ReactNode }) => {
   const { value: backendTime, pending } = useClientSideBackendCall(
-    (backend) => backend.timestamp.get,
+    (backend) => backend.timestamp.get(),
   );
   const [currentTime, setCurrentTime] = useState(new Date());
 

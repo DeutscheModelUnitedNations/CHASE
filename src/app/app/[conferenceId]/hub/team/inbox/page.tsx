@@ -13,7 +13,7 @@ export default function InboxPageResearchService() {
     (backend) =>
       // biome-ignore lint/style/noNonNullAssertion: we assume the conference id is set
       backend.conference({ conferenceId: conferenceId! }).messages
-        .researchService.get,
+        .researchService.get(),
     10000,
   );
 

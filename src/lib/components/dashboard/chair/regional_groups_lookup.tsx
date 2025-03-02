@@ -31,7 +31,7 @@ export default function RegionalGroupsLookup({
         // biome-ignore lint/style/noNonNullAssertion:
         .conference({ conferenceId: conferenceId! })
         // biome-ignore lint/style/noNonNullAssertion:
-        .committee({ committeeId: committeeId! }).delegations.get,
+        .committee({ committeeId: committeeId! }).delegations.get(),
     false,
   );
 

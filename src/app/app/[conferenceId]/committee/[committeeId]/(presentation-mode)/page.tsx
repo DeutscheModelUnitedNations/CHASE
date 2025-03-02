@@ -30,13 +30,13 @@ export default function CommitteePresentationMode({
     async (backend) =>
       backend
         .conference({ conferenceId: (await params).conferenceId })
-        .committee({ committeeId: (await params).committeeId }).get,
+        .committee({ committeeId: (await params).committeeId }).get(),
   );
   const { value: agendaItem } = useClientSideBackendCallPoller(
     async (backend) =>
       backend
         .conference({ conferenceId: (await params).conferenceId })
-        .committee({ committeeId: (await params).committeeId }).agendaItem.get,
+        .committee({ committeeId: (await params).committeeId }).agendaItem.get(),
   );
 
   const [remSize, setRemSize] = useState<number>(16);

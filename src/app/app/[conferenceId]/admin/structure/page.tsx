@@ -30,7 +30,7 @@ export default function Structure() {
         backend
           //TODO
           // biome-ignore lint/style/noNonNullAssertion:
-          .conference({ conferenceId: conferenceId! }).committee.get,
+          .conference({ conferenceId: conferenceId! }).committee.get(),
       true,
     );
 

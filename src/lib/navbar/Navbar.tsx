@@ -22,7 +22,7 @@ interface Props {
 export default function Navbar({ children }: Props) {
   const router = useRouter();
   const [settingsSidebarVisible, setSettingsSidebarVisible] = useState(false);
-  const { value: logoutUrl } = useClientSideBackendCall(backend => backend.auth["logout-url"].get);
+  const { value: logoutUrl } = useClientSideBackendCall(backend => backend.auth["logout-url"].get());
 
   const confirmLogout = () => {
     confirmDialog({

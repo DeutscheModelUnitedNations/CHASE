@@ -13,7 +13,6 @@ export default function InboxPage() {
   const conferenceId = useContext(ConferenceIdContext);
   const committeeId = useContext(CommitteeIdContext);
 
-  // const [messages, triggerMessages] = useClientSideBackendCallPoller(
   const { value: messages, trigger: triggerMessages } = useClientSideBackendCallPoller(
     (backend) =>
       backend
@@ -22,7 +21,7 @@ export default function InboxPage() {
         .conference({ conferenceId: conferenceId! })
         //TODO
         // biome-ignore lint/style/noNonNullAssertion:
-        .committee({ committeeId: committeeId! }).messages.get,
+        .committee({ committeeId: committeeId! }).messages.get(),
     10000,
   );
   const [selectedMessage, setSelectedMessage] = useState<

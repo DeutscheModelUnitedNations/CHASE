@@ -23,7 +23,7 @@ export default function AgendaSelection() {
           // biome-ignore lint/style/noNonNullAssertion:
           .conference({ conferenceId: conferenceId! })
           // biome-ignore lint/style/noNonNullAssertion:
-          .committee({ committeeId: committeeId! }).agendaItem.get,
+          .committee({ committeeId: committeeId! }).agendaItem.get(),
     );
 
   async function activateAgendaItem(agendaItemId: string) {

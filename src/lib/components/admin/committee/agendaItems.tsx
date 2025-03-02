@@ -23,7 +23,7 @@ export default function AgendaItems() {
           // biome-ignore lint/style/noNonNullAssertion:
           .conference({ conferenceId: conferenceId! })
           // biome-ignore lint/style/noNonNullAssertion:
-          .committee({ committeeId: committeeId! }).agendaItem.get,
+          .committee({ committeeId: committeeId! }).agendaItem.get(),
       true,
     );
   const [inputValue, setInputValue] = useState<string>("");

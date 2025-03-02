@@ -7,8 +7,9 @@
  * Cannot be use in client components which are made with "use client"
  */
 // export const serversideBackend = treaty<Api>(
-//   `${process.env.NEXT_PUBLIC_HOST ?? ""}/api`,
+//   "/api",
 //   {
+//   keepDomain: true,
 //     fetch: {
 //       credentials: "include",
 //     },
