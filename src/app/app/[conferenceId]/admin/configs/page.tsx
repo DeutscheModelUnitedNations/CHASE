@@ -2,24 +2,21 @@
 import React, { useContext, useEffect, useState } from "react";
 import ConfigWrapper from "@/lib/components/dashboard/chair/config_wrapper";
 import { InputText } from "primereact/inputtext";
-import { useI18nContext } from "@/i18n/i18n-react";
-import { useBackendCall } from "@/hooks/useBackendCall";
-import { useBackend } from "@/contexts/backend";
-import Button from "@/lib/components/button";
-import { ConferenceIdContext } from "@/contexts/committee_data";
 import { useToast } from "@/lib/contexts/toast";
+import { ConferenceIdContext } from "@/lib/contexts/committee_data";
+import { useClientSideBackendCall } from "@/lib/backend/useClientSideBackendCall";
+import { backend } from "@/lib/backend/clientsideBackend";
+import * as m from "@/paraglide/messages";
+import Button from "@/lib/components/Button";
 
-export default function loginVorsitz() {
-  const { LL } = useI18nContext();
-  const { backend } = useBackend();
+export default function Page() {
   const conferenceId = useContext(ConferenceIdContext);
   const { showToast, toastError } = useToast();
 
-  const [conferenceData, triggerConferenceData] = useBackendCall(() => {
-    //TODO
-    // biome-ignore lint/style/noNonNullAssertion:
-    return backend.conference({ conferenceId: conferenceId! }).get();
-  }, true);
+  const { value: conferenceData, trigger: triggerConferenceData } =
+    useClientSideBackendCall(
+      (backend) => backend.conference({ conferenceId: conferenceId! }).get, true
+    );
 
   function updateURLs() {
     backend
@@ -35,7 +32,7 @@ export default function loginVorsitz() {
         triggerConferenceData();
         showToast({
           severity: "success",
-          summary: LL.admin.onboarding.configs.successToast(),
+          summary: m.settingChanged(),
         });
       })
       .catch((e) => {
@@ -71,16 +68,16 @@ export default function loginVorsitz() {
   return (
     <div className="flex flex-col gap-8">
       <URLConfiguration
-        title={LL.admin.onboarding.configs.pressWebsiteTitle()}
-        description={LL.admin.onboarding.configs.pressWebsiteDescription()}
+        title={m.pressWebsite()}
+        description={m.hereYouCanSetThePressWebsite()}
         URL={pressURL}
         setURL={setPressURL}
         updateURLs={updateURLs}
         disabled={!checkURL(pressURL)}
       />
       <URLConfiguration
-        title={LL.admin.onboarding.configs.feedbackWebsiteTitle()}
-        description={LL.admin.onboarding.configs.feedbackWebsiteDescription()}
+        title={m.feedbackWebsite()}
+        description={m.hereYouCanSetTheFeedbackWebsite()}
         URL={feedbackURL}
         setURL={setFeedbackURL}
         updateURLs={updateURLs}

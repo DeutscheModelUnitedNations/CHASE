@@ -9,25 +9,30 @@ import AddCommitteeDialog from "@/lib/components/admin/structure/add_committee_d
 import useMousetrap from "mousetrap-react";
 import { useToast } from "@/lib/contexts/toast";
 import type { $Enums } from "@prisma/generated/client";
+import { ConferenceIdContext } from "@/lib/contexts/committee_data";
+import { useClientSideBackendCall } from "@/lib/backend/useClientSideBackendCall";
+import * as m from "@/paraglide/messages";
+import { backend } from "@/lib/backend/clientsideBackend";
 
-export default function structure() {
+export default function Structure() {
   const router = useRouter();
   const { showToast, toastError } = useToast();
   const conferenceId = useContext(ConferenceIdContext);
-  const { backend } = useBackend();
 
   const [inputMaskVisible, setInputMaskVisible] = useState(false);
 
   const [saveLoading, setSaveLoading] = useState(false);
 
   const [updateCommittees, setUpdateCommittees] = useState(true);
-  const [committees, triggerCommittees] = useBackendCall(
-    backend
-      //TODO
-      // biome-ignore lint/style/noNonNullAssertion:
-      .conference({ conferenceId: conferenceId! }).committee.get,
-    true,
-  );
+  const { value: committees, trigger: triggerCommittees } =
+    useClientSideBackendCall(
+      (backend) =>
+        backend
+          //TODO
+          // biome-ignore lint/style/noNonNullAssertion:
+          .conference({ conferenceId: conferenceId! }).committee.get,
+      true,
+    );
 
   useEffect(() => {
     if (updateCommittees) {
@@ -69,7 +74,7 @@ export default function structure() {
         if (res.status >= 400) throw new Error("Failed to add committee");
         showToast({
           severity: "success",
-          summary: LL.admin.onboarding.structure.SUCCESS_ADD_COMMITTEE(),
+          summary: m.addCommittee(),
           detail: `${name} (${abbreviation})`,
         });
       })
@@ -81,7 +86,7 @@ export default function structure() {
   const confirmDeleteAll = (event: React.MouseEvent<HTMLButtonElement>) => {
     confirmPopup({
       target: event.currentTarget,
-      message: LL.admin.onboarding.structure.DELETE_ALL_CONFIRM(),
+      message: m.deleteAll(),
       acceptClassName: "p-button-danger",
       accept: () => {
         if (!conferenceId) return;
@@ -141,7 +146,7 @@ export default function structure() {
         inputMaskVisible={inputMaskVisible}
         setInputMaskVisible={setInputMaskVisible}
         addCommitteeToList={addCommittee}
-        committees={committees}
+        committees={committees!}
       />
     </>
   );

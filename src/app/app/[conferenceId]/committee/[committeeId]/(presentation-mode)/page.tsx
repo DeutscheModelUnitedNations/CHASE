@@ -1,43 +1,42 @@
 "use client";
 import React, { useState, useEffect, useContext } from "react";
-import { useI18nContext } from "@/i18n/i18n-react";
 import PresenceWidget from "@/lib/components/attendance/presence_widget";
 import TimerWidget from "@/lib/components/dashboard/timer";
 import SpeakersListBlock from "@/lib/components/speakers_list/speakers_list_block";
 import WidgetTemplate from "@/lib/components/WidgetTemplate";
-import { useBackend } from "@/contexts/backend";
 import { Skeleton } from "primereact/skeleton";
 import { useToast } from "@/lib/contexts/toast";
 import WhiteboardWidget from "@/lib/components/dashboard/whiteboard";
-import { StatusTimer } from "@/contexts/status_timer";
 import { useMediaQuery } from "react-responsive";
-import { usePollBackendCall } from "@/hooks/pollBackendCall";
 import SpeakersListWidget from "@/lib/components/dashboard/speakers_list";
-import FAIcon from "@/lib/components/font_awesome_icon";
+import { StatusTimer } from "@/lib/contexts/status_timer";
+import { useClientSideBackendCallPoller } from "@/lib/backend/useClientSideBackendCall";
+import * as m from "@/paraglide/messages";
+import FAIcon from "@/lib/components/FAIcon";
 
 export default function CommitteePresentationMode({
   params,
 }: {
-  params: { conferenceId: string; committeeId: string };
+  params: Promise<{ conferenceId: string; committeeId: string }>;
 }) {
-  const { LL } = useI18nContext();
   const { disableToastsOnCurrentPage } = useToast();
-  const { backend } = useBackend();
   const { category } = useContext(StatusTimer);
 
   const isDesktopOrLaptop = useMediaQuery({
     query: "(min-width: 768px)",
   });
 
-  const [committeeData, _triggerCommitteedata] = usePollBackendCall(
-    backend
-      .conference({ conferenceId: params.conferenceId })
-      .committee({ committeeId: params.committeeId }).get,
+  const { value: committeeData } = useClientSideBackendCallPoller(
+    async (backend) =>
+      backend
+        .conference({ conferenceId: (await params).conferenceId })
+        .committee({ committeeId: (await params).committeeId }).get,
   );
-  const [agendaItem, _triggerAgendaItem] = usePollBackendCall(
-    backend
-      .conference({ conferenceId: params.conferenceId })
-      .committee({ committeeId: params.committeeId }).agendaItem.get,
+  const { value: agendaItem } = useClientSideBackendCallPoller(
+    async (backend) =>
+      backend
+        .conference({ conferenceId: (await params).conferenceId })
+        .committee({ committeeId: (await params).committeeId }).agendaItem.get,
   );
 
   const [remSize, setRemSize] = useState<number>(16);
@@ -66,7 +65,7 @@ export default function CommitteePresentationMode({
 
   return (
     <>
-      <div className="bg-primary-900 h-screen p-4">
+      <div className="h-screen bg-primary-900 p-4">
         <div className="flex flex-col gap-4 md:flex-row">
           <div className="flex h-[calc(100vh-2rem)] flex-1 flex-col gap-4">
             <WidgetTemplate>
@@ -93,9 +92,7 @@ export default function CommitteePresentationMode({
               </div>
             </WidgetTemplate>
             <div className="hidden md:contents">
-              <WidgetTemplate
-                cardTitle={LL.participants.dashboard.widgetHeadlines.PRESENCE()}
-              >
+              <WidgetTemplate cardTitle={m.majorityRatios()}>
                 <PresenceWidget />
               </WidgetTemplate>
             </div>
@@ -105,13 +102,13 @@ export default function CommitteePresentationMode({
             <div className="flex flex-1 flex-col gap-4 xl:contents">
               <div className="medium:h-[calc(100vh-2rem)] flex h-1/2 flex-1 justify-center">
                 <SpeakersListBlock
-                  listTitle={LL.participants.speakersList.SPEAKERS_LIST()}
+                  listTitle={m.speakersList()}
                   typeOfList="SPEAKERS_LIST"
                 />
               </div>
               <div className="medium:h-[calc(100vh-2rem)] flex h-1/2 flex-1 justify-center">
                 <SpeakersListBlock
-                  listTitle={LL.participants.speakersList.COMMENT_LIST()}
+                  listTitle={m.questionsAndComments()}
                   typeOfList="COMMENT_LIST"
                 />
               </div>

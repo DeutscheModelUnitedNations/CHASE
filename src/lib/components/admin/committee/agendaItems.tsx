@@ -11,20 +11,21 @@ import FAIcon from "../../FAIcon";
 import Button from "../../Button";
 import * as m from "@/paraglide/messages";
 
-export default function agendaItem() {
+export default function AgendaItems() {
   const { toastError } = useToast();
   const conferenceId = useContext(ConferenceIdContext);
   const committeeId = useContext(CommitteeIdContext);
 
-  const [committeeAgendaItems, triggerItems] = useClientSideBackendCall(
-    (backend) =>
-      backend
-        // biome-ignore lint/style/noNonNullAssertion:
-        .conference({ conferenceId: conferenceId! })
-        // biome-ignore lint/style/noNonNullAssertion:
-        .committee({ committeeId: committeeId! }).agendaItem.get,
-    true,
-  );
+  const { value: committeeAgendaItems, trigger: triggerItems } =
+    useClientSideBackendCall(
+      (backend) =>
+        backend
+          // biome-ignore lint/style/noNonNullAssertion:
+          .conference({ conferenceId: conferenceId! })
+          // biome-ignore lint/style/noNonNullAssertion:
+          .committee({ committeeId: committeeId! }).agendaItem.get,
+      true,
+    );
   const [inputValue, setInputValue] = useState<string>("");
   const [update, setUpdate] = useState<boolean>(true);
 
@@ -86,7 +87,7 @@ export default function agendaItem() {
   return (
     <>
       <h1 className="mb-4 text-lg font-bold">
-        {LL.admin.onboarding.committees.AGENDA_ITEMS()}
+        {m.agenda()}
       </h1>
       <li className="mb-4 flex flex-col gap-2">
         {committeeAgendaItems?.map((item) => (

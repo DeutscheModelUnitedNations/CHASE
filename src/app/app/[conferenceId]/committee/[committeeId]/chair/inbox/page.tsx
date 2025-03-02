@@ -13,7 +13,8 @@ export default function InboxPage() {
   const conferenceId = useContext(ConferenceIdContext);
   const committeeId = useContext(CommitteeIdContext);
 
-  const [messages, triggerMessages] = useClientSideBackendCallPoller(
+  // const [messages, triggerMessages] = useClientSideBackendCallPoller(
+  const { value: messages, trigger: triggerMessages } = useClientSideBackendCallPoller(
     (backend) =>
       backend
         //TODO
@@ -25,7 +26,7 @@ export default function InboxPage() {
     10000,
   );
   const [selectedMessage, setSelectedMessage] = useState<
-    (typeof messages)[number] | null
+    NonNullable<typeof messages>[number] | null
   >(null);
   const [displayResearchDialog, setDisplayResearchDialog] = useState(false);
 
@@ -44,7 +45,7 @@ export default function InboxPage() {
       />
       <InboxTemplate
         isResearchService={false}
-        messages={messages}
+        messages={messages!}
         selectedMessage={selectedMessage}
         setSelectedMessage={setSelectedMessage}
         getMessagesFunction={triggerMessages}

@@ -6,6 +6,7 @@ import {
   AgendaItemInputCreate,
   AgendaItemPlainInputUpdate,
 } from "@prisma/generated/schema/AgendaItem";
+import type { $Enums } from "@prisma/client";
 
 export const agendaItem = new Elysia({
   prefix: "/conference/:conferenceId/committee/:committeeId",

@@ -29,7 +29,8 @@ export default function AddDelegationDialog({
     false,
   );
   const [delegationData, setDelegationData] = useState<
-    ((typeof allAvailableCountries)[number] & { name?: string }) | null
+    | (NonNullable<typeof allAvailableCountries>[number] & { name?: string })
+    | null
   >(null);
 
   const resetInputMask = () => {

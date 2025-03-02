@@ -2,27 +2,23 @@
 import React, { useEffect, useState, useContext } from "react";
 import HeaderTemplate from "@/lib/components/HeaderTemplate";
 import { ScrollPanel } from "primereact/scrollpanel";
-import { useI18nContext } from "@/i18n/i18n-react";
-import { useBackend } from "@/contexts/backend";
 import { useToast } from "@/lib/contexts/toast";
 import { $Enums } from "@prisma/generated/client";
 import PresenceWidget from "@/lib/components/attendance/presence_widget";
-import {
-  CommitteeIdContext,
-  ConferenceIdContext,
-} from "@/contexts/committee_data";
 import AttendanceTable, {
   type DelegationDataType,
 } from "@/lib/components/attendance/attendance_table";
-import Button from "@/lib/components/button";
-import getCountryNameByCode from "@/misc/get_country_name_by_code";
+import { CommitteeIdContext, ConferenceIdContext } from "@/lib/contexts/committee_data";
+import { backend } from "@/lib/backend/clientsideBackend";
+import { getFullTranslatedCountryNameFromISO3Code } from "@/lib/nation";
+import { languageTag } from "@/paraglide/runtime";
+import Button from "@/lib/components/Button";
+import * as m from "@/paraglide/messages";
 
 export default function ChairAttendees() {
-  const { LL, locale } = useI18nContext();
   const { toastError } = useToast();
   const conferenceId = useContext(ConferenceIdContext);
   const committeeId = useContext(CommitteeIdContext);
-  const { backend } = useBackend();
 
   const [delegationData, setDelegationData] = useState<DelegationDataType>([]);
   const [nonStateActorsData, setNonStateActorsData] =
@@ -44,9 +40,9 @@ export default function ChairAttendees() {
                 delegation.nation.variant === $Enums.NationVariant.NATION,
             )
             .sort((a, b) =>
-              getCountryNameByCode(a.nation.alpha3Code, locale).localeCompare(
-                getCountryNameByCode(b.nation.alpha3Code, locale),
-                locale,
+              getFullTranslatedCountryNameFromISO3Code(a.nation.alpha3Code).localeCompare(
+                getFullTranslatedCountryNameFromISO3Code(b.nation.alpha3Code),
+                languageTag(),
               ),
             ) || null,
         );
@@ -104,7 +100,7 @@ export default function ChairAttendees() {
           <div className="flex flex-1 items-center justify-center gap-2">
             <Button
               faIcon="person-from-portal"
-              label={LL.chairs.attendance.SET_ALL_ABSENT()}
+              label={m.allAbsent()}
               onClick={() => {
                 if (!conferenceId || !committeeId) return;
                 backend
@@ -123,7 +119,7 @@ export default function ChairAttendees() {
             />
             <Button
               faIcon="person-to-portal"
-              label={LL.chairs.attendance.SET_ALL_PRESENT()}
+              label={m.allPresent()}
               onClick={() => {
                 if (!conferenceId || !committeeId) return;
                 backend
@@ -146,14 +142,14 @@ export default function ChairAttendees() {
           <div className="flex flex-1 flex-col items-center gap-4 p-4">
             <div className="flex max-w-[700px] flex-col items-center gap-10">
               <AttendanceTable
-                title={LL.chairs.attendance.nations.TITLE()}
-                description={LL.chairs.attendance.nations.DESCRIPTION()}
+                title={m.attendanceOfDelegations()}
+                description={m.manageTheAttendanceOfDelegations()}
                 delegationData={delegationData}
                 updatePresence={updatePresence}
               />
               <AttendanceTable
-                title={LL.chairs.attendance.nsa.TITLE()}
-                description={LL.chairs.attendance.nsa.DESCRIPTION()}
+                title={m.nonStateActors()}
+                description={m.manageTheAttendanceOfDelegations()}
                 delegationData={nonStateActorsData}
                 updatePresence={updatePresence}
               />

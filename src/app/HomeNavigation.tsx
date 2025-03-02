@@ -7,8 +7,8 @@ import { useEffect, useState } from "react";
 import Button from "@/lib/components/Button";
 
 export default function Navbar({
-  isDocs = false,
-  isFAQ = false,
+  // isDocs = false,
+  // isFAQ = false,
   animate = false,
 }: {
   isDocs?: boolean;
@@ -71,7 +71,10 @@ export default function Navbar({
         </Link>
         <div className="flex-1" />
         <div className="flex gap-2">
-          <NavButtons isDocs={isDocs} isFAQ={isFAQ} />
+          <NavButtons
+          //  isDocs={isDocs}
+          //   isFAQ={isFAQ}
+          />
         </div>
       </motion.div>
       <motion.div
@@ -131,7 +134,10 @@ export default function Navbar({
             }}
           >
             <div className="flex w-full flex-col items-center justify-center gap-4">
-              <NavButtons isDocs={isDocs} isFAQ={isFAQ} />
+              <NavButtons
+              //  isDocs={isDocs}
+              // isFAQ={isFAQ}
+              />
             </div>
           </motion.div>
         )}
@@ -141,13 +147,13 @@ export default function Navbar({
 }
 
 function NavButtons() {
-// {
-// isDocs = false,
-// isFAQ = false,
-// }: {
-//   isDocs?: boolean;
-//   isFAQ?: boolean;
-// }
+  // {
+  // isDocs = false,
+  // isFAQ = false,
+  // }: {
+  //   isDocs?: boolean;
+  //   isFAQ?: boolean;
+  // }
   return (
     <>
       {/* TODO implement */}

@@ -2,27 +2,22 @@
 import React, { useContext, useState } from "react";
 import { ScrollPanel } from "primereact/scrollpanel";
 import DashboardHeader from "@/lib/components/dashboard/header";
-import { useI18nContext } from "@/i18n/i18n-react";
 import TimerWidget from "@/lib/components/dashboard/timer";
 import WhiteboardWidget from "@/lib/components/dashboard/whiteboard";
 import PresenceWidget from "@/lib/components/attendance/presence_widget";
 import WidgetTemplate from "@/lib/components/WidgetTemplate";
-import {
-  AgendaItemDataProvider,
-  ConferenceIdContext,
-  CommitteeIdContext,
-} from "@/contexts/committee_data";
 import AgendaSelection from "@/lib/components/dashboard/chair/agenda_selection";
 import SetStatusWidget from "@/lib/components/dashboard/chair/set_status";
 import SpeakersListAddingPolicyWidget from "@/lib/components/dashboard/chair/speakers_list_adding_policy";
-import Button from "@/lib/components/button";
 import ConfigWrapper from "@/lib/components/dashboard/chair/config_wrapper";
 import StateOfDebateWidget from "@/lib/components/dashboard/chair/state_of_debate";
-import { useSpeakersListMiniature } from "@/contexts/speakers_list_miniature";
 import RegionalGroupsLookup from "@/lib/components/dashboard/chair/regional_groups_lookup";
+import { AgendaItemDataProvider, CommitteeIdContext, ConferenceIdContext } from "@/lib/contexts/committee_data";
+import { useSpeakersListMiniature } from "@/lib/contexts/speakers_list_miniature";
+import Button from "@/lib/components/Button";
+import * as m from "@/paraglide/messages";
 
 export default function ChairDashboardPage() {
-  const { LL } = useI18nContext();
   const conferenceId = useContext(ConferenceIdContext);
   const committeeId = useContext(CommitteeIdContext);
 
@@ -41,7 +36,7 @@ export default function ChairDashboardPage() {
               <div className="flex flex-col gap-4">
                 <div className="flex w-full flex-col justify-stretch gap-4 p-4">
                   <h1 className="text-2xl font-bold">
-                    {LL.chairs.dashboard.overview.TITLE()}
+                    {m.overview()}
                   </h1>
                   <WidgetTemplate>
                     <PresenceWidget showExcusedSeperately={true} />
@@ -52,31 +47,31 @@ export default function ChairDashboardPage() {
               </div>
               <div className="flex w-full flex-col justify-stretch gap-4 p-4">
                 <h1 className="text-2xl font-bold">
-                  {LL.chairs.dashboard.configurations.TITLE()}
+                  {m.configurations()}
                 </h1>
                 <SetStatusWidget />
                 <StateOfDebateWidget />
                 <AgendaSelection />
                 <SpeakersListAddingPolicyWidget />
                 <ConfigWrapper
-                  title={LL.chairs.dashboard.configurations.overlay.TITLE()}
-                  description={LL.chairs.dashboard.configurations.overlay.DESCRIPTION()}
+                  title={m.speakersListOverlay()}
+                  description={m.opensTheSpeakersListOverlay()}
                 >
                   <Button
                     faIcon="podium"
-                    label={LL.chairs.dashboard.configurations.overlay.TOGGLE_BUTTON()}
+                    label={m.openOrCloseOverlay()}
                     keyboardShortcut="O"
                     onClick={() => toggleSpeakersListMiniature()}
                     className="w-full"
                   />
                 </ConfigWrapper>
                 <ConfigWrapper
-                  title={LL.chairs.dashboard.configurations.presentationMode.TITLE()}
-                  description={LL.chairs.dashboard.configurations.presentationMode.DESCRIPTION()}
+                  title={m.openPresentationMode()}
+                  description={m.openANewWindowInPresentationMode()}
                 >
                   <Button
                     faIcon="presentation-screen"
-                    label={LL.chairs.dashboard.configurations.presentationMode.BUTTON()}
+                    label={m.presentationMode()}
                     onClick={() => {
                       window.open(
                         `/app/${conferenceId}/committee/${committeeId}`,
@@ -88,19 +83,19 @@ export default function ChairDashboardPage() {
                   />
                 </ConfigWrapper>
                 <ConfigWrapper
-                  title={LL.chairs.dashboard.configurations.regionalGroups.TITLE()}
-                  description={LL.chairs.dashboard.configurations.regionalGroups.DESCRIPTION()}
+                  title={m.regionalGroups()}
+                  description={m.openAOverviewOfRegionalGroupsAndAssignDelegations()}
                 >
                   <div className="flex w-full gap-2">
                     <Button
                       faIcon="magnifying-glass"
-                      label={LL.chairs.dashboard.configurations.regionalGroups.BUTTON_LOOKUP()}
+                      label={m.lookupRegionalGroups()}
                       onClick={() => setRegionalGroupModalOpen(true)}
                       className="w-full"
                     />
                     <Button
                       faIcon="arrows-rotate"
-                      label={LL.chairs.dashboard.configurations.regionalGroups.BUTTON_PRESENTATION()}
+                      label={m.presentationLoop()}
                       onClick={() => {
                         window.open(
                           `/app/${conferenceId}/committee/${committeeId}/regional_groups`,

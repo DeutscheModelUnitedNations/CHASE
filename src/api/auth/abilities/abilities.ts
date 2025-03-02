@@ -51,10 +51,15 @@ export type AppAbility = PureAbility<
 export const defineAbilitiesForSession = (oidcResponse: OidcResponse) => {
   const builder = new AbilityBuilder<AppAbility>(createPrismaAbility);
 
-  if (oidcResponse.user?.hasRole("admin")) {
-    console.info("Admin granted: ", oidcResponse.user.preferred_username);
+  if (oidcResponse.user) {
+    console.info("Generat user granted: ", oidcResponse.user.preferred_username);
     builder.can("manage" as any, "all" as any);
   }
+
+  // if (oidcResponse.user?.hasRole("admin")) {
+  //   console.info("Admin granted: ", oidcResponse.user.preferred_username);
+  //   builder.can("manage" as any, "all" as any);
+  // }
 
   defineAbilitiesForConference(oidcResponse, builder);
   defineAbilitiesForCommittee(oidcResponse, builder);

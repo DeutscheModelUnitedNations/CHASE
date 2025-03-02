@@ -7,6 +7,7 @@ import { MyDelegationProvider, useUserIdent } from "@/lib/contexts/user_ident";
 import { useFaGlobe } from "@/lib/useFaGlobe";
 import Navbar from "@/lib/navbar/Navbar";
 import NavbarButton from "@/lib/navbar/NavbarButton";
+import * as m from "@/paraglide/messages";
 
 export default function Participant_Pages_Layout({
   children,
@@ -36,7 +37,7 @@ export default function Participant_Pages_Layout({
           {conferenceMembership(conferenceId)?.role ===
             $Enums.ConferenceRole.GUEST && (
             <>
-              <NavButton
+              <NavbarButton
                 icon="faChartNetwork"
                 link={`/app/${conferenceId}/hub/guest`}
                 title="Hub"
@@ -47,12 +48,12 @@ export default function Participant_Pages_Layout({
           <NavbarButton
             icon={homeIcon}
             link={"./dashboard"}
-            title={LL.navbar.DASHBOARD()}
+            title={m.dashboard()}
           />
           <NavbarButton
             icon="podium"
             link={"./speakers"}
-            title={LL.navbar.SPEAKERS()}
+            title={m.speakersList()}
           />
           {/* <NavbarButton TODO add Voting Page
           icon="poll-people"

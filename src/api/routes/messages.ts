@@ -4,6 +4,7 @@ import { MessageInputCreate } from "@prisma/generated/schema/Message";
 import { MessageCategory } from "../../../prisma/generated/schema/MessageCategory";
 import { MessageStatus } from "../../../prisma/generated/schema/MessageStatus";
 import { permissionsPlugin } from "../auth/permissions";
+import { $Enums } from "@prisma/client";
 
 export const messages = new Elysia()
   .use(permissionsPlugin)

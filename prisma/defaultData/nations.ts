@@ -4,9 +4,6 @@ import type { DB } from '../db';
 export async function createDefaultNationsInDatabase(db: DB) {
 	console.info('Creating default nations...');
 
-	// the Country type is wrong
-	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-	// @ts-expect-error
 	const countries = worldCountries.filter((c) => c.unMember);
 
 	const r = await Promise.all(

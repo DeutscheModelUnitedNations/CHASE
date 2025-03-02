@@ -1,36 +1,32 @@
 "use client";
-import React, { useState, useEffect, useContext, useReducer } from "react";
-import { useI18nContext } from "@/i18n/i18n-react";
-import { useBackend } from "@/contexts/backend";
-import { useBackendCall } from "@/hooks/useBackendCall";
+import React, { useState, useEffect, useContext } from "react";
 import regionalGroups from "@/lib/data/regional_groups.json";
+import { AnimatePresence, motion } from "framer-motion";
+import useMousetrap from "mousetrap-react";
 import {
   CommitteeIdContext,
   ConferenceIdContext,
-} from "@/contexts/committee_data";
-import { alpha3ToAlpha2 } from "@/misc/countryCodeUtils";
-import getCountryNameByCode from "@/misc/get_country_name_by_code";
-import { NormalFlag } from "@/lib/components/flag_templates";
-import { AnimatePresence, motion } from "framer-motion";
+} from "@/lib/contexts/committee_data";
+import { useClientSideBackendCall } from "@/lib/backend/useClientSideBackendCall";
+import * as m from "@/paraglide/messages";
+import { alpha3ToAlpha2 } from "@/lib/countryCodeUtils";
 import WorldMap from "react-svg-worldmap";
-import useMousetrap from "mousetrap-react";
+import { getFullTranslatedCountryNameFromISO3Code } from "@/lib/nation";
+import { NormalFlag } from "@/lib/components/Flag";
 
 export default function RegionalGroups() {
-  const { LL, locale } = useI18nContext();
-  const { backend } = useBackend();
-
   const conferenceId = useContext(ConferenceIdContext);
   const committeeId = useContext(CommitteeIdContext);
 
   const [currentGroupIndex, setCurrentGroupIndex] = useState(0);
 
-  const [presentDelegations] = useBackendCall(
-    // TODO
-    backend
-      // biome-ignore lint/style/noNonNullAssertion:
-      .conference({ conferenceId: conferenceId! })
-      // biome-ignore lint/style/noNonNullAssertion:
-      .committee({ committeeId: committeeId! }).delegations.get,
+  const { value: presentDelegations } = useClientSideBackendCall(
+    (backend) =>
+      backend
+        // biome-ignore lint/style/noNonNullAssertion:
+        .conference({ conferenceId: conferenceId! })
+        // biome-ignore lint/style/noNonNullAssertion:
+        .committee({ committeeId: committeeId! }).delegations.get,
     false,
   );
 
@@ -56,13 +52,13 @@ export default function RegionalGroups() {
   }, []);
 
   const groupNames = {
-    africa: LL.chairs.dashboard.configurations.regionalGroups.AFRICA(),
-    asia: LL.chairs.dashboard.configurations.regionalGroups.ASIA(),
-    america: LL.chairs.dashboard.configurations.regionalGroups.LATIN_AMERICA(),
+    africa: m.africa(),
+    asia: m.asiaAndOceania(),
+    america: m.latinAmericaAndCaribbean(),
     eastern_europe:
-      LL.chairs.dashboard.configurations.regionalGroups.EASTERN_EUROPE(),
+      m.easternEurope(),
     western_europe:
-      LL.chairs.dashboard.configurations.regionalGroups.WESTERN_EUROPE(),
+      m.westernEuropeAndOthers(),
   };
 
   const checkInRegionalGroup = (alpha3Code: string, group: any) => {
@@ -93,7 +89,7 @@ export default function RegionalGroups() {
   function Group({ group, groupName }: { group: string; groupName: string }) {
     return (
       <motion.div
-        className="bg-primary-950 absolute top-6 right-6 bottom-6 left-6 flex flex-col items-center rounded-lg p-10"
+        className="absolute top-6 right-6 bottom-6 left-6 flex flex-col items-center rounded-lg bg-primary-950 p-10"
         key={group}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -131,18 +127,18 @@ export default function RegionalGroups() {
                 checkInRegionalGroup(delegation.nation.alpha3Code, group),
               )
               .sort((a, b) =>
-                getCountryNameByCode(a.nation.alpha3Code, locale).localeCompare(
-                  getCountryNameByCode(b.nation.alpha3Code, locale),
+                getFullTranslatedCountryNameFromISO3Code(a.nation.alpha3Code).localeCompare(
+                  getFullTranslatedCountryNameFromISO3Code(b.nation.alpha3Code),
                 ),
               )
               .map((delegation) => (
                 <div
                   key={delegation.id}
-                  className="bg-primary-900 flex items-center gap-4 rounded-lg p-4"
+                  className="flex items-center gap-4 rounded-lg bg-primary-900 p-4"
                 >
                   <NormalFlag countryCode={delegation.nation.alpha3Code} />
                   <div className="text-xl font-bold">
-                    {getCountryNameByCode(delegation.nation.alpha3Code, locale)}
+                    {getFullTranslatedCountryNameFromISO3Code(delegation.nation.alpha3Code)}
                   </div>
                 </div>
               ))

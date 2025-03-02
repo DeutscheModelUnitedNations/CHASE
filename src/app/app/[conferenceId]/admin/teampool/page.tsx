@@ -1,29 +1,27 @@
 "use client";
 import type React from "react";
 import { useContext, useEffect, useState } from "react";
-import { useI18nContext } from "@/i18n/i18n-react";
-import { useBackend } from "@/contexts/backend";
 import { useRouter } from "next/navigation";
 import ForwardBackButtons from "@/lib/components/admin/onboarding/forward_back_bar";
 import TeamPoolTable from "@/lib/components/admin/teampool/teampool_table";
 import AddTeammemberDialog from "@/lib/components/admin/teampool/add_teammember_dialog";
 import { confirmPopup } from "primereact/confirmpopup";
 import { useToast } from "@/lib/contexts/toast";
-import { ConferenceIdContext } from "@/contexts/committee_data";
 import type { $Enums } from "@prisma/generated/client";
-import { useBackendCall } from "@/hooks/useBackendCall";
+import { useClientSideBackendCall } from "@/lib/backend/useClientSideBackendCall";
+import { ConferenceIdContext } from "@/lib/contexts/committee_data";
+import { backend } from "@/lib/backend/clientsideBackend";
+import * as m from "@/paraglide/messages";
 
 export default function Teampool() {
-  const { LL } = useI18nContext();
   const { toastError } = useToast();
   const router = useRouter();
   const conferenceId = useContext(ConferenceIdContext);
-  const { backend } = useBackend();
 
-  const [team, triggerTeam] = useBackendCall(
-    //TODO
-    // biome-ignore lint/style/noNonNullAssertion:
-    backend.conference({ conferenceId: conferenceId! }).member.get,
+  const { value: team, trigger: triggerTeam } = useClientSideBackendCall(
+    (backend) =>
+      // biome-ignore lint/style/noNonNullAssertion:
+      backend.conference({ conferenceId: conferenceId! }).member.get,
     true,
   );
   const [inputMaskVisible, setInputMaskVisible] = useState(false);
@@ -65,7 +63,7 @@ export default function Teampool() {
   const confirmDeleteAll = (event: React.MouseEvent<HTMLButtonElement>) => {
     confirmPopup({
       target: event.currentTarget,
-      message: LL.admin.onboarding.structure.DELETE_ALL_CONFIRM(),
+      message: m.reallyDeleteAll(),
       acceptClassName: "p-button-danger",
       accept: () => {
         if (!conferenceId) return;

@@ -6,23 +6,23 @@ import { backend } from "./clientsideBackend";
  * Make sure to set "use client" when you want to use this
  */
 export function useClientSideBackendCall<
-  SuccessReturn,
-  Error,
+  ApiCallCreator extends (
+    arg: typeof backend,
+  ) =>
+    | (() => Promise<{ data: any | null; error: any | null }>)
+    | Promise<() => Promise<{ data: any | null; error: any | null }>>,
   TriggerManually extends boolean = false,
->(
-  apiCall: (arg: typeof backend) => () => Promise<{
-    data: SuccessReturn | null;
-    error: Error | null;
-  }>,
-  triggerManually?: TriggerManually,
-) {
-  const [value, setValue] = useState<SuccessReturn>();
+>(apiCall: ApiCallCreator, triggerManually?: TriggerManually) {
+  type DataType = Awaited<
+    ReturnType<Awaited<ReturnType<ApiCallCreator>>>
+  >["data"];
+  const [value, setValue] = useState<DataType>();
   const [pending, setPending] = useState<boolean>(true);
   const [loading, setLoading] = useState<boolean>(true);
 
   const trigger = async () => {
     setLoading(true);
-    const response = await apiCall(backend)();
+    const response = await (await apiCall(backend))();
     //TODO we could do some actual error handling instead of just throwing
     if (response.error) {
       throw new Error(JSON.stringify(response.error));
@@ -32,7 +32,7 @@ export function useClientSideBackendCall<
     }
     setPending(false);
     setLoading(false);
-    setValue(response.data as SuccessReturn);
+    setValue(response.data);
   };
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: we want this to only run once when the component mounts
@@ -43,7 +43,7 @@ export function useClientSideBackendCall<
   }, []);
 
   return {
-    value: value as SuccessReturn,
+    value,
     pending,
     loading,
     trigger: triggerManually ? trigger : undefined,
@@ -74,7 +74,7 @@ export function useClientSideBackendCall<
         /**
          * The value of the backend call
          */
-        value: SuccessReturn;
+        value: DataType;
         /**
          * Whether the backend call is loading. Can become true again even if the value is populated when the backend call is triggered manually
          */
@@ -89,14 +89,14 @@ export function useClientSideBackendCall<
 /**
  * Repetetively calls the backend for something fromt the client. Returns the value and a trigger to re-fetch manually.
  */
-export function useClientSideBackendCallPoller<SuccessReturn, Error>(
-  apiCall: (arg: typeof backend) => () => Promise<{
-    data: SuccessReturn | null;
-    error: Error | null;
-  }>,
-  intervalDuration = 5000,
-) {
-  const r = useClientSideBackendCall(apiCall, true);
+export function useClientSideBackendCallPoller<
+  ApiCallCreator extends (
+    arg: typeof backend,
+  ) =>
+    | (() => Promise<{ data: any | null; error: any | null }>)
+    | Promise<() => Promise<{ data: any | null; error: any | null }>>,
+>(apiCall: ApiCallCreator, intervalDuration = 5000) {
+  const r = useClientSideBackendCall<ApiCallCreator, true>(apiCall, true);
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: we want this to only run once when the component mounts
   useEffect(() => {
