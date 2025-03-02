@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useUserIdent } from "../contexts/user_ident";
 import { ConferenceIdContext } from "../contexts/committee_data";
 
-export default function Lockout ({
+export default function Lockout({
   whitelist,
 }: {
   whitelist: $Enums.ConferenceRole[];
@@ -27,7 +27,7 @@ export default function Lockout ({
         )?.role,
       )
     ) {
-      router.push("/login/lockout");
+      router.push("/lockout");
       return;
     }
   }, [userIdent]);

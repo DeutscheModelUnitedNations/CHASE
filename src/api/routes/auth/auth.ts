@@ -38,7 +38,7 @@ export const auth = new Elysia({
     async ({ permissions }) => {
       const user = permissions.getLoggedInUserOrThrow();
       return db.user.findUniqueOrThrow({
-        where: { id: user.id },
+        where: { id: user.sub },
         include: {
           conferenceMemberships: {
             select: {

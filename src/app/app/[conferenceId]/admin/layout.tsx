@@ -47,12 +47,12 @@ export default function AdminLayout({
       .get()
       .then((response) => {
         if (!response?.data?.id) {
-          router.push("/login/lockout");
+          router.push("/lockout");
         }
       })
       .catch((error) => {
         toastError(error);
-        router.push("/login/lockout");
+        router.push("/lockout");
       });
   }, []);
 

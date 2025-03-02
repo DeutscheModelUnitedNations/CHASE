@@ -65,11 +65,9 @@ export const UserIdentProvider = ({
     (async () => {
       const res = await backend.auth.myInfo.get();
 
-      if (res.status > 400) {
-        router.push("/login");
-        return;
+      if (res.error) {
+        throw res.error;
       }
-
       setUserIdent(res.data);
     })();
   }, []);
