@@ -50,9 +50,10 @@ export const oidcStateCookieName = "oidc_state";
 export const tokensCookieName = "token_set";
 
 const { config, jwks } = await (async () => {
+
   // this runs statically but we don't have access to the dynamic config values at build time
   // so we need to return dummy values
-  if (process.env.NEXT_BUILD) {
+  if (process.env.NEXT_PHASE === "phase-production-build") {
     return {
       config: undefined as unknown as Awaited<ReturnType<typeof discovery>>,
       jwks: undefined as unknown as
