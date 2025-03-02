@@ -1,4 +1,4 @@
-import { $Enums, PrismaClient } from "../generated/client";
+import { $Enums, PrismaClient } from "@prisma/client";
 import delegationData from "./bbvn_berlin_2024.json";
 import { alpha2ToAlpha3 } from "../../src/lib/countryCodeUtils";
 const prisma = new PrismaClient();

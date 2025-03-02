@@ -1,7 +1,7 @@
 import { t, Elysia } from "elysia";
 import { db } from "../../../../prisma/db";
-import { SpeakersListCategory } from "../../../../prisma/generated/schema/SpeakersListCategory";
 import { permissionsPlugin } from "../../auth/permissions";
+import { SpeakersListCategory } from "@prisma/generated/schema/SpeakersListCategory";
 
 export const speakersListGeneral = new Elysia({
   prefix: "/conference/:conferenceId/committee/:committeeId",

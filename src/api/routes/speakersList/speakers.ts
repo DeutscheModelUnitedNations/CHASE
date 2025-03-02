@@ -1,10 +1,10 @@
 import { Elysia } from "elysia";
 import { db } from "../../../../prisma/db";
-import { Presence } from "../../../../prisma/generated/schema/Presence";
 import {
   type PermissionsType,
   permissionsPlugin,
 } from "../../auth/permissions";
+import { Presence } from "@prisma/client";
 
 async function calculatePosition(
   speakersListId: string,

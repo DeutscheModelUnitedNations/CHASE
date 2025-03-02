@@ -17,7 +17,6 @@ import {
 } from "@/lib/contexts/committee_data";
 import {
   useClientSideBackendCall,
-  useClientSideBackendCallPoller,
 } from "@/lib/backend/useClientSideBackendCall";
 import FAIcon from "../FAIcon";
 import useMousetrap from "mousetrap-react";
