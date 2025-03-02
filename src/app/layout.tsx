@@ -11,6 +11,7 @@ import CookieConsent from "./CookieConsent";
 import type { ReactNode } from "react";
 import "@/styles/fontawesome/css/fontawesome.css";
 import "@/styles/fontawesome/css/solid.css";
+import { ToastProvider } from "@/lib/contexts/toast";
 
 const sans = Inter({
   subsets: ["latin"],
@@ -41,20 +42,22 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <PrimeReactProvider>
-      <LanguageProvider>
+    <LanguageProvider>
+      <PrimeReactProvider>
         <html lang={languageTag()}>
-          <body
-            className={`${sans.variable} ${serif.variable} ${mono.variable} antialiased`}
-          >
-            <main className="flex min-h-screen w-screen justify-center">
-              {children}
-            </main>
-            <Footer />
-            <CookieConsent />
-          </body>
+          <ToastProvider>
+            <body
+              className={`${sans.variable} ${serif.variable} ${mono.variable} antialiased`}
+            >
+              <main className="flex min-h-screen w-screen justify-center">
+                {children}
+              </main>
+              <Footer />
+              <CookieConsent />
+            </body>
+          </ToastProvider>
         </html>
-      </LanguageProvider>
-    </PrimeReactProvider>
+      </PrimeReactProvider>
+    </LanguageProvider>
   );
 }

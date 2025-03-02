@@ -10,9 +10,4 @@ export const backend = treaty<Api>("/api", {
     credentials: "include",
   },
   keepDomain: true,
-  fetcher(r, c) {
-    console.log({ r, c });
-
-    return fetch(r, c);
-  },
 });

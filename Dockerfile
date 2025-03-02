@@ -9,9 +9,9 @@ RUN bun install --frozen-lockfile
 FROM base AS builder
 
 ARG VERSION
-ENV PUBLIC_VERSION=$VERSION
+ENV NEXT_PUBLIC_VERSION=$VERSION
 ARG SHA
-ENV PUBLIC_SHA=$SHA
+ENV NEXT_PUBLIC_SHA=$SHA
 
 COPY --from=dependencies /app/node_modules ./node_modules
 # we need to generate prisma files before building to prevent type errors
