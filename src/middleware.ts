@@ -10,6 +10,8 @@ import {
 } from "./api/services/OIDC";
 
 export async function middleware(request: NextRequest) {
+  console.info("Triggered middleware");
+
   const forwardedHost =
     request.headers.get("x-forwarded-host") || request.nextUrl.hostname;
   const forwardedProto = request.headers.get("x-forwarded-proto") || "http";
@@ -19,19 +21,27 @@ export async function middleware(request: NextRequest) {
     `${forwardedProto}://${forwardedHost}`,
   );
   const { pathname } = request.nextUrl;
+  console.info("Real visited URL: ", realVisitedUrl);
 
   let response = paraglide(request);
+  console.info("Created localized response");
 
   if (/^\/app(\/.*)?$/.test(pathname)) {
+    console.info("Detected app route");
     const tokenCookieValue = JSON.parse(
       request.cookies.get(tokensCookieName)?.value ?? "{}",
     );
+    console.info("Parsed token cookie value: ");
 
     try {
+      console.info("Validating tokens");
+
       await validateTokens({
         access_token: tokenCookieValue.access_token,
         id_token: tokenCookieValue.id_token,
       });
+
+      console.info("Validation succeeded, responding");
 
       return response;
     } catch (error) {
@@ -43,7 +53,11 @@ export async function middleware(request: NextRequest) {
       "/auth/resolve-login",
     );
 
+    console.info("Started login flow");
+
     response = NextResponse.redirect(redirect_uri.toString());
+
+    console.info("Created response with redirect", redirect_uri);
 
     response.cookies.set({
       name: codeVerifierCookieName,
@@ -65,10 +79,14 @@ export async function middleware(request: NextRequest) {
       httpOnly: true,
     });
 
+    console.info("Set cookies");
+    console.info("Responding with redirect and cookies");
+
     return response;
   }
 
   if (/^\/auth\/resolve-login(\/.*)?$/.test(pathname)) {
+    console.info("Detected resolve login route");
     const verifier = request.cookies.get(codeVerifierCookieName);
     if (!verifier || !verifier.value) {
       throw new Error("No code verifier cookie found.");
@@ -78,13 +96,19 @@ export async function middleware(request: NextRequest) {
       throw new Error("No oidc state cookie found.");
     }
 
+    console.info("Found verifier and state cookies. State:");
+
     const { state, tokens } = await resolveSignin(
       realVisitedUrl,
       verifier.value,
       oidcState.value,
     );
 
+    console.info("Resolved login flow with state", state);
+
     response = NextResponse.redirect(state.visitedUrl, 302);
+
+    console.info("Created response with redirect", state.visitedUrl);
 
     response.cookies.set({
       name: tokensCookieName,
@@ -96,12 +120,18 @@ export async function middleware(request: NextRequest) {
       httpOnly: true,
     });
 
+    console.info("Set tokens cookie");
+
     request.cookies.delete(codeVerifierCookieName);
     request.cookies.delete(oidcStateCookieName);
 
+    console.info("Deleted verifier and state cookies");
+    console.info("Responding with redirect to visited URL");
+
     return response;
   }
-
+  
+  console.info("Responding with default localized response");
   return response;
 }
 

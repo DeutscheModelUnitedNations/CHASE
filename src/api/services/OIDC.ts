@@ -125,18 +125,26 @@ export async function resolveSignin(
   code_verifier: string,
   raw_state: string,
 ) {
+  console.info("Resolving Signin");
 
   //TODO https://github.com/gornostay25/svelte-adapter-bun/issues/62
   if (process.env.NODE_ENV === "production") {
     visitedUrl.protocol = "https:";
+    console.info("Fixed protocol:", visitedUrl);
   }
   const state = JSON.parse(raw_state) as OIDCFlowState;
+  console.info("Parsed state:", state);
   const tokens = await authorizationCodeGrant(config, visitedUrl, {
     pkceCodeVerifier: code_verifier,
     expectedState: JSON.stringify(state),
   });
+
+  console.info("Retrieved tokens");
+
   (state as any).random = undefined;
   const strippedState: Omit<OIDCFlowState, "random"> = { ...state };
+
+  console.info("Stripped state");
 
   return { tokens, state: strippedState };
 }
