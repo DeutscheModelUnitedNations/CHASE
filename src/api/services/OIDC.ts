@@ -50,7 +50,6 @@ export const oidcStateCookieName = "oidc_state";
 export const tokensCookieName = "token_set";
 
 const { config, jwks } = await (async () => {
-
   // this runs statically but we don't have access to the dynamic config values at build time
   // so we need to return dummy values
   if (process.env.NEXT_PHASE === "phase-production-build") {
@@ -126,18 +125,24 @@ export async function resolveSignin(
   code_verifier: string,
   raw_state: string,
 ) {
+  console.log("a");
+
   //TODO https://github.com/gornostay25/svelte-adapter-bun/issues/62
   if (process.env.NODE_ENV === "production") {
     visitedUrl.protocol = "https:";
   }
+  console.log("b");
   const state = JSON.parse(raw_state) as OIDCFlowState;
+  console.log("c");
   const tokens = await authorizationCodeGrant(config, visitedUrl, {
     pkceCodeVerifier: code_verifier,
     expectedState: JSON.stringify(state),
   });
+  console.log("d");
   (state as any).random = undefined;
   const strippedState: Omit<OIDCFlowState, "random"> = { ...state };
 
+  console.log("e");
   return { tokens, state: strippedState };
 }
 
