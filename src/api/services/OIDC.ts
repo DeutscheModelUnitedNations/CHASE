@@ -131,16 +131,13 @@ export async function resolveSignin(
     visitedUrl.protocol = "https:";
   }
   const state = JSON.parse(raw_state) as OIDCFlowState;
-  console.log("c");
   const tokens = await authorizationCodeGrant(config, visitedUrl, {
     pkceCodeVerifier: code_verifier,
     expectedState: JSON.stringify(state),
   });
-  console.log("d");
   (state as any).random = undefined;
   const strippedState: Omit<OIDCFlowState, "random"> = { ...state };
 
-  console.log("e");
   return { tokens, state: strippedState };
 }
 

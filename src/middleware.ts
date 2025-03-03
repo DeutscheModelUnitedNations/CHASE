@@ -78,17 +78,14 @@ export async function middleware(request: NextRequest) {
       throw new Error("No oidc state cookie found.");
     }
 
-    
     const { state, tokens } = await resolveSignin(
       realVisitedUrl,
       verifier.value,
       oidcState.value,
     );
-    console.log(2);
 
     response = NextResponse.redirect(state.visitedUrl, 302);
 
-    console.log(3);
     response.cookies.set({
       name: tokensCookieName,
       value: JSON.stringify(tokens),
@@ -99,11 +96,9 @@ export async function middleware(request: NextRequest) {
       httpOnly: true,
     });
 
-    console.log(4);
     request.cookies.delete(codeVerifierCookieName);
     request.cookies.delete(oidcStateCookieName);
 
-    console.log(5);
     return response;
   }
 
