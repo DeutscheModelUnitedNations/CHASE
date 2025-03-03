@@ -16,15 +16,17 @@ export default function Chair_Pages_Layout({
   children: React.ReactNode;
 }) {
   return (
-    <SpeakersListMiniatureProvider>
-      <SpeakersListMiniature />
-      <MessageCountProvider>
+    <>
+      {/* <SpeakersListMiniatureProvider> */}
+      {/* <SpeakersListMiniature /> */}
+      {/* <MessageCountProvider> */}
         <div className="flex h-screen w-screen overflow-hidden bg-white text-primary-100 shadow-md dark:bg-primary-100 dark:text-primary-900">
           <ChairNavbar />
           {children}
         </div>
-      </MessageCountProvider>
-    </SpeakersListMiniatureProvider>
+      {/* </MessageCountProvider> */}
+      {/* </SpeakersListMiniatureProvider> */}
+    </>
   );
 }
 
