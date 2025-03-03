@@ -11,9 +11,6 @@ import {
 import { cookies } from "next/headers";
 
 export async function middleware(request: NextRequest) {
-  console.error(request.nextUrl.toString());
-  console.error(JSON.stringify(request));
-
   const { pathname } = request.nextUrl;
 
   const response = paraglide(request);

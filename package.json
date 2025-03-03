@@ -28,7 +28,7 @@
     "init": "^0.1.2",
     "markdown-to-jsx": "^7.7.4",
     "mousetrap-react": "^0.0.3",
-    "next": "15.1.7",
+    "next": "15.2.0",
     "openid-client": "^6.3.1",
     "primereact": "^10.9.2",
     "quill": "^2.0.3",
