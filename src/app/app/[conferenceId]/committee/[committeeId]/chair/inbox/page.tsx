@@ -13,17 +13,19 @@ export default function InboxPage() {
   const conferenceId = useContext(ConferenceIdContext);
   const committeeId = useContext(CommitteeIdContext);
 
-  const { value: messages, trigger: triggerMessages } = useClientSideBackendCallPoller(
-    (backend) =>
-      backend
-        //TODO
-        // biome-ignore lint/style/noNonNullAssertion:
-        .conference({ conferenceId: conferenceId! })
-        //TODO
-        // biome-ignore lint/style/noNonNullAssertion:
-        .committee({ committeeId: committeeId! }).messages.get(),
-    10000,
-  );
+  const { value: messages, trigger: triggerMessages } =
+    useClientSideBackendCallPoller(
+      (backend) =>
+        backend
+          //TODO
+          // biome-ignore lint/style/noNonNullAssertion:
+          .conference({ conferenceId: conferenceId! })
+          //TODO
+          // biome-ignore lint/style/noNonNullAssertion:
+          .committee({ committeeId: committeeId! })
+          .messages.get(),
+      10000,
+    );
   const [selectedMessage, setSelectedMessage] = useState<
     NonNullable<typeof messages>[number] | null
   >(null);

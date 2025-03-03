@@ -12,7 +12,7 @@ export default function HeaderTemplate({
 }) {
   return (
     <>
-      <div className=" h-32 bg-slate-200 dark:bg-primary-200 flex justify-between items-center p-4">
+      <div className="flex h-32 items-center justify-between bg-slate-200 p-4 dark:bg-primary-200">
         {children}
       </div>
     </>
@@ -26,7 +26,7 @@ export default function HeaderTemplate({
 export function HeaderInfoBox({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <div className="text-sm bg-white dark:bg-primary-100 rounded-md py-2 px-6 flex flex-col justify-center items-center">
+      <div className="flex flex-col items-center justify-center rounded-md bg-white px-6 py-2 text-sm dark:bg-primary-100">
         {children}
       </div>
     </>

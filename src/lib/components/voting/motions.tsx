@@ -27,7 +27,6 @@ export default function Motions({
   setActiveMotion: (motionId: string) => void;
   chairOptions?: boolean;
 }) {
-
   return (
     <>
       <WidgetTemplate cardTitle="">
@@ -53,7 +52,7 @@ export default function Motions({
                       showNameOnHover
                     />
                     <div className="flex-1 flex-col items-center justify-start">
-                      <div className="text-gray-text dark:text-primary-800 text-sm font-semibold">
+                      <div className="text-gray-text text-sm font-semibold dark:text-primary-800">
                         {motion.motionText}
                       </div>
                     </div>
@@ -61,7 +60,7 @@ export default function Motions({
                     {motion.status === "in-voting" && (
                       <FAIcon
                         icon="check-to-slot"
-                        className="text-primary dark:text-primary-950 fa-beat-fade mr-1 text-3xl"
+                        className="fa-beat-fade mr-1 text-3xl text-primary dark:text-primary-950"
                       />
                     )}
 

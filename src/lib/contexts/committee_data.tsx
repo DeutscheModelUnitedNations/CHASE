@@ -6,16 +6,14 @@ import { backend } from "../backend/clientsideBackend";
 
 type Committee = Awaited<
   ReturnType<
-    ReturnType<
-      ReturnType<typeof backend["conference"]>["committee"]
-    >["get"]
+    ReturnType<ReturnType<(typeof backend)["conference"]>["committee"]>["get"]
   >
 >["data"];
 
 type AgendaItem = Awaited<
   ReturnType<
     ReturnType<
-      ReturnType<typeof backend["conference"]>["committee"]
+      ReturnType<(typeof backend)["conference"]>["committee"]
     >["agendaItem"]["active"]["get"]
   >
 >["data"];

@@ -7,7 +7,7 @@ import { useBackendTime } from "@/lib/contexts/backendTime";
 import FAIcon from "../FAIcon";
 import { languageTag } from "@/paraglide/runtime";
 import { SmallFlag } from "../Flag";
-import { getFullTranslatedCountryNameFromISO3Code } from "@/lib/nation";
+import getCountryNameByCode from "@/lib/get_country_name_by_code";
 
 type ChairMessages = Awaited<
   ReturnType<
@@ -116,10 +116,8 @@ export default function MessageCard({
           <SmallFlag countryCode={message.metaDelegation ?? "xxx"} />
         </div>
         <h3 className="truncate text-sm font-bold text-black">
-          {getFullTranslatedCountryNameFromISO3Code(
-            message.metaDelegation ?? "",
-          )}{" "}
-          / {message.metaCommittee}
+          {getCountryNameByCode(message.metaDelegation ?? "")} /{" "}
+          {message.metaCommittee}
         </h3>
       </div>
     </div>

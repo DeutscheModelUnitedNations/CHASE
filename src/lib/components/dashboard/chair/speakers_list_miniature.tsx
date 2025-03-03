@@ -33,7 +33,7 @@ export default function SpeakersListMiniature() {
         content={
           <>
             <SpeakersListWidget />
-            <div className="absolute top-0 right-0 p-4 flex gap-2">
+            <div className="absolute top-0 right-0 flex gap-2 p-4">
               <Button
                 text
                 faIcon="arrow-up-right-from-square"

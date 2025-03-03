@@ -20,8 +20,10 @@ export default function CommentBlock({
   return (
     <>
       {speakersListLength > 0 && (
-        <div className="bg-primary-900 dark:bg-primary-100 flex flex-col rounded-lg p-3 shadow-md">
-          <div className="mb-2 text-lg font-bold">{m.questionsAndComments()}</div>
+        <div className="flex flex-col rounded-lg bg-primary-900 p-3 shadow-md dark:bg-primary-100">
+          <div className="mb-2 text-lg font-bold">
+            {m.questionsAndComments()}
+          </div>
           <div className="flex flex-1 flex-col gap-3">{children}</div>
         </div>
       )}

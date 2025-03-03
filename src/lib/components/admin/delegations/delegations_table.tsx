@@ -6,7 +6,7 @@ import { backend } from "@/lib/backend/clientsideBackend";
 import Button from "../../Button";
 import * as m from "@/paraglide/messages";
 import { NormalFlag } from "../../Flag";
-import { getFullTranslatedCountryNameFromISO3Code } from "@/lib/nation";
+import getCountryNameByCode from "@/lib/get_country_name_by_code";
 
 export type CommitteesType = Awaited<
   ReturnType<ReturnType<(typeof backend)["conference"]>["committee"]["get"]>
@@ -102,11 +102,7 @@ export default function DelegationsTable({
         />
         <Column
           body={(delegation) => (
-            <span>
-              {getFullTranslatedCountryNameFromISO3Code(
-                delegation.nation.alpha3Code,
-              )}
-            </span>
+            <span>{getCountryNameByCode(delegation.nation.alpha3Code)}</span>
           )}
           header="Delegation"
           sortable

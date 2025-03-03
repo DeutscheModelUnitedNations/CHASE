@@ -14,7 +14,6 @@ export default function ForwardBackButtons({
   saveLoading,
   forwardDisabled = false,
 }: ForwardBackButtonsProps) {
-
   useMousetrap("alt+enter", () => {
     if (handleSaveFunction) {
       handleSaveFunction();
@@ -23,7 +22,7 @@ export default function ForwardBackButtons({
 
   return (
     <>
-      <div className="w-full mt-8 flex justify-end items-stretch gap-4">
+      <div className="mt-8 flex w-full items-stretch justify-end gap-4">
         <Button
           label={m.toVote()}
           faIcon="check"

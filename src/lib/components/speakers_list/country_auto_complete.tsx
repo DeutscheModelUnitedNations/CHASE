@@ -9,7 +9,7 @@ import type {
   CountryDataType,
 } from "../admin/delegations/add_delegation_dialog";
 import { SmallFlag } from "../Flag";
-import { getFullTranslatedCountryNameFromISO3Code } from "@/lib/nation";
+import getCountryNameByCode from "@/lib/get_country_name_by_code";
 
 export default function CountryAutoComplete({
   allCountries,
@@ -24,7 +24,6 @@ export default function CountryAutoComplete({
   placeholder: string;
   focusInputField?: boolean;
 }) {
-
   const [countries, setCountries] = useState<CountryDataType[] | null>(null);
   const [query, setQuery] = useState<string>("");
   const [filteredCountries, setFilteredCountries] = useState<CountryDataType[]>(
@@ -37,7 +36,7 @@ export default function CountryAutoComplete({
     const countryData: CountryDataType[] = allCountries.map((country: any) => {
       return {
         ...country,
-        name: getFullTranslatedCountryNameFromISO3Code(country.alpha3Code),
+        name: getCountryNameByCode(country.alpha3Code),
       };
     });
     setCountries(countryData);

@@ -16,14 +16,14 @@ export default function AgendaSelection() {
   const committeeId = useContext(CommitteeIdContext);
 
   const { value: agendaItems, trigger: triggerAgendaItems } =
-    useClientSideBackendCallPoller(
-      (backend) =>
-        backend
-          //TODO
-          // biome-ignore lint/style/noNonNullAssertion:
-          .conference({ conferenceId: conferenceId! })
-          // biome-ignore lint/style/noNonNullAssertion:
-          .committee({ committeeId: committeeId! }).agendaItem.get(),
+    useClientSideBackendCallPoller((backend) =>
+      backend
+        //TODO
+        // biome-ignore lint/style/noNonNullAssertion:
+        .conference({ conferenceId: conferenceId! })
+        // biome-ignore lint/style/noNonNullAssertion:
+        .committee({ committeeId: committeeId! })
+        .agendaItem.get(),
     );
 
   async function activateAgendaItem(agendaItemId: string) {

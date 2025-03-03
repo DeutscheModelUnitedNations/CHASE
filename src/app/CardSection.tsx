@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Card from "./Card";
 import * as m from "@/paraglide/messages";
 import { motion } from "framer-motion";

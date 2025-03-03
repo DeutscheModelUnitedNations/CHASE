@@ -52,38 +52,38 @@ export const tokensCookieName = "token_set";
 const { config, jwks } = await (async () => {
   // this runs statically but we don't have access to the dynamic config values at build time
   // so we need to return dummy values
-//   if (process.env.NEXT_PHASE === "phase-production-build") {
-    return {
-      config: undefined as unknown as Awaited<ReturnType<typeof discovery>>,
-      jwks: undefined as unknown as
-        | Awaited<ReturnType<typeof createRemoteJWKSet>>
-        | undefined,
-    };
-//   }
-//   const execute = [];
-//   if (process.env.NODE_ENV === "development") {
-//     execute.push(allowInsecureRequests);
-//   }
-//   const config = await discovery(
-//     new URL(process.env.NEXT_PUBLIC_OIDC_AUTHORITY!),
-//     process.env.NEXT_PUBLIC_OIDC_CLIENT_ID!,
-//     {
-//       client_secret: process.env.OIDC_CLIENT_SECRET,
-//       token_endpoint_auth_method: process.env.OIDC_CLIENT_SECRET
-//         ? undefined
-//         : "none",
-//     },
-//     undefined,
-//     {
-//       execute,
-//     },
-//   );
-//   const jwks_uri = config.serverMetadata().jwks_uri;
-//   const jwks = jwks_uri
-//     ? await createRemoteJWKSet(new URL(jwks_uri))
-//     : undefined;
+  //   if (process.env.NEXT_PHASE === "phase-production-build") {
+  return {
+    config: undefined as unknown as Awaited<ReturnType<typeof discovery>>,
+    jwks: undefined as unknown as
+      | Awaited<ReturnType<typeof createRemoteJWKSet>>
+      | undefined,
+  };
+  //   }
+  //   const execute = [];
+  //   if (process.env.NODE_ENV === "development") {
+  //     execute.push(allowInsecureRequests);
+  //   }
+  //   const config = await discovery(
+  //     new URL(process.env.NEXT_PUBLIC_OIDC_AUTHORITY!),
+  //     process.env.NEXT_PUBLIC_OIDC_CLIENT_ID!,
+  //     {
+  //       client_secret: process.env.OIDC_CLIENT_SECRET,
+  //       token_endpoint_auth_method: process.env.OIDC_CLIENT_SECRET
+  //         ? undefined
+  //         : "none",
+  //     },
+  //     undefined,
+  //     {
+  //       execute,
+  //     },
+  //   );
+  //   const jwks_uri = config.serverMetadata().jwks_uri;
+  //   const jwks = jwks_uri
+  //     ? await createRemoteJWKSet(new URL(jwks_uri))
+  //     : undefined;
 
-//   return { config, jwks };
+  //   return { config, jwks };
 })();
 
 export async function startSignin(

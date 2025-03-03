@@ -12,8 +12,9 @@ export default function InboxPageResearchService() {
   const { value: messages, trigger } = useClientSideBackendCallPoller(
     (backend) =>
       // biome-ignore lint/style/noNonNullAssertion: we assume the conference id is set
-      backend.conference({ conferenceId: conferenceId! }).messages
-        .researchService.get(),
+      backend
+        .conference({ conferenceId: conferenceId! })
+        .messages.researchService.get(),
     10000,
   );
 

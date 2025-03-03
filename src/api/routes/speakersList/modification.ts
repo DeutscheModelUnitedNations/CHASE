@@ -31,7 +31,6 @@ export const speakersListModification = new Elysia({
           speakingTime: body.speakingTime,
         },
       });
-
     },
     {
       body: t.Object({
@@ -55,7 +54,6 @@ export const speakersListModification = new Elysia({
           isClosed: true,
         },
       });
-
     },
     {
       detail: {
@@ -76,7 +74,6 @@ export const speakersListModification = new Elysia({
           isClosed: false,
         },
       });
-
     },
     {
       detail: {

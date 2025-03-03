@@ -6,10 +6,10 @@ import {
   ConferenceIdContext,
 } from "@/lib/contexts/committee_data";
 import { useClientSideBackendCall } from "@/lib/backend/useClientSideBackendCall";
-import { getFullTranslatedCountryNameFromISO3Code } from "@/lib/nation";
 import * as m from "@/paraglide/messages";
 import { NormalFlag } from "../../Flag";
 import countrieData, { Countries } from "world-countries";
+import getCountryNameByCode from "@/lib/get_country_name_by_code";
 
 export default function RegionalGroupsLookup({
   lookupVisible,
@@ -56,7 +56,7 @@ export default function RegionalGroupsLookup({
 
   const presentDelegations = unfilteredPresentDelegations?.filter(
     (delegation) =>
-      getFullTranslatedCountryNameFromISO3Code(delegation.nation.alpha3Code)
+      getCountryNameByCode(delegation.nation.alpha3Code)
         .toLowerCase()
         .includes(filter.toLowerCase()),
   );
@@ -106,10 +106,8 @@ export default function RegionalGroupsLookup({
               checkInRegionalGroup(delegation.nation.alpha3Code, group),
             )
             .sort((a, b) =>
-              getFullTranslatedCountryNameFromISO3Code(
-                a.nation.alpha3Code,
-              ).localeCompare(
-                getFullTranslatedCountryNameFromISO3Code(b.nation.alpha3Code),
+              getCountryNameByCode(a.nation.alpha3Code).localeCompare(
+                getCountryNameByCode(b.nation.alpha3Code),
               ),
             )
             .map((delegation) => (
@@ -119,9 +117,7 @@ export default function RegionalGroupsLookup({
               >
                 <NormalFlag countryCode={delegation.nation.alpha3Code} />
                 <div className="text-md font-bold">
-                  {getFullTranslatedCountryNameFromISO3Code(
-                    delegation.nation.alpha3Code,
-                  )}
+                  {getCountryNameByCode(delegation.nation.alpha3Code)}
                 </div>
               </div>
             ))}
@@ -142,7 +138,7 @@ export default function RegionalGroupsLookup({
         placeholder={m.filter()}
         value={filter}
         onChange={(e) => setFilter(e.target.value)}
-        className="w-full my-5"
+        className="my-5 w-full"
       />
       <div className="flex w-full flex-col gap-2">
         {groups

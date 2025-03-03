@@ -12,7 +12,11 @@ import SpeakersListAddingPolicyWidget from "@/lib/components/dashboard/chair/spe
 import ConfigWrapper from "@/lib/components/dashboard/chair/config_wrapper";
 import StateOfDebateWidget from "@/lib/components/dashboard/chair/state_of_debate";
 import RegionalGroupsLookup from "@/lib/components/dashboard/chair/regional_groups_lookup";
-import { AgendaItemDataProvider, CommitteeIdContext, ConferenceIdContext } from "@/lib/contexts/committee_data";
+import {
+  AgendaItemDataProvider,
+  CommitteeIdContext,
+  ConferenceIdContext,
+} from "@/lib/contexts/committee_data";
 import { useSpeakersListMiniature } from "@/lib/contexts/speakers_list_miniature";
 import Button from "@/lib/components/Button";
 import * as m from "@/paraglide/messages";
@@ -35,9 +39,7 @@ export default function ChairDashboardPage() {
             <div className="m-4 grid grid-cols-1 xl:grid-cols-2">
               <div className="flex flex-col gap-4">
                 <div className="flex w-full flex-col justify-stretch gap-4 p-4">
-                  <h1 className="text-2xl font-bold">
-                    {m.overview()}
-                  </h1>
+                  <h1 className="text-2xl font-bold">{m.overview()}</h1>
                   <WidgetTemplate>
                     <PresenceWidget showExcusedSeperately={true} />
                   </WidgetTemplate>
@@ -46,9 +48,7 @@ export default function ChairDashboardPage() {
                 </div>
               </div>
               <div className="flex w-full flex-col justify-stretch gap-4 p-4">
-                <h1 className="text-2xl font-bold">
-                  {m.configurations()}
-                </h1>
+                <h1 className="text-2xl font-bold">{m.configurations()}</h1>
                 <SetStatusWidget />
                 <StateOfDebateWidget />
                 <AgendaSelection />

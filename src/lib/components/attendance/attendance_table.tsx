@@ -6,8 +6,8 @@ import FAIcon from "../FAIcon";
 import ConfigWrapper from "../dashboard/chair/config_wrapper";
 import WidgetBoxTemplate from "../WidgetBoxTemplate";
 import { NormalFlag } from "../Flag";
-import { getFullTranslatedCountryNameFromISO3Code } from "@/lib/nation";
 import * as m from "@/paraglide/messages";
+import getCountryNameByCode from "@/lib/get_country_name_by_code";
 
 export type DelegationDataType = Awaited<
   ReturnType<
@@ -75,9 +75,7 @@ export default function AttendanceTable({
             <div className="flex flex-col justify-center">
               <div className="text-gray-text text-sm font-bold dark:text-primary-800">
                 <span className="mr-2 truncate">
-                  {getFullTranslatedCountryNameFromISO3Code(
-                    attendee.nation.alpha3Code,
-                  )}
+                  {getCountryNameByCode(attendee.nation.alpha3Code)}
                 </span>
               </div>
             </div>

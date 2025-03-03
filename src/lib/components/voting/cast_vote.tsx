@@ -22,7 +22,7 @@ export default function CastVote({
 
   return (
     <>
-      <div className="border-secondary dark:bg-primary-100 my-4 mr-3 flex h-20 w-11/12 items-center justify-center rounded-md border bg-white p-4 shadow-xl">
+      <div className="my-4 mr-3 flex h-20 w-11/12 items-center justify-center rounded-md border border-secondary bg-white p-4 shadow-xl dark:bg-primary-100">
         <AnimatePresence mode="wait">
           {isLoading ? (
             <motion.div
@@ -35,7 +35,7 @@ export default function CastVote({
             >
               <FAIcon
                 icon="circle-notch"
-                className="text-primary animate-spin text-3xl"
+                className="animate-spin text-3xl text-primary"
               />
             </motion.div>
           ) : (

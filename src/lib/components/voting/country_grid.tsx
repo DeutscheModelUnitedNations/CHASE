@@ -18,7 +18,6 @@ export default function CountryGrid({
   substantiveVote,
   motionId,
 }: Voting) {
-
   const [yesVotes, setYesVotes] = useState<CountryCode[]>([]);
   const [noVotes, setNoVotes] = useState<CountryCode[]>([]);
   const [abstainVotes, setAbstainVotes] = useState<CountryCode[]>([]);
@@ -56,7 +55,7 @@ export default function CountryGrid({
   return (
     <>
       {substantiveVote ? (
-        <div className="flex-1 grid grid-cols-3 gap-2">
+        <div className="grid flex-1 grid-cols-3 gap-2">
           <VotesCard
             category={m.inFavour()}
             icon="plus-circle"
@@ -90,7 +89,7 @@ export default function CountryGrid({
           )}
         </div>
       ) : (
-        <div className="flex-1 grid grid-cols-2 gap-2">
+        <div className="grid flex-1 grid-cols-2 gap-2">
           <VotesCard
             category="Dafür"
             icon="plus-circle"
@@ -142,16 +141,16 @@ function VotesCard({
 
   return (
     <div
-      className="flex-1 h-full flex flex-col justify-start gap-3 bg-slate-50 dark:bg-primary-100 rounded-md p-2 transition-all duration-300 hover:shadow-sm"
+      className="flex h-full flex-1 flex-col justify-start gap-3 rounded-md bg-slate-50 p-2 transition-all duration-300 hover:shadow-sm dark:bg-primary-100"
       style={{ gridColumn: colSpanClass }}
     >
-      <div className="flex justify-center items-center gap-3 text-lg">
+      <div className="flex items-center justify-center gap-3 text-lg">
         <FAIcon icon={icon} className={color} />
         <div className={categoryClasses}>{category}</div>
       </div>
       <AnimatePresence mode="wait">
         <FlipMove
-          className="flex flex-wrap gap-2 justify-center items-center"
+          className="flex flex-wrap items-center justify-center gap-2"
           leaveAnimation={false}
           enterAnimation={false}
         >
@@ -168,7 +167,7 @@ function VotesCard({
                 damping: 20,
                 stiffness: 300,
               }}
-              className="flex justify-center items-center"
+              className="flex items-center justify-center"
               style={{
                 zIndex: votes.length - index, // Ensure the latest flag appears on top
               }}

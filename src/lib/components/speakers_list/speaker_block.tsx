@@ -4,9 +4,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useBackendTime } from "@/lib/contexts/backendTime";
 import { SpeakersListDataContext } from "@/lib/contexts/speakers_list_data";
 import { LargeFlag } from "../Flag";
-import { getFullTranslatedCountryNameFromISO3Code } from "@/lib/nation";
 import FAIcon from "../FAIcon";
 import * as m from "@/paraglide/messages";
+import getCountryNameByCode from "@/lib/get_country_name_by_code";
 
 /**
  * This Component is used in the SpeakersList. It creates a box for the current speaker,
@@ -95,10 +95,10 @@ export default function SpeakerBlock() {
             <div className="ml-4 flex flex-1 flex-col">
               <div className="truncate text-xl font-bold">
                 {listHasActiveSpeaker
-                  ? getFullTranslatedCountryNameFromISO3Code(countryCode)
+                  ? getCountryNameByCode(countryCode)
                   : m.listIsEmpty()}
               </div>
-              <div className="text-primary-300 dark:text-primary-600 flex items-center gap-3 text-lg">
+              <div className="flex items-center gap-3 text-lg text-primary-300 dark:text-primary-600">
                 {timerState === "active" && <HourglasAnimation />}
                 {timerState === "paused" && <FAIcon icon="hourglass-clock" />}
                 {timerState === "overtime" && (
@@ -110,7 +110,7 @@ export default function SpeakerBlock() {
                   ) : (
                     <SpeakingTime time={speakersListData?.speakingTime} />
                   )}
-                  <span className="text-primary-300 dark:text-primary-600 ml-2 text-xs">
+                  <span className="ml-2 text-xs text-primary-300 dark:text-primary-600">
                     / <SpeakingTime time={speakersListData?.speakingTime} />
                   </span>
                 </div>

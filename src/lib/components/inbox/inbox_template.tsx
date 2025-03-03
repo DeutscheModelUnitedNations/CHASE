@@ -10,7 +10,7 @@ import NoDataPlaceholder from "../Flag";
 type ChairMessages = Awaited<
   ReturnType<
     ReturnType<
-      ReturnType<typeof backend["conference"]>["committee"]
+      ReturnType<(typeof backend)["conference"]>["committee"]
     >["messages"]["get"]
   >
 >["data"];
@@ -28,18 +28,17 @@ export default function InboxTemplate({
   setSelectedMessage: (message: NonNullable<ChairMessages>[number]) => void;
   getMessagesFunction: () => void;
 }) {
-
   return (
     <>
-      <div className="flex h-screen w-screen bg-white overflow-hidden">
-        <div className="w-1/3 h-full border-r border-gray-200">
+      <div className="flex h-screen w-screen overflow-hidden bg-white">
+        <div className="h-full w-1/3 border-r border-gray-200">
           <div className="flex flex-col justify-stretch">
-            <div className="p-4 flex gap-3 text-2xl items-center border-b border-gray-200">
+            <div className="flex items-center gap-3 border-b border-gray-200 p-4 text-2xl">
               <FAIcon icon="inbox" className="text-primary-500" />
               <h1 className="font-bold">{m.inbox()}</h1>
             </div>
             <ScrollPanel style={{ width: "100%", height: "90vh" }}>
-              <div className="h-full flex flex-col gap-2 pt-2 pb-10">
+              <div className="flex h-full flex-col gap-2 pt-2 pb-10">
                 {messages?.map((message) => (
                   <MessageCard
                     key={message.id}
@@ -54,7 +53,7 @@ export default function InboxTemplate({
             </ScrollPanel>
           </div>
         </div>
-        <div className="w-2/3 h-full">
+        <div className="h-full w-2/3">
           {selectedMessage ? (
             <>
               <div className="p-4">
@@ -66,10 +65,8 @@ export default function InboxTemplate({
               </div>
             </>
           ) : (
-            <div className="h-screen w-full flex justify-center items-center">
-              <NoDataPlaceholder
-                title={m.noMessageSelected()}
-              />
+            <div className="flex h-screen w-full items-center justify-center">
+              <NoDataPlaceholder title={m.noMessageSelected()} />
             </div>
           )}
         </div>

@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <>
       <HomeNavigation animate />
-      <div className="bg-primary-950 w-full flex flex-col items-center">
+      <div className="flex w-full flex-col items-center bg-primary-950">
         <div className="max-w-7xl">
           <LandingHero />
           <div className="flex h-40 w-full items-center justify-center bg-white md:hidden">

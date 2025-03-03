@@ -12,7 +12,6 @@ import FAIcon from "@/lib/components/FAIcon";
 type Tabs = "current-motions" | "recent-motions" | "recent-votings";
 
 export default function ChairVoting() {
-
   const [openTab, setOpenTab] = useState<Tabs>("current-motions");
   const [data, _] = useState<Motion[]>(motionTestData);
   const [activeMotionId, setActiveMotionId] = useState<string | undefined>(

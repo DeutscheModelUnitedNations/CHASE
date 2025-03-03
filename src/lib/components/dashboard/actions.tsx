@@ -27,9 +27,7 @@ export default function ActionsWidget() {
         showOverlay={displayResearchDialog}
         setShowOverlay={setDisplayResearchDialog}
       />
-      <WidgetTemplate
-        cardTitle={m.sendRequest()}
-      >
+      <WidgetTemplate cardTitle={m.sendRequest()}>
         <div className="flex flex-1 gap-2">
           <Button
             label={m.chair()}

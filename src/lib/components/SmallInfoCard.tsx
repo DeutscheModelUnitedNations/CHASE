@@ -25,16 +25,16 @@ export default function SmallInfoCard({
   }, []);
 
   return (
-    <div className={`w-full flex gap-1 ${className}`}>
+    <div className={`flex w-full gap-1 ${className}`}>
       <div
-        className={`w-20 ${classNameForIconBox} border-l-[6px] sm:rounded-l-lg justify-center items-center w-full sm:w-auto bg-opacity-20 hidden sm:flex`}
+        className={`w-20 ${classNameForIconBox} bg-opacity-20 hidden w-full items-center justify-center border-l-[6px] sm:flex sm:w-auto sm:rounded-l-lg`}
       >
-        <div className="w-16 h-full flex justify-center items-center">
+        <div className="flex h-full w-16 items-center justify-center">
           <FAIcon icon={icon} className="text-2xl" />
         </div>
       </div>
       <div
-        className={`w-full rounded-lg sm:rounded-none sm:rounded-r-lg flex items-center p-4 overflow-hidden text-center sm:text-left ${classNameForContentBox} bg-opacity-20`}
+        className={`flex w-full items-center overflow-hidden rounded-lg p-4 text-center sm:rounded-none sm:rounded-r-lg sm:text-left ${classNameForContentBox} bg-opacity-20`}
       >
         {loading ? (
           <Skeleton

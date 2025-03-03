@@ -23,7 +23,8 @@ export default function AgendaItems() {
           // biome-ignore lint/style/noNonNullAssertion:
           .conference({ conferenceId: conferenceId! })
           // biome-ignore lint/style/noNonNullAssertion:
-          .committee({ committeeId: committeeId! }).agendaItem.get(),
+          .committee({ committeeId: committeeId! })
+          .agendaItem.get(),
       true,
     );
   const [inputValue, setInputValue] = useState<string>("");
@@ -86,9 +87,7 @@ export default function AgendaItems() {
 
   return (
     <>
-      <h1 className="mb-4 text-lg font-bold">
-        {m.agenda()}
-      </h1>
+      <h1 className="mb-4 text-lg font-bold">{m.agenda()}</h1>
       <li className="mb-4 flex flex-col gap-2">
         {committeeAgendaItems?.map((item) => (
           <ul

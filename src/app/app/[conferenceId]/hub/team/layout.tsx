@@ -40,7 +40,7 @@ export default function ChairHubLayout({
           $Enums.ConferenceRole.MISCELLANEOUS_TEAM,
         ]}
       />
-      <div className="text-primary-100 dark:bg-primary-100 dark:text-primary-900 flex h-screen w-screen overflow-hidden bg-white shadow-md">
+      <div className="flex h-screen w-screen overflow-hidden bg-white text-primary-100 shadow-md dark:bg-primary-100 dark:text-primary-900">
         <Navbar>
           <NavbarButton
             icon="rocket-launch"

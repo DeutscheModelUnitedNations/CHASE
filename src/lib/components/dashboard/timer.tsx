@@ -96,19 +96,19 @@ export default function TimerWidget({
                 cardTitle=""
                 additionalClassNames={getClassNames()}
               >
-                <div className="flex flex-col justify-center items-center text-center">
+                <div className="flex flex-col items-center justify-center text-center">
                   <div className="my-4">
                     <FAIcon icon={getIcon()} size="3x" />
                   </div>
                   <div className="text-2xl font-bold">{getHeadline()}</div>
                   {until && (
                     <div className="text-md">
-                      {m.untilXOClock({time: timeStamp()})}
+                      {m.untilXOClock({ time: timeStamp() })}
                     </div>
                   )}
                   {(category === "INFORMAL" || category === "PAUSE") &&
                     until && (
-                      <div className="text-4xl font-bold my-2 tabular-nums">
+                      <div className="my-2 text-4xl font-bold tabular-nums">
                         <Timer />
                       </div>
                     )}
@@ -117,7 +117,7 @@ export default function TimerWidget({
             )
           ) : (
             <WidgetTemplate cardTitle="" additionalClassNames={getClassNames()}>
-              <div className="flex flex-col justify-center items-center">
+              <div className="flex flex-col items-center justify-center">
                 <div className="my-4">
                   <FAIcon
                     icon="circle-notch"

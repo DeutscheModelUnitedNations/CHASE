@@ -16,7 +16,7 @@ export default function Card({
 }) {
   return (
     <>
-      <div className="h-full flex flex-col items-center bg-white p-8 rounded-xl shadow-sm">
+      <div className="flex h-full flex-col items-center rounded-xl bg-white p-8 shadow-sm">
         <Image
           src={src}
           alt={alt}
@@ -24,7 +24,7 @@ export default function Card({
           height={400}
           className="mb-10 h-40"
         />
-        <h2 className="text-3xl text-center font-bold font-serif mb-4">
+        <h2 className="mb-4 text-center font-serif text-3xl font-bold">
           {header}
         </h2>
         <p className="text-md text-center">{text}</p>

@@ -50,13 +50,13 @@ export default function VotingBar({
   }, [votes]);
 
   return (
-    <div className="flex-1 relative flex w-full rounded-md shadow-md overflow-hidden">
+    <div className="relative flex w-full flex-1 overflow-hidden rounded-md shadow-md">
       <VotingBarSection
         numberOfVotes={countVotes("yes")}
         percentage={yesVotesPercentage}
         color="bg-voting-for"
       />
-      <div className="bg-white dark:bg-primary-100 h-8 w-px" />
+      <div className="h-8 w-px bg-white dark:bg-primary-100" />
       <VotingBarSection
         numberOfVotes={countRemainingVotes()}
         percentage={remainingVotesPercentage}
@@ -68,7 +68,7 @@ export default function VotingBar({
         percentage={abstainVotesPercentage}
         color="bg-voting-abstain"
       />
-      <div className="bg-white dark:bg-primary-100 h-8 w-px" />
+      <div className="h-8 w-px bg-white dark:bg-primary-100" />
       <VotingBarSection
         numberOfVotes={countVotes("no")}
         percentage={noVotesPercentage}
@@ -95,7 +95,7 @@ function VotingBarSection({
 }) {
   return (
     <div
-      className={`flex justify-center items-center text-white h-8 transition-all duration-1000 ${color}`}
+      className={`flex h-8 items-center justify-center text-white transition-all duration-1000 ${color}`}
       style={{ width: `${percentage}%` }}
     >
       {!hideCounter && numberOfVotes > 0 && (
@@ -141,7 +141,7 @@ function MajorityMarking({
 
   return (
     <div
-      className="w-1 h-8 bg-primary-100 dark:bg-primary-900 absolute -translate-x-px"
+      className="absolute h-8 w-1 -translate-x-px bg-primary-100 dark:bg-primary-900"
       style={{ left: `${getVotingStepForMajority()}%` }}
     />
   );

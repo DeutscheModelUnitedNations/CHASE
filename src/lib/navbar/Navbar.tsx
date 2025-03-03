@@ -40,7 +40,7 @@ export default function Navbar({ children }: Props) {
 
   return (
     <>
-      <div className="bg-primary flex h-full w-20 flex-col items-center gap-10">
+      <div className="flex h-full w-20 flex-col items-center gap-10 bg-primary">
         <Image
           src="/logo/png/chase_logo_white_transparent.png"
           alt="Logo"

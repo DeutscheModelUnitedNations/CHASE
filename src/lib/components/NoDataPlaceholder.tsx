@@ -12,12 +12,12 @@ export default function NoDataPlaceholder({
   title?: string;
 }) {
   return (
-    <div className="flex flex-col justify-center items-center h-full w-full gap-2">
+    <div className="flex h-full w-full flex-col items-center justify-center gap-2">
       <FAIcon
         icon="ban"
-        className="text-2xl text-gray-icon dark:text-primary-500"
+        className="text-gray-icon text-2xl dark:text-primary-500"
       />
-      <div className="text-lg font-bold text-gray-text dark:text-primary-500">
+      <div className="text-gray-text text-lg font-bold dark:text-primary-500">
         {title}
       </div>
     </div>

@@ -11,7 +11,6 @@ import * as m from "@/paraglide/messages";
 type Tabs = "current-motions" | "recent-motions" | "recent-votings";
 
 export default function VotingPage() {
-
   const [openTab, setOpenTab] = useState<Tabs>("current-motions");
   const [data, _setData] = useState<Motion[]>(motionTestData);
   const [activeMotionId, setActiveMotionId] = useState<string | undefined>(

@@ -33,7 +33,7 @@ export const conferenceMember = new Elysia({
   )
   .post(
     "/member",
-   async ({ params: { conferenceId }, body, permissions }) => {
+    async ({ params: { conferenceId }, body, permissions }) => {
       permissions.checkIf((user) => user.can("create", "ConferenceMember"));
       return await db.conferenceMember.createMany({
         data: new Array(body.count).fill({
@@ -68,7 +68,7 @@ export const conferenceMember = new Elysia({
   )
   .delete(
     "/member/:memberId",
-   async ({ params: { memberId }, permissions }) => {
+    async ({ params: { memberId }, permissions }) => {
       return await db.conferenceMember.delete({
         where: {
           id: memberId,

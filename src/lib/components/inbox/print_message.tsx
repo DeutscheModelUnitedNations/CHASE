@@ -12,9 +12,9 @@ import { Dialog } from "primereact/dialog";
 import { $Enums } from "@prisma/client";
 import type { backend } from "@/lib/backend/clientsideBackend";
 import Button from "../Button";
-import { getFullTranslatedCountryNameFromISO3Code } from "@/lib/nation";
 import * as m from "@/paraglide/messages";
 import { languageTag } from "@/paraglide/runtime";
+import getCountryNameByCode from "@/lib/get_country_name_by_code";
 
 type ChairMessages = Awaited<
   ReturnType<
@@ -115,10 +115,8 @@ function MessageDocument({
             <View style={styles.from}>
               <Text>
                 {m.from({ from: "" })}{" "}
-                {getFullTranslatedCountryNameFromISO3Code(
-                  message.metaDelegation ?? "",
-                )}{" "}
-                / {message.metaCommittee}
+                {getCountryNameByCode(message.metaDelegation ?? "")} /{" "}
+                {message.metaCommittee}
               </Text>
             </View>
             <Text>

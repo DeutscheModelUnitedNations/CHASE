@@ -65,7 +65,7 @@ export default function NavbarButton({
         {badge !== 0 && (
           <Badge
             value={badge}
-            className="!text-primary-500 mt-2 mr-2 !bg-white"
+            className="mt-2 mr-2 !bg-white !text-primary-500"
           />
         )}
       </div>

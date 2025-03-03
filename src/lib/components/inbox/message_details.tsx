@@ -11,7 +11,6 @@ import FAIcon from "../FAIcon";
 import SmallInfoCard from "../SmallInfoCard";
 import { languageTag } from "@/paraglide/runtime";
 import { messageCategoryTranslation } from "@/lib/translationUtils";
-import { getFullTranslatedCountryNameFromISO3Code } from "@/lib/nation";
 import { LargeFlag } from "../Flag";
 import PrintMessageDocument from "./print_message";
 
@@ -357,9 +356,7 @@ export default function MessageDetails({
           <LargeFlag countryCode={message.metaDelegation ?? "xxx"} />
           <div className="flex flex-1 flex-col">
             <h2 className="text-lg font-bold">
-              {getFullTranslatedCountryNameFromISO3Code(
-                message.metaDelegation ?? "",
-              )}
+              {getCountryNameByCode(message.metaDelegation ?? "")}
             </h2>
             <h2 className="text-md">{message.metaCommittee}</h2>
           </div>

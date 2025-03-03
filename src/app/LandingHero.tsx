@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -22,13 +22,11 @@ export default function LandingHero() {
   const [illustration] = useState(
     Math.floor(Math.random() * availableIllustrations.length),
   );
-  const [blob] = useState(
-    Math.floor(Math.random() * availableBlobs.length),
-  );
+  const [blob] = useState(Math.floor(Math.random() * availableBlobs.length));
 
   return (
     <>
-      <div className="relative flex flex-col lg:flex-row items-center justify-center p-4 pt-52 pb-20 lg:pb-40 gap-5">
+      <div className="relative flex flex-col items-center justify-center gap-5 p-4 pt-52 pb-20 lg:flex-row lg:pb-40">
         <motion.div
           className="z-10"
           initial={{ opacity: 0, y: 10 }}
@@ -57,7 +55,7 @@ export default function LandingHero() {
         >
           <Blob availableBlobs={availableBlobs} chosenBlob={blob} />
         </motion.div>
-        <div className="flex flex-col items-center lg:items-end z-20 w-full lg:w-1/2 ">
+        <div className="z-20 flex w-full flex-col items-center lg:w-1/2 lg:items-end">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -70,7 +68,7 @@ export default function LandingHero() {
               stiffness: 100,
             }}
           >
-            <h1 className="text-5xl lg:text-6xl font-bold font-serif text-center lg:text-right text-slate-900 mb-4 leading-tight">
+            <h1 className="mb-4 text-center font-serif text-5xl leading-tight font-bold text-slate-900 lg:text-right lg:text-6xl">
               <span
                 style={{
                   background: "linear-gradient(to right, #3d7dd2, #0000d0)",
@@ -93,7 +91,7 @@ export default function LandingHero() {
               delay: 1,
             }}
           >
-            <h2 className="text-xl lg:text-2xl text-center lg:text-right text-slate-900 leading-normal">
+            <h2 className="text-center text-xl leading-normal text-slate-900 lg:text-right lg:text-2xl">
               {m.heroText()}
             </h2>
           </motion.div>
@@ -137,7 +135,7 @@ const Blob = ({ availableBlobs, chosenBlob }: BlobProps) => {
         alt="Logo"
         width={800}
         height={128}
-        className="absolute top-24 md:top-0 lg:top-0 left-0 z-0"
+        className="absolute top-24 left-0 z-0 md:top-0 lg:top-0"
       />
     </>
   );

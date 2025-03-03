@@ -9,8 +9,8 @@ import {
   ConferenceIdContext,
 } from "@/lib/contexts/committee_data";
 import { conferenceRoleTranslation } from "@/lib/translationUtils";
-import { getFullTranslatedCountryNameFromISO3Code } from "@/lib/nation";
 import { LargeFlag } from "../Flag";
+import getCountryNameByCode from "@/lib/get_country_name_by_code";
 
 /**
  * This Component is used in the Dashboard. It uses the HeaderTemplate
@@ -48,7 +48,7 @@ export default function DashboardHeader({
               ? conferenceRoleTranslation(
                   conferenceMembership(conferenceId)?.role,
                 )
-              : (getFullTranslatedCountryNameFromISO3Code(
+              : (getCountryNameByCode(
                   committeeMembership(conferenceId)?.delegation?.nation
                     ?.alpha3Code ?? "xxx",
                 ) ?? <Skeleton width="15rem" height="2rem" />))}

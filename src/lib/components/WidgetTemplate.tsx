@@ -22,11 +22,11 @@ export default function WidgetTemplate({
   return (
     <>
       <div
-        className={`flex w-full flex-col bg-primary-950 dark:bg-primary-200 rounded-lg p-3 transition-all duration-500 ${additionalClassNames}`}
+        className={`flex w-full flex-col rounded-lg bg-primary-950 p-3 transition-all duration-500 dark:bg-primary-200 ${additionalClassNames}`}
       >
         {cardTitle &&
           (cardTitle !== "" ? (
-            <div className=" font-bold mb-2 text-lg">{cardTitle}</div>
+            <div className="mb-2 text-lg font-bold">{cardTitle}</div>
           ) : (
             <Skeleton width="5rem" height="1.75rem" />
           ))}

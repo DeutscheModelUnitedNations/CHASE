@@ -15,9 +15,7 @@ import {
   CommitteeIdContext,
   ConferenceIdContext,
 } from "@/lib/contexts/committee_data";
-import {
-  useClientSideBackendCall,
-} from "@/lib/backend/useClientSideBackendCall";
+import { useClientSideBackendCall } from "@/lib/backend/useClientSideBackendCall";
 import FAIcon from "../FAIcon";
 import useMousetrap from "mousetrap-react";
 

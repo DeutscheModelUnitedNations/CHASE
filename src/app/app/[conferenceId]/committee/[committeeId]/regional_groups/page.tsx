@@ -11,8 +11,8 @@ import { useClientSideBackendCall } from "@/lib/backend/useClientSideBackendCall
 import * as m from "@/paraglide/messages";
 import { alpha3ToAlpha2 } from "@/lib/countryCodeUtils";
 import WorldMap from "react-svg-worldmap";
-import { getFullTranslatedCountryNameFromISO3Code } from "@/lib/nation";
 import { NormalFlag } from "@/lib/components/Flag";
+import getCountryNameByCode from "@/lib/get_country_name_by_code";
 
 export default function RegionalGroups() {
   const conferenceId = useContext(ConferenceIdContext);
@@ -158,10 +158,8 @@ export default function RegionalGroups() {
                 checkInRegionalGroup(delegation.nation.alpha3Code, group),
               )
               .sort((a, b) =>
-                getFullTranslatedCountryNameFromISO3Code(
-                  a.nation.alpha3Code,
-                ).localeCompare(
-                  getFullTranslatedCountryNameFromISO3Code(b.nation.alpha3Code),
+                getCountryNameByCode(a.nation.alpha3Code).localeCompare(
+                  getCountryNameByCode(b.nation.alpha3Code),
                 ),
               )
               .map((delegation) => (
@@ -171,9 +169,7 @@ export default function RegionalGroups() {
                 >
                   <NormalFlag countryCode={delegation.nation.alpha3Code} />
                   <div className="text-xl font-bold">
-                    {getFullTranslatedCountryNameFromISO3Code(
-                      delegation.nation.alpha3Code,
-                    )}
+                    {getCountryNameByCode(delegation.nation.alpha3Code)}
                   </div>
                 </div>
               ))
@@ -184,7 +180,7 @@ export default function RegionalGroups() {
   }
 
   return (
-    <div className="relative w-full flex h-screen flex-col items-center justify-start p-10">
+    <div className="relative flex h-screen w-full flex-col items-center justify-start p-10">
       {groups.map((group) => (
         <AnimatePresence key={group}>
           {(currentGroupIndex === groups.indexOf(group) * 2 ||

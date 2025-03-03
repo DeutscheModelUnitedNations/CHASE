@@ -13,10 +13,10 @@ import {
   ConferenceIdContext,
 } from "@/lib/contexts/committee_data";
 import { backend } from "@/lib/backend/clientsideBackend";
-import { getFullTranslatedCountryNameFromISO3Code } from "@/lib/nation";
 import { languageTag } from "@/paraglide/runtime";
 import Button from "@/lib/components/Button";
 import * as m from "@/paraglide/messages";
+import getCountryNameByCode from "@/lib/get_country_name_by_code";
 
 export default function ChairAttendees() {
   const { toastError } = useToast();
@@ -43,11 +43,8 @@ export default function ChairAttendees() {
                 delegation.nation.variant === $Enums.NationVariant.NATION,
             )
             .sort((a, b) =>
-              getFullTranslatedCountryNameFromISO3Code(
-                a.nation.alpha3Code,
-              ).localeCompare(
-                getFullTranslatedCountryNameFromISO3Code(b.nation.alpha3Code),
-                languageTag(),
+              getCountryNameByCode(a.nation.alpha3Code).localeCompare(
+                getCountryNameByCode(b.nation.alpha3Code),
               ),
             ) || null,
         );

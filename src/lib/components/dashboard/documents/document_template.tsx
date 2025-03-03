@@ -30,26 +30,23 @@ export default function Document({
   icon,
   topic,
 }: DocumentProps) {
-
   return (
     <WidgetBoxTemplate>
       <FAIcon
         icon={icon}
-        className="text-gray-icon dark:text-primary-500 text-2xl"
+        className="text-gray-icon text-2xl dark:text-primary-500"
       />
-      <div className="flex-1 flex-col justify-start items-center">
-        <div className="text-sm font-semibold text-gray-text dark:text-primary-800">
+      <div className="flex-1 flex-col items-center justify-start">
+        <div className="text-gray-text text-sm font-semibold dark:text-primary-800">
           {documentId}
         </div>
         {sponsors && (
-          <div className="text-xs text-gray-icon dark:text-primary-800">
-            {`${
-              sponsors.length
-            } ${m.signedSupporters()}`}
+          <div className="text-gray-icon text-xs dark:text-primary-800">
+            {`${sponsors.length} ${m.signedSupporters()}`}
           </div>
         )}
         {topic && (
-          <div className="text-xs text-gray-icon dark:text-primary-800">
+          <div className="text-gray-icon text-xs dark:text-primary-800">
             {topic}
           </div>
         )}

@@ -49,15 +49,15 @@ export default function CommitteeGrid({
         <>
           <Skeleton
             height="20rem"
-            className="!bg-primary-900 min-w-[25rem] flex-1 rounded-lg"
+            className="min-w-[25rem] flex-1 rounded-lg !bg-primary-900"
           />
           <Skeleton
             height="20rem"
-            className="!bg-primary-900 min-w-[25rem] flex-1 rounded-lg"
+            className="min-w-[25rem] flex-1 rounded-lg !bg-primary-900"
           />
           <Skeleton
             height="20rem"
-            className="!bg-primary-900 min-w-[25rem] flex-1 rounded-lg"
+            className="min-w-[25rem] flex-1 rounded-lg !bg-primary-900"
           />
         </>
       )}
@@ -145,10 +145,10 @@ function CommitteeCard({
             onClick={() => {
               setLoading(true);
             }}
-            className="bg-primary-950 dark:bg-primary-200 pophover flex min-w-[25rem] flex-1 cursor-pointer flex-col justify-between gap-2 rounded-lg p-4"
+            className="pophover flex min-w-[25rem] flex-1 cursor-pointer flex-col justify-between gap-2 rounded-lg bg-primary-950 p-4 dark:bg-primary-200"
           >
             <h3 className="truncate text-lg">{committee.name}</h3>
-            <h1 className="text-primary mt-4 mb-6 ml-4 flex-1 text-4xl font-bold">
+            <h1 className="mt-4 mb-6 ml-4 flex-1 text-4xl font-bold text-primary">
               {loading ? (
                 <FAIcon icon="circle-notch" className="fa-spin" />
               ) : (

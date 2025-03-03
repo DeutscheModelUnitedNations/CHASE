@@ -1,4 +1,3 @@
-
 /**
  * This Component is used in the Voting Component.
  * It displays the information about the voting.
@@ -8,8 +7,8 @@
 import type { CountryCode, Voting } from "@/lib/types/types";
 import * as m from "@/paraglide/messages";
 import FAIcon from "../FAIcon";
-import { getFullTranslatedCountryNameFromISO3Code } from "@/lib/nation";
 import { LargeFlag } from "../Flag";
+import getCountryNameByCode from "@/lib/get_country_name_by_code";
 
 export default function InformationSection({
   title,
@@ -18,7 +17,6 @@ export default function InformationSection({
   substantiveVote,
   majority,
 }: Voting) {
-
   const getFlag = (countryCode: CountryCode = "uno"): CountryCode => {
     return countryCode;
   };
@@ -41,27 +39,26 @@ export default function InformationSection({
   };
 
   return (
-    <div className="flex flex-row justify-between gap-2 mb-5">
+    <div className="mb-5 flex flex-row justify-between gap-2">
       <div
-        className="flex-1 grid items-center gap-3"
+        className="grid flex-1 items-center gap-3"
         style={{ gridTemplateColumns: "1fr auto" }}
       >
-        <div className="text-lg font-bold col-span-2">{title}</div>
+        <div className="col-span-2 text-lg font-bold">{title}</div>
         {description && (
           <>
             <FAIcon
               icon="info-circle"
-              className="text-lg justify-self-center ml-2"
+              className="ml-2 justify-self-center text-lg"
             />
             <div className="text-sm">{description}</div>
           </>
         )}
         {introducedBy && (
           <>
-            <FAIcon icon="flag" className="text-lg justify-self-center ml-2" />
+            <FAIcon icon="flag" className="ml-2 justify-self-center text-lg" />
             <div className="text-sm">
-              {m.introducedBy()}{" "}
-              {getFullTranslatedCountryNameFromISO3Code(introducedBy)}
+              {m.introducedBy()} {getCountryNameByCode(introducedBy)}
             </div>
           </>
         )}
@@ -69,24 +66,20 @@ export default function InformationSection({
           <>
             <FAIcon
               icon="check-to-slot"
-              className="text-xl justify-self-center ml-2"
+              className="ml-2 justify-self-center text-xl"
             />
-            <div className="text-sm">
-              {m.substantialVoting()}
-            </div>
+            <div className="text-sm">{m.substantialVoting()}</div>
           </>
         ) : (
           <>
-            <FAIcon icon="gavel" className="text-xl justify-self-center ml-2" />
-            <div className="text-sm">
-              {m.proceduralVoting()}
-            </div>
+            <FAIcon icon="gavel" className="ml-2 justify-self-center text-xl" />
+            <div className="text-sm">{m.proceduralVoting()}</div>
           </>
         )}
-        <FAIcon icon="pie-chart" className="text-xl justify-self-center ml-2" />
+        <FAIcon icon="pie-chart" className="ml-2 justify-self-center text-xl" />
         <div className="text-sm">{neededMajority()}</div>
       </div>
-      <div className="flex flex-col justify-start items-center">
+      <div className="flex flex-col items-center justify-start">
         <LargeFlag countryCode={getFlag(introducedBy)} className="ml-4" />
       </div>
     </div>

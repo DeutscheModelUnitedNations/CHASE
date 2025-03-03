@@ -5,11 +5,11 @@ import {
   type SpeakersListDataType,
 } from "@/lib/contexts/speakers_list_data";
 import Timeline from "./timeline";
-import { getFullTranslatedCountryNameFromISO3Code } from "@/lib/nation";
 import Button from "../Button";
 import { backend } from "@/lib/backend/clientsideBackend";
 import * as m from "@/paraglide/messages";
 import { NormalFlag } from "../Flag";
+import getCountryNameByCode from "@/lib/get_country_name_by_code";
 
 /**
  * This Component is used in the Speakers List and Comment List on the Speakers List Page.
@@ -101,8 +101,8 @@ function CountryCard({
       <div className="flex w-full items-center justify-between gap-2">
         <div className="flex items-center justify-start gap-4">
           <NormalFlag countryCode={alpha3Code} />
-          <div className="dark:text-primary-800 truncate text-sm font-bold">
-            {alpha3Code && getFullTranslatedCountryNameFromISO3Code(alpha3Code)}
+          <div className="truncate text-sm font-bold dark:text-primary-800">
+            {alpha3Code && getCountryNameByCode(alpha3Code)}
           </div>
         </div>
         {chairOptions && (

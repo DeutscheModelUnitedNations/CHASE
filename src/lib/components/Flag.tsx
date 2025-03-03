@@ -4,9 +4,8 @@ import { Skeleton } from "primereact/skeleton";
 import FAIcon from "./FAIcon";
 import * as m from "@/paraglide/messages";
 import { useFaGlobe } from "../useFaGlobe";
-import getFlagPathByCode, {
-  getFullTranslatedCountryNameFromISO3Code,
-} from "../nation";
+import getFlagPathByCode from "../nation";
+import getCountryNameByCode from "../get_country_name_by_code";
 
 /**
  * This Component is used whenever a section or widget has no data to display.
@@ -21,9 +20,9 @@ export default function NoDataPlaceholder({
     <div className="flex h-full w-full flex-col items-center justify-center gap-2">
       <FAIcon
         icon="ban"
-        className="text-gray-icon dark:text-primary-500 text-2xl"
+        className="text-gray-icon text-2xl dark:text-primary-500"
       />
-      <div className="text-gray-text dark:text-primary-500 text-lg font-bold">
+      <div className="text-gray-text text-lg font-bold dark:text-primary-500">
         {title}
       </div>
     </div>
@@ -43,7 +42,7 @@ export function SmallFlag({
   showNameOnHover?: boolean;
 }) {
   const localizedName = useMemo(
-    () => getFullTranslatedCountryNameFromISO3Code(countryCode ?? ""),
+    () => getCountryNameByCode(countryCode ?? ""),
     [countryCode],
   );
   const [isHovered, setIsHovered] = useState(false);
@@ -98,7 +97,7 @@ export function NormalFlag({
   showNameOnHover?: boolean;
 }) {
   const localizedName = useMemo(
-    () => getFullTranslatedCountryNameFromISO3Code(countryCode ?? ""),
+    () => getCountryNameByCode(countryCode ?? ""),
     [countryCode],
   );
 
@@ -126,7 +125,7 @@ export function NormalFlag({
               onMouseLeave={handleMouseLeave}
             />
             {isHovered && showNameOnHover && (
-              <div className="bg-primary absolute z-50 mt-2 rounded-md p-2 text-xs text-white shadow-md">
+              <div className="absolute z-50 mt-2 rounded-md bg-primary p-2 text-xs text-white shadow-md">
                 {localizedName}
               </div>
             )}
@@ -173,7 +172,7 @@ export function FlagPlaceholder({ widthRem }: { widthRem: number }) {
     <Skeleton
       width={`${widthRem.toString()}rem`}
       height={`${(widthRem * 0.75).toString()}rem`}
-      className="!bg-primary-800 flex items-center justify-center"
+      className="flex items-center justify-center !bg-primary-800"
       animation="none"
     >
       <FAIcon

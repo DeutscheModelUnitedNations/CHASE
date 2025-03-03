@@ -2,7 +2,10 @@
 import { useContext } from "react";
 import SpeakersListMiniature from "@/lib/components/dashboard/chair/speakers_list_miniature";
 import { SpeakersListMiniatureProvider } from "@/lib/contexts/speakers_list_miniature";
-import { MessageCountContext, MessageCountProvider } from "@/lib/contexts/messages";
+import {
+  MessageCountContext,
+  MessageCountProvider,
+} from "@/lib/contexts/messages";
 import Navbar from "@/lib/navbar/Navbar";
 import NavbarButton from "@/lib/navbar/NavbarButton";
 import * as m from "@/paraglide/messages";
@@ -16,7 +19,7 @@ export default function Chair_Pages_Layout({
     <SpeakersListMiniatureProvider>
       <SpeakersListMiniature />
       <MessageCountProvider>
-        <div className="text-primary-100 dark:bg-primary-100 dark:text-primary-900 flex h-screen w-screen overflow-hidden bg-white shadow-md">
+        <div className="flex h-screen w-screen overflow-hidden bg-white text-primary-100 shadow-md dark:bg-primary-100 dark:text-primary-900">
           <ChairNavbar />
           {children}
         </div>

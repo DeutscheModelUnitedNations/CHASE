@@ -125,7 +125,7 @@ export default function SpeakerBlock() {
             ) : (
               <>
                 <Arrow arrowName="dashed" />
-                <div className="bg-primary self-center rounded-md px-2 py-1 text-white">
+                <div className="self-center rounded-md bg-primary px-2 py-1 text-white">
                   <div className="text-sm font-bold">
                     {getWaitingPosition() - 3}
                   </div>
@@ -142,7 +142,7 @@ export default function SpeakerBlock() {
                 getWaitingPosition() === 0) && (
                 <>
                   <Arrow arrowName="dashed" />
-                  <div className="bg-primary self-center rounded-md px-2 py-1 text-white">
+                  <div className="self-center rounded-md bg-primary px-2 py-1 text-white">
                     <div className="text-sm font-bold">
                       {getWaitingPosition() === 0
                         ? compressedList.length - 3

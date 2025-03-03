@@ -9,18 +9,18 @@ import * as m from "@/paraglide/messages";
 
 export default function WaitingForResults() {
   return (
-    <div className="my-4 shadow-xl rounded-md p-4 bg-white dark:bg-primary-300 border border-primary flex justify-center items-center w-11/12 mr-3">
+    <div className="my-4 mr-3 flex w-11/12 items-center justify-center rounded-md border border-primary bg-white p-4 shadow-xl dark:bg-primary-300">
       <div className="flex flex-col items-center gap-2">
         <div className="flex items-center gap-2 text-lg">
           <FAIcon
             icon="check-circle"
             className="text-gray-icon dark:text-primary-800"
           />
-          <div className="text-gray-text dark:text-primary-800 font-bold">
+          <div className="text-gray-text font-bold dark:text-primary-800">
             {m.voteRegistered()}
           </div>
         </div>
-        <div className="text-sm text-gray-icon dark:text-primary-600">
+        <div className="text-gray-icon text-sm dark:text-primary-600">
           {m.waitingForResult()}
         </div>
       </div>

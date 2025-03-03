@@ -7,8 +7,8 @@ import * as m from "@/paraglide/messages.js";
 export default function Err() {
   return (
     <>
-      <div className="bg-primary-950 flex flex-col items-center">
-        <div className="align-center bg-primary flex h-screen w-screen justify-center">
+      <div className="flex flex-col items-center bg-primary-950">
+        <div className="align-center flex h-screen w-screen justify-center bg-primary">
           <div className="flex flex-col items-center justify-center">
             <Image
               src="/logo/png/chase_logo_blue_text.png"
@@ -17,8 +17,8 @@ export default function Err() {
               height={128}
               className="mb-10"
             />
-            <p className="mt-10 mb-3 text-9xl ">500</p>
-            <p className="text-1xl mb-10 ">{m.error()}</p>
+            <p className="mt-10 mb-3 text-9xl">500</p>
+            <p className="text-1xl mb-10">{m.error()}</p>
             <Link href="/">
               <Button
                 severity="warning"

@@ -64,12 +64,7 @@ export default function CommitteeTable({
             sortable
             className="w-1/6"
           />
-          <Column
-            field="name"
-            header={m.name()}
-            sortable
-            className="w-full"
-          />
+          <Column field="name" header={m.name()} sortable className="w-full" />
           <Column
             header={m.category()}
             body={(rowData) => {
@@ -84,7 +79,7 @@ export default function CommitteeTable({
                       <div className="m-0 flex items-center justify-start gap-2">
                         <FAIcon
                           icon="diagram-subtask"
-                          className="text-primary text-2xl"
+                          className="text-2xl text-primary"
                         />
                         <span className="">
                           {matchingCommittee
@@ -95,7 +90,7 @@ export default function CommitteeTable({
                     ) : (
                       <FAIcon
                         icon="users-line"
-                        className="text-primary text-2xl"
+                        className="text-2xl text-primary"
                       />
                     ))}
                   {rowData.category === "CRISIS" && (

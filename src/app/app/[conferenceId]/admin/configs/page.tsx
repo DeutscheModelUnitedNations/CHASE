@@ -15,7 +15,8 @@ export default function Page() {
 
   const { value: conferenceData, trigger: triggerConferenceData } =
     useClientSideBackendCall(
-      (backend) => backend.conference({ conferenceId: conferenceId! }).get(), true
+      (backend) => backend.conference({ conferenceId: conferenceId! }).get(),
+      true,
     );
 
   function updateURLs() {

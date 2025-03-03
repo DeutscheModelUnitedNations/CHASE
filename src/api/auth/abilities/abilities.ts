@@ -52,7 +52,10 @@ export const defineAbilitiesForSession = (oidcResponse: OidcResponse) => {
   const builder = new AbilityBuilder<AppAbility>(createPrismaAbility);
 
   if (oidcResponse.user) {
-    console.info("Logged in user granted: ", oidcResponse.user.preferred_username);
+    console.info(
+      "Logged in user granted: ",
+      oidcResponse.user.preferred_username,
+    );
     builder.can("manage" as any, "all" as any);
   }
 

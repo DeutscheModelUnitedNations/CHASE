@@ -21,7 +21,7 @@ export default function Page() {
     <div>
       {pending && <p>Loading...</p>}
       {!pending && (
-        <div className="flex flex-col gap-3 h-screen items-center justify-center">
+        <div className="flex h-screen flex-col items-center justify-center gap-3">
           {conferences.length === 0
             ? m.noConferencesFound()
             : conferences.map((conference) => (

@@ -1,41 +1,41 @@
 @import "tailwindcss";
 
 @theme {
-    --color-primary: #3d7dd2;
-    --color-primary-100: #0c192a;
-    --color-primary-200: #183254;
-    --color-primary-300: #254b7e;
-    --color-primary-400: #3164a8;
-    /* DMUN Blue */
-    --color-primary-500: #3d7dd2;
-    --color-primary-600: #6497db;
-    --color-primary-700: #8bb1e4;
-    --color-primary-800: #b1cbed;
-    --color-primary-900: #d8e5f6;
-    --color-primary-950: #ecf2fb;
+  --color-primary: #3d7dd2;
+  --color-primary-100: #0c192a;
+  --color-primary-200: #183254;
+  --color-primary-300: #254b7e;
+  --color-primary-400: #3164a8;
+  /* DMUN Blue */
+  --color-primary-500: #3d7dd2;
+  --color-primary-600: #6497db;
+  --color-primary-700: #8bb1e4;
+  --color-primary-800: #b1cbed;
+  --color-primary-900: #d8e5f6;
+  --color-primary-950: #ecf2fb;
 
-    --color-secondary: #ffc200;
-    --color-secondary-100: #332700;
-    --color-secondary-200: #664e00;
-    --color-secondary-300: #997400;
-    --color-secondary-400: #cc9b00;
-    /* Secondary Orange */
-    --color-secondary-500: #ffc200;
-    --color-secondary-600: #ffce33;
-    --color-secondary-700: #ffda66;
-    --color-secondary-800: #ffe799;
-    --color-secondary-900: #fff3cc;
+  --color-secondary: #ffc200;
+  --color-secondary-100: #332700;
+  --color-secondary-200: #664e00;
+  --color-secondary-300: #997400;
+  --color-secondary-400: #cc9b00;
+  /* Secondary Orange */
+  --color-secondary-500: #ffc200;
+  --color-secondary-600: #ffce33;
+  --color-secondary-700: #ffda66;
+  --color-secondary-800: #ffe799;
+  --color-secondary-900: #fff3cc;
 
-    --color-highlight-light: #DFF4F4;
-    --color-highlight-dark: #254b7e;
+  --color-highlight-light: #dff4f4;
+  --color-highlight-dark: #254b7e;
 
-    --color-highlight-gray-light: #EEEEEE;
-    --color-highlight-gray-icon: rgb(156 163 175);
-    --color-highlight-gray-text: rgb(75 85 99);
+  --color-highlight-gray-light: #eeeeee;
+  --color-highlight-gray-icon: rgb(156 163 175);
+  --color-highlight-gray-text: rgb(75 85 99);
 
-    --color-voting-for: #188a42;
-    --color-voting-against: #ff3d32;
-    --color-voting-abstain: #3d7dd2;
+  --color-voting-for: #188a42;
+  --color-voting-against: #ff3d32;
+  --color-voting-abstain: #3d7dd2;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));

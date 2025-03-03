@@ -1,7 +1,11 @@
 import React, { useState, useContext, useEffect } from "react";
 import { InputText } from "primereact/inputtext";
 import { ToastContext } from "@/lib/contexts/toast";
-import { CommitteeDataContext, CommitteeIdContext, ConferenceIdContext } from "@/lib/contexts/committee_data";
+import {
+  CommitteeDataContext,
+  CommitteeIdContext,
+  ConferenceIdContext,
+} from "@/lib/contexts/committee_data";
 import { backend } from "@/lib/backend/clientsideBackend";
 import * as m from "@/paraglide/messages";
 import ConfigWrapper from "./config_wrapper";
@@ -26,10 +30,9 @@ export default function StateOfDebateWidget() {
         if (res.status === 200) {
           showToast({
             severity: "success",
-            summary:
-              m.statusXSaved({
-                status: stateOfDebate,
-              }),
+            summary: m.statusXSaved({
+              status: stateOfDebate,
+            }),
           });
         } else throw new Error();
       })
@@ -62,17 +65,15 @@ export default function StateOfDebateWidget() {
           committeeData?.stateOfDebate !== "" ? (
             <h2 className="text-lg font-bold">{committeeData.stateOfDebate}</h2>
           ) : (
-            <h2 className="text-lg font-bold">
-              {m.noStateSet()}
-            </h2>
+            <h2 className="text-lg font-bold">{m.noStateSet()}</h2>
           )}
         </SmallInfoCard>
-        <div className="flex gap-2 w-full mt-4">
+        <div className="mt-4 flex w-full gap-2">
           <InputText
             placeholder={m.stateOfDebate()}
             value={stateOfDebate}
             onChange={(e) => setStateOfDebate(e.target.value)}
-            className="flex-1 w-full"
+            className="w-full flex-1"
           />
           <Button
             faIcon="save"

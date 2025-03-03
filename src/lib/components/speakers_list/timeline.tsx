@@ -40,9 +40,7 @@ export default function Timeline({
         ) : (
           list?.length === 1 && (
             <div className="flex flex-1 items-center">
-              <p className="text-sm text-gray-500">
-                {m.listIsEmpty()}
-              </p>
+              <p className="text-sm text-gray-500">{m.listIsEmpty()}</p>
             </div>
           )
         )}
