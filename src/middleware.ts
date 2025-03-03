@@ -11,8 +11,11 @@ import {
 import { cookies } from "next/headers";
 
 export async function middleware(request: NextRequest) {
-    const { pathname } = request.nextUrl;
-    
+  console.log(request.nextUrl.toString());
+  console.log(JSON.stringify(request));
+
+  const { pathname } = request.nextUrl;
+
   const response = paraglide(request);
 
   if (/^\/app(\/.*)?$/.test(pathname)) {
@@ -30,7 +33,7 @@ export async function middleware(request: NextRequest) {
 
       return response;
     } catch (error) {
-      console.warn("Could not validate tokens, starting login flow")
+      console.warn("Could not validate tokens, starting login flow");
     }
 
     const { state, code_verifier, redirect_uri } = await startSignin(
