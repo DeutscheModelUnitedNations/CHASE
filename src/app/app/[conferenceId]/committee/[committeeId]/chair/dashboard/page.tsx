@@ -41,7 +41,7 @@ export default function ChairDashboardPage() {
                   <WidgetTemplate>
                     <PresenceWidget showExcusedSeperately={true} />
                   </WidgetTemplate>
-                  <TimerWidget />
+                  {/* <TimerWidget /> */}
                   <WhiteboardWidget />
                 </div>
               </div>

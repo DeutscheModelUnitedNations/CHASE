@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import CommitteeGrid from "@/lib/components/navigation-hub/committee_grid";
 import HeaderTemplate from "@/lib/components/HeaderTemplate";
 import { ScrollPanel } from "primereact/scrollpanel";
