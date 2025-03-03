@@ -11,8 +11,8 @@ import {
 import { cookies } from "next/headers";
 
 export async function middleware(request: NextRequest) {
-  console.log(request.nextUrl.toString());
-  console.log(JSON.stringify(request));
+  console.error(request.nextUrl.toString());
+  console.error(JSON.stringify(request));
 
   const { pathname } = request.nextUrl;
 
