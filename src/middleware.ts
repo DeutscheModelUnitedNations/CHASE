@@ -13,6 +13,11 @@ export async function middleware(request: NextRequest) {
   const forwardedHost =
     request.headers.get("x-forwarded-host") || request.nextUrl.hostname;
   const forwardedProto = request.headers.get("x-forwarded-proto") || "http";
+  console.log({
+    forwardedHost,
+    forwardedProto,
+  });
+
   const realVisitedUrl = new URL(
     request.nextUrl.pathname,
     `${forwardedProto}://${forwardedHost}`,
