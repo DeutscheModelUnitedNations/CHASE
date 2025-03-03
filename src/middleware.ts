@@ -12,6 +12,7 @@ import { cookies } from "next/headers";
 
 export async function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl;
+    
   const response = paraglide(request);
 
   if (/^\/app(\/.*)?$/.test(pathname)) {
@@ -28,10 +29,12 @@ export async function middleware(request: NextRequest) {
       });
 
       return response;
-    } catch (error) {}
+    } catch (error) {
+      console.warn("Could not validate tokens, starting login flow")
+    }
 
     const { state, code_verifier, redirect_uri } = await startSignin(
-      new URL(request.url),
+      new URL(request.nextUrl.toString()),
       "/auth/resolve-login",
     );
 
@@ -67,7 +70,7 @@ export async function middleware(request: NextRequest) {
     }
 
     const { state, tokens } = await resolveSignin(
-      new URL(request.url),
+      new URL(request.nextUrl.toString()),
       verifier.value,
       oidcState.value,
     );
@@ -98,6 +101,6 @@ export const config = {
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
      */
-    "/((?!api|_next/static|_next/image|favicon.ico).*)",
+    "/((?!api|_next/static|_next/image|favicon.ico|undraw|logo|misc|dmunlogo).*)",
   ],
 };

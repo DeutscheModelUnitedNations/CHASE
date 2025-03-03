@@ -37,7 +37,6 @@ export const auth = new Elysia({
     "/myInfo",
     async ({ permissions }) => {
       const user = permissions.getLoggedInUserOrThrow();
-      console.log(user);
       
       return db.user.findUniqueOrThrow({
         where: { id: user.sub },
