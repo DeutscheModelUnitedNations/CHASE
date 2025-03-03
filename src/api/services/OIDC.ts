@@ -130,7 +130,7 @@ export async function resolveSignin(
   //TODO https://github.com/gornostay25/svelte-adapter-bun/issues/62
   if (process.env.NODE_ENV === "production") {
     visitedUrl.protocol = "https:";
-    console.info("Fixed protocol:", visitedUrl);
+    console.info("Fixed protocol:", visitedUrl.toString());
   }
   const state = JSON.parse(raw_state) as OIDCFlowState;
   console.info("Parsed state:", state);
