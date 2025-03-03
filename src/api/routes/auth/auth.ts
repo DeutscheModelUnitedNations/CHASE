@@ -10,17 +10,17 @@ export const auth = new Elysia({
 })
   .use(oidcPlugin)
   .use(permissionsPlugin)
-  .get(
-    "/logout-url",
-    async ({ request: { url } }) => {
-      return getLogoutUrl(new URL(url)).toString();
-    },
-    {
-      detail: {
-        description: "The url to visit to log out",
-      },
-    },
-  )
+  // .get(
+  //   "/logout-url",
+  //   async ({ request: { url } }) => {
+  //     return getLogoutUrl(new URL(url)).toString();
+  //   },
+  //   {
+  //     detail: {
+  //       description: "The url to visit to log out",
+  //     },
+  //   },
+  // )
   .get(
     "/offline-user-refresh",
     async ({ permissions, oidc }) => {

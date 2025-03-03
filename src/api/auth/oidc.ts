@@ -1,6 +1,6 @@
 import Elysia, { t, type Static } from "elysia";
-import { type oidcRoles, refresh, validateTokens } from "../services/OIDC";
 import { mockedDefaultUser } from "@prisma/db";
+import type { oidcRoles, validateTokens } from "../services/OIDC";
 
 const TokenCookieSchema = t.Object(
   {

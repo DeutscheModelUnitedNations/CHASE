@@ -7,7 +7,7 @@ import { confirmDialog, ConfirmDialog } from "primereact/confirmdialog";
 import * as m from "@/paraglide/messages";
 import NavbarButton from "./NavbarButton";
 import NavbarSettingsSidebar from "./NavbarSettingsSidebar";
-import { useClientSideBackendCall } from "../backend/useClientSideBackendCall";
+// import { useClientSideBackendCall } from "../backend/useClientSideBackendCall";
 
 interface Props {
   children: ReactNode;
@@ -22,21 +22,21 @@ interface Props {
 export default function Navbar({ children }: Props) {
   const router = useRouter();
   const [settingsSidebarVisible, setSettingsSidebarVisible] = useState(false);
-  const { value: logoutUrl } = useClientSideBackendCall(backend => backend.auth["logout-url"].get());
+  // const { value: logoutUrl } = useClientSideBackendCall(backend => backend.auth["logout-url"].get());
 
-  const confirmLogout = () => {
-    confirmDialog({
-      message: m.areYouSureLogout(),
-      icon: "pi pi-exclamation-triangle",
-      position: "bottom-left",
-      acceptLabel: "Ja",
-      acceptIcon: "pi pi-check",
-      acceptClassName: "p-button-danger",
-      rejectLabel: "Nein",
-      rejectIcon: "pi pi-times",
-      accept: () => router.push(logoutUrl ?? "/"),
-    });
-  };
+  // const confirmLogout = () => {
+  //   confirmDialog({
+  //     message: m.areYouSureLogout(),
+  //     icon: "pi pi-exclamation-triangle",
+  //     position: "bottom-left",
+  //     acceptLabel: "Ja",
+  //     acceptIcon: "pi pi-check",
+  //     acceptClassName: "p-button-danger",
+  //     rejectLabel: "Nein",
+  //     rejectIcon: "pi pi-times",
+  //     accept: () => router.push(logoutUrl ?? "/"),
+  //   });
+  // };
 
   return (
     <>
@@ -61,11 +61,11 @@ export default function Navbar({ children }: Props) {
             title={m.settings()}
           />
           <ConfirmDialog />
-          <NavbarButton
+          {/* <NavbarButton
             icon="right-from-bracket"
             onClick={confirmLogout}
             title={m.logout()}
-          />
+          /> */}
         </div>
       </div>
     </>
