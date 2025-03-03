@@ -19,12 +19,12 @@ export default function Chair_Pages_Layout({
     <>
       {/* <SpeakersListMiniatureProvider> */}
       {/* <SpeakersListMiniature /> */}
-      {/* <MessageCountProvider> */}
+      <MessageCountProvider>
         <div className="flex h-screen w-screen overflow-hidden bg-white text-primary-100 shadow-md dark:bg-primary-100 dark:text-primary-900">
           <ChairNavbar />
           {children}
         </div>
-      {/* </MessageCountProvider> */}
+      </MessageCountProvider>
       {/* </SpeakersListMiniatureProvider> */}
     </>
   );
