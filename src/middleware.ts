@@ -10,6 +10,13 @@ import {
 } from "./api/services/OIDC";
 
 export async function middleware(request: NextRequest) {
+  const forwardedHost =
+    request.headers.get("x-forwarded-host") || request.nextUrl.hostname;
+  const forwardedProto = request.headers.get("x-forwarded-proto") || "http";
+  const realVisitedUrl = new URL(
+    request.nextUrl.pathname,
+    `${forwardedProto}://${forwardedHost}`,
+  );
   const { pathname } = request.nextUrl;
 
   let response = paraglide(request);
@@ -31,7 +38,7 @@ export async function middleware(request: NextRequest) {
     }
 
     const { state, code_verifier, redirect_uri } = await startSignin(
-      new URL(request.nextUrl.toString()),
+      realVisitedUrl,
       "/auth/resolve-login",
     );
 
@@ -71,7 +78,7 @@ export async function middleware(request: NextRequest) {
     }
 
     const { state, tokens } = await resolveSignin(
-      new URL(request.nextUrl.toString()),
+      realVisitedUrl,
       verifier.value,
       oidcState.value,
     );
