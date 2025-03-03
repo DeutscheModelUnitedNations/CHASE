@@ -5,7 +5,10 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  output: 'standalone',
+  output: "standalone",
+  compiler: {
+    removeConsole: false,
+  },
 };
 
 export default paraglide({
