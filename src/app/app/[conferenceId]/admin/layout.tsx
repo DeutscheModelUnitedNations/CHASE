@@ -59,7 +59,7 @@ export default function AdminLayout({
   return (
     <>
       <Lockout whitelist={[$Enums.ConferenceRole.ADMIN]} />
-      <div className="text-primary-100 dark:bg-primary-100 dark:text-primary-900 flex h-screen w-screen overflow-hidden bg-white shadow-md">
+      <div className="flex h-screen w-screen overflow-hidden bg-white text-primary-100 shadow-md dark:bg-primary-100 dark:text-primary-900">
         <AdminNavbar />
         <ScrollPanel style={{ width: "calc(100% - 4rem)", height: "100%" }}>
           <div className="p-6">{children}</div>
@@ -83,11 +83,7 @@ function AdminNavbar() {
         link={"./structure"}
         title={m.structure()}
       />
-      <NavbarButton
-        icon="users"
-        link={"./teampool"}
-        title={m.teampool()}
-      />
+      <NavbarButton icon="users" link={"./teampool"} title={m.teampool()} />
       <NavbarButton
         icon="podium"
         link={"./committees"}

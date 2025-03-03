@@ -117,16 +117,16 @@ function CommitteeCard({
       case "FORMAL":
         return undefined;
       case "INFORMAL":
-        return ["bg-red-500 border-red-500 text-red-500", "bg-red-500"];
+        return ["bg-red-200 border-red-500 text-red-500", "bg-red-200"];
       case "PAUSE":
         return [
-          "bg-secondary-500 border-secondary-400 text-secondary-400",
-          "bg-secondary",
+          "bg-secondary-800 border-secondary-500 text-secondary-200",
+          "bg-secondary-800",
         ];
       case "SUSPENSION":
         return [
-          "bg-primary-200 border-primary-200 text-primary-200",
-          "bg-primary-200",
+          "bg-primary-800 border-primary-200 text-primary-200",
+          "bg-primary-800",
         ];
       default:
         return undefined;

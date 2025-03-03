@@ -27,7 +27,8 @@ export default function Lockout({
         )?.role,
       )
     ) {
-      router.push("/lockout");
+      // TODO this is a bug, it redirects unintentionally
+      // router.push("/lockout");
       return;
     }
   }, [userIdent]);

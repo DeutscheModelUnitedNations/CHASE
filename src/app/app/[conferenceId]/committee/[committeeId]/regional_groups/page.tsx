@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect, useContext } from "react";
-import regionalGroups from "@/lib/data/regional_groups.json";
+import countrieData, { Countries } from "world-countries";
 import { AnimatePresence, motion } from "framer-motion";
 import useMousetrap from "mousetrap-react";
 import {
@@ -26,9 +26,18 @@ export default function RegionalGroups() {
         // biome-ignore lint/style/noNonNullAssertion:
         .conference({ conferenceId: conferenceId! })
         // biome-ignore lint/style/noNonNullAssertion:
-        .committee({ committeeId: committeeId! }).delegations.get(),
+        .committee({ committeeId: committeeId! })
+        .delegations.get(),
     false,
   );
+
+  const groups: Exclude<Countries[0]["unRegionalGroup"], "">[] = [
+    "African Group",
+    "Asia and the Pacific Group",
+    "Latin American and Caribbean Group",
+    "Eastern European Group",
+    "Western European and Others Group",
+  ];
 
   useMousetrap(["left", "down"], () => {
     setCurrentGroupIndex((prev) =>
@@ -51,45 +60,67 @@ export default function RegionalGroups() {
     return () => clearInterval(interval);
   }, []);
 
-  const groupNames = {
-    africa: m.africa(),
-    asia: m.asiaAndOceania(),
-    america: m.latinAmericaAndCaribbean(),
-    eastern_europe:
-      m.easternEurope(),
-    western_europe:
-      m.westernEuropeAndOthers(),
+  const groupNames: Record<
+    Exclude<Countries[0]["unRegionalGroup"], "">,
+    string
+  > = {
+    "African Group": m.africa(),
+    "Asia and the Pacific Group": m.asiaAndOceania(),
+    "Latin American and Caribbean Group": m.latinAmericaAndCaribbean(),
+    "Eastern European Group": m.easternEurope(),
+    "Western European and Others Group": m.westernEuropeAndOthers(),
   };
 
-  const checkInRegionalGroup = (alpha3Code: string, group: any) => {
-    try {
-      return (regionalGroups as any)[group].includes(
-        alpha3ToAlpha2(alpha3Code),
-      );
-    } catch {
+  const checkInRegionalGroup = (
+    alpha3Code: string,
+    group: Countries[0]["unRegionalGroup"],
+  ) => {
+    const country = countrieData.find(
+      (country) => country.cca3.toUpperCase() === alpha3Code.toUpperCase(),
+    );
+    if (!country) {
       return false;
+    }
+
+    switch (group) {
+      case "African Group":
+        return country.unRegionalGroup === "African Group";
+      case "Asia and the Pacific Group":
+        return country.unRegionalGroup === "Asia and the Pacific Group";
+      case "Latin American and Caribbean Group":
+        return country.unRegionalGroup === "Latin American and Caribbean Group";
+      case "Eastern European Group":
+        return country.unRegionalGroup === "Eastern European Group";
+      case "Western European and Others Group":
+        return country.unRegionalGroup === "Western European and Others Group";
     }
   };
 
-  const getMapColor = (group: string) => {
+  const getMapColor = (group: Countries[0]["unRegionalGroup"]) => {
     switch (group) {
-      case "africa":
+      case "African Group":
         return "#FF0000";
-      case "asia":
+      case "Asia and the Pacific Group":
         return "#008800";
-      case "america":
+      case "Latin American and Caribbean Group":
         return "#0000FF";
-      case "eastern_europe":
+      case "Eastern European Group":
         return "#FF8800";
-      case "western_europe":
+      case "Western European and Others Group":
         return "#8800FF";
     }
   };
 
-  function Group({ group, groupName }: { group: string; groupName: string }) {
+  function Group({
+    group,
+    groupName,
+  }: {
+    group: Countries[0]["unRegionalGroup"];
+    groupName: string;
+  }) {
     return (
       <motion.div
-        className="absolute top-6 right-6 bottom-6 left-6 flex flex-col items-center rounded-lg bg-primary-950 p-10"
+        className="absolute top-6 right-6 bottom-6 left-6 flex flex-col items-center rounded-lg p-10"
         key={group}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -115,7 +146,7 @@ export default function RegionalGroups() {
                         ),
                       )
                       .map((delegation) => ({
-                        country: alpha3ToAlpha2(delegation.nation.alpha3Code),
+                        country: delegation.nation.alpha2Code,
                         value: 100,
                       }))
                   : []
@@ -127,7 +158,9 @@ export default function RegionalGroups() {
                 checkInRegionalGroup(delegation.nation.alpha3Code, group),
               )
               .sort((a, b) =>
-                getFullTranslatedCountryNameFromISO3Code(a.nation.alpha3Code).localeCompare(
+                getFullTranslatedCountryNameFromISO3Code(
+                  a.nation.alpha3Code,
+                ).localeCompare(
                   getFullTranslatedCountryNameFromISO3Code(b.nation.alpha3Code),
                 ),
               )
@@ -138,7 +171,9 @@ export default function RegionalGroups() {
                 >
                   <NormalFlag countryCode={delegation.nation.alpha3Code} />
                   <div className="text-xl font-bold">
-                    {getFullTranslatedCountryNameFromISO3Code(delegation.nation.alpha3Code)}
+                    {getFullTranslatedCountryNameFromISO3Code(
+                      delegation.nation.alpha3Code,
+                    )}
                   </div>
                 </div>
               ))
@@ -149,17 +184,12 @@ export default function RegionalGroups() {
   }
 
   return (
-    <div className="relative flex h-screen flex-col items-center justify-start p-10">
-      {Object.keys(groupNames).map((group) => (
+    <div className="relative w-full flex h-screen flex-col items-center justify-start p-10">
+      {groups.map((group) => (
         <AnimatePresence key={group}>
-          {(currentGroupIndex === Object.keys(groupNames).indexOf(group) * 2 ||
-            currentGroupIndex ===
-              Object.keys(groupNames).indexOf(group) * 2 + 1) && (
-            <Group
-              key={group}
-              group={group}
-              groupName={(groupNames as any)[group]}
-            />
+          {(currentGroupIndex === groups.indexOf(group) * 2 ||
+            currentGroupIndex === groups.indexOf(group) * 2 + 1) && (
+            <Group key={group} group={group} groupName={groupNames[group]} />
           )}
         </AnimatePresence>
       ))}

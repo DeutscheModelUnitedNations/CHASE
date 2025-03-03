@@ -5,8 +5,8 @@ import FAIcon from "./FAIcon";
 
 export default function SmallInfoCard({
   icon,
-  classNameForIconBox = "bg-primary-500 text-primary-500 border-primary-500",
-  classNameForContentBox = "bg-primary-500",
+  classNameForIconBox = "bg-primary-900 text-primary-500 border-primary-500",
+  classNameForContentBox = "bg-primary-900 text-primary-100",
   className,
   loading = false,
   children,

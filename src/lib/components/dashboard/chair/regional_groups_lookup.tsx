@@ -8,9 +8,8 @@ import {
 import { useClientSideBackendCall } from "@/lib/backend/useClientSideBackendCall";
 import { getFullTranslatedCountryNameFromISO3Code } from "@/lib/nation";
 import * as m from "@/paraglide/messages";
-import { alpha3ToAlpha2 } from "@/lib/countryCodeUtils";
-import regionalGroups from "@/lib/data/regional_groups.json";
 import { NormalFlag } from "../../Flag";
+import countrieData, { Countries } from "world-countries";
 
 export default function RegionalGroupsLookup({
   lookupVisible,
@@ -31,9 +30,29 @@ export default function RegionalGroupsLookup({
         // biome-ignore lint/style/noNonNullAssertion:
         .conference({ conferenceId: conferenceId! })
         // biome-ignore lint/style/noNonNullAssertion:
-        .committee({ committeeId: committeeId! }).delegations.get(),
+        .committee({ committeeId: committeeId! })
+        .delegations.get(),
     false,
   );
+
+  const groups: Exclude<Countries[0]["unRegionalGroup"], "">[] = [
+    "African Group",
+    "Asia and the Pacific Group",
+    "Latin American and Caribbean Group",
+    "Eastern European Group",
+    "Western European and Others Group",
+  ];
+
+  const groupNames: Record<
+    Exclude<Countries[0]["unRegionalGroup"], "">,
+    string
+  > = {
+    "African Group": m.africa(),
+    "Asia and the Pacific Group": m.asiaAndOceania(),
+    "Latin American and Caribbean Group": m.latinAmericaAndCaribbean(),
+    "Eastern European Group": m.easternEurope(),
+    "Western European and Others Group": m.westernEuropeAndOthers(),
+  };
 
   const presentDelegations = unfilteredPresentDelegations?.filter(
     (delegation) =>
@@ -42,28 +61,42 @@ export default function RegionalGroupsLookup({
         .includes(filter.toLowerCase()),
   );
 
-  const groupNames = {
-    africa: m.africa(),
-    asia: m.asiaAndOceania(),
-    america: m.latinAmericaAndCaribbean(),
-    eastern_europe: m.easternEurope(),
-    western_europe: m.westernEuropeAndOthers(),
-  };
-
-  const checkInRegionalGroup = (alpha3Code: string, group: any) => {
-    try {
-      return (regionalGroups as any)[group].includes(
-        alpha3ToAlpha2(alpha3Code),
-      );
-    } catch {
+  const checkInRegionalGroup = (
+    alpha3Code: string,
+    group: Countries[0]["unRegionalGroup"],
+  ) => {
+    const country = countrieData.find(
+      (country) => country.cca3.toUpperCase() === alpha3Code.toUpperCase(),
+    );
+    if (!country) {
       return false;
     }
+
+    switch (group) {
+      case "African Group":
+        return country.unRegionalGroup === "African Group";
+      case "Asia and the Pacific Group":
+        return country.unRegionalGroup === "Asia and the Pacific Group";
+      case "Latin American and Caribbean Group":
+        return country.unRegionalGroup === "Latin American and Caribbean Group";
+      case "Eastern European Group":
+        return country.unRegionalGroup === "Eastern European Group";
+      case "Western European and Others Group":
+        return country.unRegionalGroup === "Western European and Others Group";
+    }
+    return false;
   };
 
-  function Group({ group, groupName }: { group: string; groupName: string }) {
+  function Group({
+    group,
+    groupName,
+  }: {
+    group: Exclude<Countries[0]["unRegionalGroup"], "">;
+    groupName: string;
+  }) {
     return (
       <div
-        className="bg-primary-950 flex flex-col items-center rounded-lg p-6"
+        className="flex flex-col items-center rounded-lg bg-primary-950 p-6"
         key={group}
       >
         <h2 className="text-3xl font-bold">{groupName}</h2>
@@ -73,18 +106,22 @@ export default function RegionalGroupsLookup({
               checkInRegionalGroup(delegation.nation.alpha3Code, group),
             )
             .sort((a, b) =>
-              getFullTranslatedCountryNameFromISO3Code(a.nation.alpha3Code).localeCompare(
+              getFullTranslatedCountryNameFromISO3Code(
+                a.nation.alpha3Code,
+              ).localeCompare(
                 getFullTranslatedCountryNameFromISO3Code(b.nation.alpha3Code),
               ),
             )
             .map((delegation) => (
               <div
                 key={delegation.id}
-                className="bg-primary-900 flex items-center gap-4 rounded-lg p-2"
+                className="flex items-center gap-4 rounded-lg bg-primary-900 p-2"
               >
                 <NormalFlag countryCode={delegation.nation.alpha3Code} />
                 <div className="text-md font-bold">
-                  {getFullTranslatedCountryNameFromISO3Code(delegation.nation.alpha3Code)}
+                  {getFullTranslatedCountryNameFromISO3Code(
+                    delegation.nation.alpha3Code,
+                  )}
                 </div>
               </div>
             ))}
@@ -105,21 +142,17 @@ export default function RegionalGroupsLookup({
         placeholder={m.filter()}
         value={filter}
         onChange={(e) => setFilter(e.target.value)}
-        className="my-5 w-full"
+        className="w-full my-5"
       />
       <div className="flex w-full flex-col gap-2">
-        {Object.keys(groupNames)
+        {groups
           .filter((group) =>
             presentDelegations?.some((delegation) =>
               checkInRegionalGroup(delegation.nation.alpha3Code, group),
             ),
           )
           .map((group) => (
-            <Group
-              key={group}
-              group={group}
-              groupName={(groupNames as any)[group]}
-            />
+            <Group key={group} group={group} groupName={groupNames[group]} />
           ))}
       </div>
     </Dialog>

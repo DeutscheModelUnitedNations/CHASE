@@ -1,6 +1,6 @@
 import { LanguageProvider } from "@inlang/paraglide-next";
 import { languageTag } from "@/paraglide/runtime.js";
-import type { Metadata } from "next";
+import { type Metadata } from "next";
 import { Inter, Vollkorn, Noto_Sans_Mono } from "next/font/google";
 import { PrimeReactProvider } from "primereact/api";
 import "./tailwind.css";
@@ -52,8 +52,8 @@ export default function RootLayout({
               <main className="flex min-h-screen w-screen justify-center">
                 {children}
               </main>
-              <Footer />
-              <CookieConsent />
+              {/* <Footer /> */}
+              {/* <CookieConsent /> */}
             </body>
           </ToastProvider>
         </html>

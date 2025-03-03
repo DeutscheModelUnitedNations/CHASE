@@ -65,7 +65,7 @@ export default function CommitteePresentationMode({
 
   return (
     <>
-      <div className="h-screen bg-primary-900 p-4">
+      <div className="h-screen w-full bg-primary-900 p-4">
         <div className="flex flex-col gap-4 md:flex-row">
           <div className="flex h-[calc(100vh-2rem)] flex-1 flex-col gap-4">
             <WidgetTemplate>
