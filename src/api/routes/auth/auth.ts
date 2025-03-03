@@ -37,7 +37,6 @@ export const auth = new Elysia({
     "/myInfo",
     async ({ permissions }) => {
       const user = permissions.getLoggedInUserOrThrow();
-      console.log(user);
 
       const res = db.user.findUniqueOrThrow({
         where: { id: user.sub },
@@ -66,7 +65,6 @@ export const auth = new Elysia({
         },
       });
 
-      console.log(res);
       return res;
     },
     {
@@ -115,7 +113,6 @@ export const auth = new Elysia({
       });
     },
     {
-      response: UserPlain,
       detail: {
         description: "Refreshes the current user auth using the refresh token",
       },

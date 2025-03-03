@@ -125,13 +125,11 @@ export async function resolveSignin(
   code_verifier: string,
   raw_state: string,
 ) {
-  console.log("a");
 
   //TODO https://github.com/gornostay25/svelte-adapter-bun/issues/62
   if (process.env.NODE_ENV === "production") {
     visitedUrl.protocol = "https:";
   }
-  console.log("b");
   const state = JSON.parse(raw_state) as OIDCFlowState;
   console.log("c");
   const tokens = await authorizationCodeGrant(config, visitedUrl, {

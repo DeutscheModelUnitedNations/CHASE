@@ -78,7 +78,6 @@ export async function middleware(request: NextRequest) {
       throw new Error("No oidc state cookie found.");
     }
 
-    console.log(1);
     
     const { state, tokens } = await resolveSignin(
       realVisitedUrl,
