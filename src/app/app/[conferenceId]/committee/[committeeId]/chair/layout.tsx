@@ -66,12 +66,12 @@ function ChairNavbar() {
         link={"./whiteboard"}
         title={m.whiteboard()}
       />
-      <NavbarButton
+      {/* <NavbarButton
         icon="inbox"
         link={"./inbox"}
         title={m.inbox()}
         badge={messageCount ?? 0}
-      />
+      /> */}
       {/* <NavButton TODO add Resolution Editor page
           icon="scroll"
           link={"./resolutions"}

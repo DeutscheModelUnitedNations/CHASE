@@ -48,7 +48,7 @@ export default function ChairHubLayout({
             title={m.hub()}
           />
           <div className="h-4" />
-          {userIdent &&
+          {/* {userIdent &&
             role !== null &&
             (
               [
@@ -60,7 +60,7 @@ export default function ChairHubLayout({
               ] as ($Enums.ConferenceRole | undefined)[]
             ).includes(role) && (
               <NavbarButton icon="inbox" link={"./inbox"} title={m.inbox()} />
-            )}
+            )} */}
           {userIdent && role === $Enums.ConferenceRole.ADMIN && (
             <NavbarButton
               icon="gears"
