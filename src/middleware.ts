@@ -21,7 +21,7 @@ export async function middleware(request: NextRequest) {
     `${forwardedProto}://${forwardedHost}`,
   );
   const { pathname } = request.nextUrl;
-  console.info("Real visited URL: ", realVisitedUrl);
+  console.info("Real visited URL: ", realVisitedUrl.toString());
 
   let response = paraglide(request);
   console.info("Created localized response");
