@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-
 @theme {
     --color-primary: #3d7dd2;
     --color-primary-100: #0c192a;
@@ -38,3 +37,5 @@
     --color-voting-against: #ff3d32;
     --color-voting-abstain: #3d7dd2;
 }
+
+@custom-variant dark (&:where(.dark, .dark *));
