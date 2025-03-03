@@ -12,7 +12,7 @@ import {
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  const response = paraglide(request);
+  let response = paraglide(request);
 
   if (/^\/app(\/.*)?$/.test(pathname)) {
     const tokenCookieValue = JSON.parse(
@@ -34,6 +34,9 @@ export async function middleware(request: NextRequest) {
       new URL(request.nextUrl.toString()),
       "/auth/resolve-login",
     );
+
+    response = NextResponse.redirect(redirect_uri.toString());
+
     response.cookies.set({
       name: codeVerifierCookieName,
       value: code_verifier,
@@ -54,7 +57,7 @@ export async function middleware(request: NextRequest) {
       httpOnly: true,
     });
 
-    return NextResponse.redirect(redirect_uri.toString());
+    return response;
   }
 
   if (/^\/auth\/resolve-login(\/.*)?$/.test(pathname)) {
@@ -73,6 +76,8 @@ export async function middleware(request: NextRequest) {
       oidcState.value,
     );
 
+    response = NextResponse.redirect(state.visitedUrl, 302);
+
     response.cookies.set({
       name: tokensCookieName,
       value: JSON.stringify(tokens),
@@ -86,7 +91,7 @@ export async function middleware(request: NextRequest) {
     request.cookies.delete(codeVerifierCookieName);
     request.cookies.delete(oidcStateCookieName);
 
-    return NextResponse.redirect(state.visitedUrl, 302);
+    return response;
   }
 
   return response;
