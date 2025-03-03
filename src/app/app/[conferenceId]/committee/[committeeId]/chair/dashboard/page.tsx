@@ -52,7 +52,7 @@ export default function ChairDashboardPage() {
                 <SetStatusWidget />
                 <StateOfDebateWidget />
                 <AgendaSelection />
-                <SpeakersListAddingPolicyWidget />
+                {/* <SpeakersListAddingPolicyWidget /> */}
                 <ConfigWrapper
                   title={m.speakersListOverlay()}
                   description={m.opensTheSpeakersListOverlay()}
