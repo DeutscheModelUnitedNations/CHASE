@@ -8,7 +8,6 @@ import {
   tokensCookieName,
   validateTokens,
 } from "./api/services/OIDC";
-import { cookies } from "next/headers";
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -16,10 +15,8 @@ export async function middleware(request: NextRequest) {
   const response = paraglide(request);
 
   if (/^\/app(\/.*)?$/.test(pathname)) {
-    const cookie = await cookies();
-
     const tokenCookieValue = JSON.parse(
-      cookie.get(tokensCookieName)?.value ?? "{}",
+      request.cookies.get(tokensCookieName)?.value ?? "{}",
     );
 
     try {
@@ -37,8 +34,9 @@ export async function middleware(request: NextRequest) {
       new URL(request.nextUrl.toString()),
       "/auth/resolve-login",
     );
-
-    cookie.set(codeVerifierCookieName, code_verifier, {
+    response.cookies.set({
+      name: codeVerifierCookieName,
+      value: code_verifier,
       maxAge: 60 * 5,
       sameSite: "lax",
       path: "/",
@@ -46,7 +44,9 @@ export async function middleware(request: NextRequest) {
       httpOnly: true,
     });
 
-    cookie.set(oidcStateCookieName, state, {
+    response.cookies.set({
+      name: oidcStateCookieName,
+      value: state,
       maxAge: 60 * 5,
       sameSite: "lax",
       path: "/",
@@ -58,13 +58,11 @@ export async function middleware(request: NextRequest) {
   }
 
   if (/^\/auth\/resolve-login(\/.*)?$/.test(pathname)) {
-    const cookie = await cookies();
-
-    const verifier = cookie.get(codeVerifierCookieName);
+    const verifier = request.cookies.get(codeVerifierCookieName);
     if (!verifier || !verifier.value) {
       throw new Error("No code verifier cookie found.");
     }
-    const oidcState = cookie.get(oidcStateCookieName);
+    const oidcState = request.cookies.get(oidcStateCookieName);
     if (!oidcState || !oidcState.value) {
       throw new Error("No oidc state cookie found.");
     }
@@ -75,7 +73,9 @@ export async function middleware(request: NextRequest) {
       oidcState.value,
     );
 
-    cookie.set(tokensCookieName, JSON.stringify(tokens), {
+    response.cookies.set({
+      name: tokensCookieName,
+      value: JSON.stringify(tokens),
       maxAge: tokens.expires_in ? tokens.expires_in * 1000 : undefined,
       sameSite: "lax",
       path: "/",
@@ -83,8 +83,8 @@ export async function middleware(request: NextRequest) {
       httpOnly: true,
     });
 
-    cookie.delete(codeVerifierCookieName);
-    cookie.delete(oidcStateCookieName);
+    request.cookies.delete(codeVerifierCookieName);
+    request.cookies.delete(oidcStateCookieName);
 
     return NextResponse.redirect(state.visitedUrl, 302);
   }
