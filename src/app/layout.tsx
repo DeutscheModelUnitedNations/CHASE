@@ -45,17 +45,17 @@ export default function RootLayout({
     <LanguageProvider>
       <PrimeReactProvider>
         <html lang={languageTag()}>
-          <ToastProvider>
-            <body
-              className={`${sans.variable} ${serif.variable} ${mono.variable} antialiased`}
-            >
+          <body
+            className={`${sans.variable} ${serif.variable} ${mono.variable} antialiased`}
+          >
+            <ToastProvider>
               <main className="flex min-h-screen w-screen justify-center">
                 {children}
               </main>
               {/* <Footer /> */}
               {/* <CookieConsent /> */}
-            </body>
-          </ToastProvider>
+            </ToastProvider>
+          </body>
         </html>
       </PrimeReactProvider>
     </LanguageProvider>
