@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import CommitteeGrid from "@/lib/components/navigation-hub/committee_grid";
 import HeaderTemplate from "@/lib/components/HeaderTemplate";
 import { ScrollPanel } from "primereact/scrollpanel";
@@ -46,7 +46,10 @@ export default function ChairHub() {
           <LargeFlag countryCode={"uno"} />
         </HeaderTemplate>
         <ScrollPanel style={{ width: "100%", height: "90vh" }}>
-          <CommitteeGrid conferenceId={conferenceId!} isChair />
+          {conferenceId && (
+            <CommitteeGrid conferenceId={conferenceId} isChair />
+          )}
+          {!conferenceId && <div>Loading...</div>}
         </ScrollPanel>
       </div>
     </>
