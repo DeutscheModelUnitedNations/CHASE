@@ -14,9 +14,10 @@ export const BackendTime = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     if (pending) return;
+    console.log(backendTime);
+    
 
-    // biome-ignore lint/suspicious/noExplicitAny: timer type
-    const backendTimestamp = new Date(backendTime ?? Date.now()); // in case we are not logged in we fall back to our own time
+    const backendTimestamp = new Date(backendTime.timestamp ?? Date.now()); // in case we are not logged in we fall back to our own time
     const ourTimestamp = new Date();
     const offset = backendTimestamp.getTime() - ourTimestamp.getTime();
 
