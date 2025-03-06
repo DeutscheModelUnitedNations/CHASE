@@ -1,0 +1,525 @@
+{
+    "delegations": [
+        {
+            "alpha3Code": "afg",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "egy",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "dza",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "ago",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "arg",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "aus",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "bhr",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "bel",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "bol",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "bra",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "chl",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "chn",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "deu",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "dji",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "fra",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "ind",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "idn",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "isr",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "ita",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "jpn",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "can",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "ken",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "col",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "cod",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "cub",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "mli",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "mex",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "mmr",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "nor",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "aut",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "pak",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "per",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "plw",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "prt",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "rus",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "zmb",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "sau",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "swe",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "sgp",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "esp",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "zaf",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "tza",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "tcd",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "gbr",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        },
+        {
+            "alpha3Code": "usa",
+            "Sim1": true,
+            "Sim2": true,
+            "Sim3": true,
+            "Sim4": true,
+            "Sim5": true,
+            "Sim6": true,
+            "Sim7": true,
+            "Sim8": true
+        }
+    ],
+    "nonStateActors": [
+        {
+            "name": "Human Rights Watch",
+            "abbreviation": "HRW"
+        },
+        {
+            "name": "Plan International",
+            "abbreviation": "PI"
+        },
+        {
+            "name": "Int. Kommitee vom Roten Kreuz",
+            "abbreviation": "ICRC"
+        },
+        {
+            "name": "Save the Children",
+            "abbreviation": "STC"
+        },
+        {
+            "name": "Terre des Hommes",
+            "abbreviation": "TdH"
+        },
+        {
+            "name": "Kindernothilfe",
+            "abbreviation": "KNH"
+        }
+    ]
+}

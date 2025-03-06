@@ -19,13 +19,13 @@
   },
   {
     "id": 5,
-    "alpha3": "nsa_gp",
+    "alpha3": "nsa_GP",
     "de": "Greenpeace International",
     "en": "Greenpeace International"
   },
   {
     "id": 6,
-    "alpha3": "nsa_hrw",
+    "alpha3": "nsa_HRW",
     "de": "Human Rights Watch",
     "en": "Human Rights Watch"
   },
@@ -49,12 +49,22 @@
   },
   {
     "id": 10,
-    "alpha3": "nsa_icrc",
+    "alpha3": "nsa_ICRC",
     "de": "Int. Kommitee vom Roten Kreuz",
     "en": "Int. Committee of the Red Cross"
   },
-  { "id": 11, "alpha3": "nsa_mercy", "de": "Mercy Corps", "en": "Mercy Corps" },
-  { "id": 12, "alpha3": "nsa_unwatch", "de": "UN Watch", "en": "UN Watch" },
+  {
+    "id": 11,
+    "alpha3": "nsa_mercy",
+    "de": "Mercy Corps",
+    "en": "Mercy Corps"
+  },
+  {
+    "id": 12,
+    "alpha3": "nsa_unwatch",
+    "de": "UN Watch",
+    "en": "UN Watch"
+  },
   {
     "id": 13,
     "alpha3": "nsa_whh",
@@ -90,5 +100,59 @@
     "alpha3": "nsa_rwb",
     "de": "Reporter ohne Grenzen",
     "en": "Reporters Without Borders"
+  },
+  {
+    "id": 19,
+    "alpha3": "nsa_LAWG",
+    "de": "Latin America Working Group",
+    "en": "Latin America Working Group"
+  },
+  {
+    "id": 20,
+    "alpha3": "nsa_OCE",
+    "de": "Oceana",
+    "en": "Oceana"
+  },
+  {
+    "id": 21,
+    "alpha3": "nsa_NGO-FPS",
+    "de": "NGO-Arbeitsgruppe für Frauen, Frieden und Sicherheit",
+    "en": "NGO Working Group on Women, Peace and Security"
+  },
+  {
+    "id": 22,
+    "alpha3": "nsa_GW",
+    "de": "Global Witness",
+    "en": "Global Witness"
+  },
+  {
+    "id": 23,
+    "alpha3": "nsa_PADF",
+    "de": "Pan American Development Foundation",
+    "en": "Pan American Development Foundation"
+  },
+  {
+    "id": 24,
+    "alpha3": "nsa_WHH",
+    "de": "Welthungerhilfe",
+    "en": "Welthungerhilfe"
+  },
+  {
+    "id": 25,
+    "alpha3": "nsa_TJN",
+    "de": "Tax Justice Network",
+    "en": "Tax Justice Network"
+  },
+  {
+    "id": 26,
+    "alpha3": "nsa_UNICEF",
+    "de": "UNICEF",
+    "en": "UNICEF"
+  },
+  {
+    "id": 27,
+    "alpha3": "nsa_PI",
+    "de": "Plan International",
+    "en": "Plan International"
   }
 ]

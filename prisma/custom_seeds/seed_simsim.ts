@@ -1,21 +1,20 @@
 import { faker } from "@faker-js/faker";
 import { $Enums, PrismaClient } from "@prisma/client";
+import { mockedDefaultUser } from "@prisma/db";
 
-//
 export async function SimSimSeed(prisma?: PrismaClient) {
   if (prisma === undefined) {
     // biome-ignore lint/style/noParameterAssign: This is a valid use case
     prisma = new PrismaClient();
   }
   // Conference for a SimSim
-  const conferenceName = `${faker.color.human()} ${faker.animal.type()} SimSim Konferenz`;
   const conference = await prisma.conference.upsert({
     where: {
-      name: conferenceName,
+      name: "Chairing SimSim",
     },
     update: {},
     create: {
-      name: conferenceName,
+      name: "Chairing SimSim",
     },
   });
 
@@ -216,148 +215,156 @@ export async function SimSimSeed(prisma?: PrismaClient) {
 
   // Create dummy users for all conference- and committee-members
   // biome-ignore lint/suspicious/noExplicitAny: This is only a seeding file and therefore not part of the application
-  const users: any = [];
+  // const users: any = [];
 
-  const allConferenceMembers = await prisma.conferenceMember.findMany({
-    where: {
+  // const allConferenceMembers = await prisma.conferenceMember.findMany({
+  //   where: {
+  //     conferenceId: conference.id,
+  //   },
+  // });
+
+  // for (const member of allConferenceMembers) {
+  //   const data = {
+  //     email: faker.internet.email(),
+  //     password: "chase",
+  //     role: member.role,
+  //   };
+
+  //   console.info(`${data.email},${data.password},${data.role}`);
+
+  //   const user = await prisma.user.create({
+  //     data: {
+  //       family_name: data.email,
+  //       given_name: data.email,
+  //       email: data.email,
+  //       locale: "en",
+  //       preferred_username: data.email,
+  //     },
+  //   });
+
+  //   await prisma.conferenceMember.update({
+  //     where: {
+  //       id: member.id,
+  //     },
+  //     data: {
+  //       userId: user.id,
+  //     },
+  //   });
+
+  //   users.push(data);
+  // }
+
+  // const allSim1Members = await prisma.committeeMember.findMany({
+  //   where: {
+  //     committeeId: committees.Sim1?.id,
+  //   },
+  // });
+
+  // for (const member of allSim1Members) {
+  //   const data = {
+  //     email: faker.internet.email(),
+  //     password: "chase",
+  //     role: "SimSim 1 Delegate",
+  //   };
+
+  //   const user = await prisma.user.create({
+  //     data: {
+  //       family_name: data.email,
+  //       given_name: data.email,
+  //       email: data.email,
+  //       locale: "en",
+  //       preferred_username: data.email,
+  //     },
+  //   });
+
+  //   await prisma.committeeMember.update({
+  //     where: {
+  //       id: member.id,
+  //     },
+  //     data: {
+  //       userId: user.id,
+  //     },
+  //   });
+
+  //   const committeeMember = await prisma.committeeMember.findUnique({
+  //     where: {
+  //       id: member.id,
+  //     },
+  //     include: {
+  //       delegation: {
+  //         include: {
+  //           nation: true,
+  //         },
+  //       },
+  //     },
+  //   });
+
+  //   console.info(
+  //     `${data.email},${data.password},${data.role},${committeeMember?.delegation?.nation?.alpha3Code}`,
+  //   );
+
+  //   users.push(data);
+  // }
+
+  // const allSim2Members = await prisma.committeeMember.findMany({
+  //   where: {
+  //     committeeId: committees.Sim2?.id,
+  //   },
+  // });
+
+  // for (const member of allSim2Members) {
+  //   const data = {
+  //     email: faker.internet.email(),
+  //     password: "chase",
+  //     role: "SimSim 2 Delegate",
+  //   };
+
+  //   const user = await prisma.user.create({
+  //     data: {
+  //       family_name: data.email,
+  //       given_name: data.email,
+  //       email: data.email,
+  //       locale: "en",
+  //       preferred_username: data.email,
+  //     },
+  //   });
+
+  //   await prisma.committeeMember.update({
+  //     where: {
+  //       id: member.id,
+  //     },
+  //     data: {
+  //       userId: user.id,
+  //     },
+  //   });
+
+  //   const committeeMember = await prisma.committeeMember.findUnique({
+  //     where: {
+  //       id: member.id,
+  //     },
+  //     include: {
+  //       delegation: {
+  //         include: {
+  //           nation: true,
+  //         },
+  //       },
+  //     },
+  //   });
+
+  //   console.info(
+  //     `${data.email},${data.password},${data.role},${committeeMember?.delegation?.nation?.alpha3Code}`,
+  //   );
+
+  //   users.push(data);
+  // }
+
+  await prisma.conferenceMember.create({
+    data: {
       conferenceId: conference.id,
+      role: $Enums.ConferenceRole.ADMIN,
+      userId: mockedDefaultUser.id,
     },
   });
-
-  for (const member of allConferenceMembers) {
-    const data = {
-      email: faker.internet.email(),
-      password: "chase",
-      role: member.role,
-    };
-
-    console.info(`${data.email},${data.password},${data.role}`);
-
-    const user = await prisma.user.create({
-      data: {
-        family_name: data.email,
-        given_name: data.email,
-        email: data.email,
-        locale: "en",
-        preferred_username: data.email,
-      },
-    });
-
-    await prisma.conferenceMember.update({
-      where: {
-        id: member.id,
-      },
-      data: {
-        userId: user.id,
-      },
-    });
-
-    users.push(data);
-  }
-
-  const allSim1Members = await prisma.committeeMember.findMany({
-    where: {
-      committeeId: committees.Sim1?.id,
-    },
-  });
-
-  for (const member of allSim1Members) {
-    const data = {
-      email: faker.internet.email(),
-      password: "chase",
-      role: "SimSim 1 Delegate",
-    };
-
-    const user = await prisma.user.create({
-      data: {
-        family_name: data.email,
-        given_name: data.email,
-        email: data.email,
-        locale: "en",
-        preferred_username: data.email,
-      },
-    });
-
-    await prisma.committeeMember.update({
-      where: {
-        id: member.id,
-      },
-      data: {
-        userId: user.id,
-      },
-    });
-
-    const committeeMember = await prisma.committeeMember.findUnique({
-      where: {
-        id: member.id,
-      },
-      include: {
-        delegation: {
-          include: {
-            nation: true,
-          },
-        },
-      },
-    });
-
-    console.info(
-      `${data.email},${data.password},${data.role},${committeeMember?.delegation?.nation?.alpha3Code}`,
-    );
-
-    users.push(data);
-  }
-
-  const allSim2Members = await prisma.committeeMember.findMany({
-    where: {
-      committeeId: committees.Sim2?.id,
-    },
-  });
-
-  for (const member of allSim2Members) {
-    const data = {
-      email: faker.internet.email(),
-      password: "chase",
-      role: "SimSim 2 Delegate",
-    };
-
-    const user = await prisma.user.create({
-      data: {
-        family_name: data.email,
-        given_name: data.email,
-        email: data.email,
-        locale: "en",
-        preferred_username: data.email,
-      },
-    });
-
-    await prisma.committeeMember.update({
-      where: {
-        id: member.id,
-      },
-      data: {
-        userId: user.id,
-      },
-    });
-
-    const committeeMember = await prisma.committeeMember.findUnique({
-      where: {
-        id: member.id,
-      },
-      include: {
-        delegation: {
-          include: {
-            nation: true,
-          },
-        },
-      },
-    });
-
-    console.info(
-      `${data.email},${data.password},${data.role},${committeeMember?.delegation?.nation?.alpha3Code}`,
-    );
-
-    users.push(data);
-  }
 
   await prisma.$disconnect();
 }

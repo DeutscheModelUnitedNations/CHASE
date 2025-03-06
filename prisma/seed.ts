@@ -1,6 +1,7 @@
 import { SimSimSeed } from "./custom_seeds/seed_simsim";
 import { $Enums, PrismaClient } from "@prisma/client";
 import baseCountries from "world-countries";
+import { mockedDefaultUser } from "./db";
 const prisma = new PrismaClient();
 
 export const specialCountries: {
@@ -183,6 +184,10 @@ try {
   );
 
   console.info("\nSeeding Database with SimSim Committees and Users");
+
+  // await prisma.user.create({
+  //   data: mockedDefaultUser,
+  // });
 
   await SimSimSeed(prisma);
 

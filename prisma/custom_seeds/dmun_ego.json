@@ -1,0 +1,30 @@
+{
+    "delegations": [
+        {
+            "alpha3Code": "deu",
+            "EGO": true
+        },
+        {
+            "alpha3Code": "chn",
+            "EGO": true
+        },
+        {
+            "alpha3Code": "mng",
+            "EGO": true
+        },
+        {
+            "alpha3Code": "usa",
+            "EGO": true
+        },
+        {
+            "alpha3Code": "ago",
+            "EGO": true
+        }
+    ],
+    "nonStateActors": [
+        {
+            "name": "Greenpeace International",
+            "abbreviation": "GP"
+        }
+    ]
+}
