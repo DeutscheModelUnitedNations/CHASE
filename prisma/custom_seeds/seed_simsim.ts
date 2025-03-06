@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
 import { $Enums, PrismaClient } from "@prisma/client";
-import { mockedDefaultUser } from "@prisma/db";
+import { mockedDefaultUser } from "../db";
 
 export async function SimSimSeed(prisma?: PrismaClient) {
   if (prisma === undefined) {

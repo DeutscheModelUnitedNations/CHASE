@@ -1,6 +1,6 @@
 import { $Enums, PrismaClient } from "@prisma/client";
 import delegationData from "./dmun_simsim.json";
-import { mockedDefaultUser } from "@prisma/db";
+import { mockedDefaultUser } from "../db";
 const prisma = new PrismaClient();
 
 try {
