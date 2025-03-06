@@ -21,13 +21,15 @@ export default function Page() {
     <div>
       {pending && <p>Loading...</p>}
       {!pending && (
-        <div className="flex h-screen flex-col items-center justify-center gap-3">
+        <div className="flex h-screen flex-wrap items-center justify-center gap-4">
           {conferences.length === 0
             ? m.noConferencesFound()
             : conferences.map((conference) => (
                 <a href={`/app/${conference.id}`} key={conference.id}>
-                  <Card title={conference.name}>
-                    {conference.start && (
+                  <div className="flex w-full max-w-md items-center justify-center gap-4 rounded-lg bg-primary-900 p-4 shadow-lg transition-all duration-500 hover:bg-primary-800">
+                    <FAIcon icon="rocket" />
+                    <h3 className="text-lg font-bold">{conference.name}</h3>
+                    {/* {conference.start && (
                       <p>
                         <FAIcon icon="play" />{" "}
                         {new Date(conference.start).toLocaleDateString()}
@@ -38,8 +40,8 @@ export default function Page() {
                         <FAIcon icon="stop" />{" "}
                         {new Date(conference.end).toLocaleDateString()}
                       </p>
-                    )}
-                  </Card>
+                    )} */}
+                  </div>
                 </a>
               ))}
         </div>

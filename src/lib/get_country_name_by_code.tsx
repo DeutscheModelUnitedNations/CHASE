@@ -63,7 +63,7 @@ export default function getCountryNameByCode(
   }
 
   const res = combinedTranslations.find(
-    (item) => item.alpha3 === countryCode?.toLowerCase(),
+    (item) => item.alpha3.toLowerCase() === countryCode?.toLowerCase(),
   );
   if (!res) return "–"; // Country not found
 
