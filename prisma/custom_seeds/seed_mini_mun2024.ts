@@ -1,5 +1,5 @@
 import { $Enums, PrismaClient } from "@prisma/client";
-import delegationData from "./mun-sh_delegations.json";
+import delegationData from "./mun-sh2024_delegations.json
 const prisma = new PrismaClient();
 
 try {
