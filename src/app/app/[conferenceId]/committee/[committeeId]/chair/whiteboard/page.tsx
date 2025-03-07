@@ -94,7 +94,7 @@ export default function ChairWhiteboard() {
           />
         </div>
         <Whiteboard
-          value="whiteboard-content"
+          value={whiteboardContent}
           setContentFunction={setWhiteboardContent}
           className="h-full max-h-[80vh] flex-1"
         />
