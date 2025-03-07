@@ -115,6 +115,7 @@ model Committee {
   statusHeadline                                String?
   statusUntil                                   DateTime?
   allowDelegationsToAddThemselvesToSpeakersList Boolean           @default(false)
+  lastAdoptedResolution                         DateTime?
 
   @@unique([name, conferenceId])
   @@unique([abbreviation, conferenceId])
