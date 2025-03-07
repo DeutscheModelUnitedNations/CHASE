@@ -154,5 +154,11 @@
     "alpha3": "nsa_PI",
     "de": "Plan International",
     "en": "Plan International"
+  },
+  {
+    "id": 27,
+    "alpha3": "nsa_KNH",
+    "de": "Kindernothilfe",
+    "en": "Kindernothilfe"
   }
 ]
