@@ -240,4 +240,25 @@ export const committee = new Elysia({
         description: "Adopt a resolution in a committee",
       },
     },
-  );
+  )
+  .get("/member/exportAttendance", async ({ params: { conferenceId } }) => {
+    const timestamp = Date.now();
+
+    const committees = await db.committee.findMany({
+      where: {
+        conferenceId,
+      },
+    });
+
+    const members = await db.committeeMember.findMany({
+      include: {
+        user: true,
+      },
+    });
+
+    return {
+      timestamp,
+      members,
+      committees,
+    };
+  });
