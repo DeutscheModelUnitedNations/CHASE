@@ -221,4 +221,23 @@ export const committee = new Elysia({
         description: "Get all delegations of a committee",
       },
     },
+  )
+  .patch(
+    "/committee/:committeeId/adoptResolution",
+    async ({ params, permissions }) => {
+      return await db.committee.update({
+        where: {
+          id: params.committeeId,
+          AND: [permissions.allowDatabaseAccessTo("update").Committee],
+        },
+        data: {
+          lastAdoptedResolution: new Date(),
+        },
+      });
+    },
+    {
+      detail: {
+        description: "Adopt a resolution in a committee",
+      },
+    },
   );
