@@ -1,7 +1,3 @@
 {
-  "recommendations": [
-    "biomejs.biome",
-    "rioukkevin.vscode-git-commit",
-    "prisma.prisma"
-  ]
+  "recommendations": ["inlang.vs-code-extension", "esbenp.prettier-vscode"]
 }

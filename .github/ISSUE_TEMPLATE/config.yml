@@ -1,8 +1,0 @@
-blank_issues_enabled: false
-contact_links:
-  - name: Suggest a feature
-    url: https://github.com/deutschemodelunitednations/munify-chase/discussions/categories/ideas-feature-requests
-    about: Please use the ideas tab of the discussion section to request and discuss new features.
-  - name: Ask a question or recieve help
-    url: https://github.com/deutschemodelunitednations/munify-chase/discussions/categories/support
-    about: Please use the help tab of the discussion section to recieve help and ask questions.

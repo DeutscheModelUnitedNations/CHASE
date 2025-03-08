@@ -1,0 +1,1391 @@
+{
+  "delegations": [
+    {
+      "alpha3Code": "swe",
+      "GV": true,
+      "WiSo": true,
+      "SR": false,
+      "IMO": true,
+      "MRR": false,
+      "KFK": true,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "geo",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": true,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "khm",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": true,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "ita",
+      "GV": true,
+      "WiSo": true,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": true,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "mrt",
+      "GV": true,
+      "WiSo": true,
+      "SR": false,
+      "IMO": true,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "bfa",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "qat",
+      "GV": true,
+      "WiSo": true,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "arg",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": true,
+      "MRR": true,
+      "KFK": false,
+      "RKL": true
+    },
+    {
+      "alpha3Code": "mne",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "guy",
+      "GV": true,
+      "WiSo": false,
+      "SR": true,
+      "IMO": false,
+      "MRR": false,
+      "KFK": true,
+      "RKL": true
+    },
+    {
+      "alpha3Code": "prt",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": true,
+      "MRR": true,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "mex",
+      "GV": true,
+      "WiSo": true,
+      "SR": false,
+      "IMO": true,
+      "MRR": false,
+      "KFK": false,
+      "RKL": true
+    },
+    {
+      "alpha3Code": "nam",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": true,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "uga",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": true,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "bdi",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": true,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "som",
+      "GV": true,
+      "WiSo": false,
+      "SR": true,
+      "IMO": false,
+      "MRR": false,
+      "KFK": true,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "arm",
+      "GV": true,
+      "WiSo": true,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "svn",
+      "GV": true,
+      "WiSo": true,
+      "SR": true,
+      "IMO": false,
+      "MRR": false,
+      "KFK": true,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "deu",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": true,
+      "MRR": true,
+      "KFK": true,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "ben",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "jam",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": true
+    },
+    {
+      "alpha3Code": "bgd",
+      "GV": true,
+      "WiSo": true,
+      "SR": false,
+      "IMO": false,
+      "MRR": true,
+      "KFK": true,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "sle",
+      "GV": true,
+      "WiSo": false,
+      "SR": true,
+      "IMO": true,
+      "MRR": false,
+      "KFK": true,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "mwi",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "nzl",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": true,
+      "MRR": false,
+      "KFK": true,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "lbr",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "phl",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": true,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "kgz",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": true,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "zaf",
+      "GV": true,
+      "WiSo": true,
+      "SR": false,
+      "IMO": true,
+      "MRR": true,
+      "KFK": true,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "bel",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": true,
+      "MRR": true,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "mys",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": true,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "rus",
+      "GV": true,
+      "WiSo": false,
+      "SR": true,
+      "IMO": true,
+      "MRR": false,
+      "KFK": true,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "gbr",
+      "GV": true,
+      "WiSo": true,
+      "SR": true,
+      "IMO": true,
+      "MRR": false,
+      "KFK": true,
+      "RKL": true
+    },
+    {
+      "alpha3Code": "cmr",
+      "GV": true,
+      "WiSo": true,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "mdg",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": true,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "tun",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": true,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "ukr",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": true,
+      "MRR": true,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "tza",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": true,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "omn",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "cod",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": true,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "ven",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": true,
+      "MRR": false,
+      "KFK": false,
+      "RKL": true
+    },
+    {
+      "alpha3Code": "kor",
+      "GV": true,
+      "WiSo": true,
+      "SR": true,
+      "IMO": true,
+      "MRR": false,
+      "KFK": true,
+      "RKL": true
+    },
+    {
+      "alpha3Code": "ner",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "mng",
+      "GV": true,
+      "WiSo": true,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": true,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "rwa",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": true,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "fsm",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": true,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "png",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": true,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "mmr",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": true,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "nor",
+      "GV": true,
+      "WiSo": true,
+      "SR": false,
+      "IMO": true,
+      "MRR": false,
+      "KFK": true,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "caf",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "col",
+      "GV": true,
+      "WiSo": true,
+      "SR": false,
+      "IMO": true,
+      "MRR": false,
+      "KFK": true,
+      "RKL": true
+    },
+    {
+      "alpha3Code": "irn",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": true,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "fra",
+      "GV": true,
+      "WiSo": true,
+      "SR": true,
+      "IMO": true,
+      "MRR": false,
+      "KFK": true,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "nic",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": true
+    },
+    {
+      "alpha3Code": "yem",
+      "GV": true,
+      "WiSo": true,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "slv",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": true
+    },
+    {
+      "alpha3Code": "vnm",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": true,
+      "KFK": true,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "brb",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": true
+    },
+    {
+      "alpha3Code": "bol",
+      "GV": true,
+      "WiSo": true,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "ecu",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": true,
+      "MRR": true,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "bra",
+      "GV": true,
+      "WiSo": true,
+      "SR": false,
+      "IMO": true,
+      "MRR": true,
+      "KFK": false,
+      "RKL": true
+    },
+    {
+      "alpha3Code": "ken",
+      "GV": true,
+      "WiSo": true,
+      "SR": false,
+      "IMO": true,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "egy",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": true,
+      "MRR": false,
+      "KFK": true,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "eri",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "alb",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "esp",
+      "GV": true,
+      "WiSo": true,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": true
+    },
+    {
+      "alpha3Code": "aze",
+      "GV": true,
+      "WiSo": true,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "eth",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": true,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "hti",
+      "GV": true,
+      "WiSo": true,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": true
+    },
+    {
+      "alpha3Code": "hun",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": true,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "can",
+      "GV": true,
+      "WiSo": true,
+      "SR": false,
+      "IMO": true,
+      "MRR": false,
+      "KFK": true,
+      "RKL": true
+    },
+    {
+      "alpha3Code": "che",
+      "GV": true,
+      "WiSo": true,
+      "SR": false,
+      "IMO": true,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "zwe",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "lso",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "ltu",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": true,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "chn",
+      "GV": true,
+      "WiSo": true,
+      "SR": true,
+      "IMO": true,
+      "MRR": true,
+      "KFK": true,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "lva",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": true,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "mar",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": true,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "ind",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": true,
+      "KFK": true,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "cog",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": true,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "dza",
+      "GV": true,
+      "WiSo": true,
+      "SR": true,
+      "IMO": false,
+      "MRR": true,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "mli",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "hrv",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": true,
+      "MRR": false,
+      "KFK": true,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "cri",
+      "GV": true,
+      "WiSo": true,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": true
+    },
+    {
+      "alpha3Code": "gab",
+      "GV": true,
+      "WiSo": true,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "cub",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": true,
+      "KFK": false,
+      "RKL": true
+    },
+    {
+      "alpha3Code": "moz",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "pak",
+      "GV": true,
+      "WiSo": true,
+      "SR": true,
+      "IMO": true,
+      "MRR": false,
+      "KFK": true,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "per",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": true,
+      "MRR": false,
+      "KFK": true,
+      "RKL": true
+    },
+    {
+      "alpha3Code": "pol",
+      "GV": true,
+      "WiSo": true,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": true,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "sen",
+      "GV": true,
+      "WiSo": true,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "svk",
+      "GV": true,
+      "WiSo": true,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "tjk",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": true,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "ury",
+      "GV": true,
+      "WiSo": true,
+      "SR": false,
+      "IMO": true,
+      "MRR": false,
+      "KFK": true,
+      "RKL": true
+    },
+    {
+      "alpha3Code": "usa",
+      "GV": true,
+      "WiSo": false,
+      "SR": true,
+      "IMO": true,
+      "MRR": false,
+      "KFK": true,
+      "RKL": true
+    },
+    {
+      "alpha3Code": "uzb",
+      "GV": true,
+      "WiSo": true,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "bgr",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": true,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "bih",
+      "GV": true,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "nld",
+      "GV": false,
+      "WiSo": true,
+      "SR": false,
+      "IMO": false,
+      "MRR": true,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "civ",
+      "GV": false,
+      "WiSo": true,
+      "SR": false,
+      "IMO": false,
+      "MRR": true,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "nga",
+      "GV": false,
+      "WiSo": true,
+      "SR": false,
+      "IMO": true,
+      "MRR": false,
+      "KFK": true,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "pry",
+      "GV": false,
+      "WiSo": true,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": true
+    },
+    {
+      "alpha3Code": "tur",
+      "GV": false,
+      "WiSo": true,
+      "SR": false,
+      "IMO": true,
+      "MRR": false,
+      "KFK": false,
+      "RKL": true
+    },
+    {
+      "alpha3Code": "gha",
+      "GV": false,
+      "WiSo": true,
+      "SR": false,
+      "IMO": false,
+      "MRR": true,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "lka",
+      "GV": false,
+      "WiSo": true,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "afg",
+      "GV": false,
+      "WiSo": true,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "zmb",
+      "GV": false,
+      "WiSo": true,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "are",
+      "GV": false,
+      "WiSo": true,
+      "SR": false,
+      "IMO": false,
+      "MRR": true,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "bwa",
+      "GV": false,
+      "WiSo": true,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "dji",
+      "GV": false,
+      "WiSo": true,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "jpn",
+      "GV": false,
+      "WiSo": true,
+      "SR": false,
+      "IMO": true,
+      "MRR": true,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "aus",
+      "GV": false,
+      "WiSo": true,
+      "SR": false,
+      "IMO": true,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "fin",
+      "GV": false,
+      "WiSo": true,
+      "SR": false,
+      "IMO": true,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "irl",
+      "GV": false,
+      "WiSo": true,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "npl",
+      "GV": false,
+      "WiSo": true,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "sau",
+      "GV": false,
+      "WiSo": true,
+      "SR": false,
+      "IMO": true,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "sur",
+      "GV": false,
+      "WiSo": true,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": true
+    },
+    {
+      "alpha3Code": "dnk",
+      "GV": false,
+      "WiSo": true,
+      "SR": true,
+      "IMO": true,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "dom",
+      "GV": false,
+      "WiSo": true,
+      "SR": false,
+      "IMO": false,
+      "MRR": true,
+      "KFK": false,
+      "RKL": true
+    },
+    {
+      "alpha3Code": "pan",
+      "GV": false,
+      "WiSo": false,
+      "SR": true,
+      "IMO": false,
+      "MRR": false,
+      "KFK": false,
+      "RKL": true
+    },
+    {
+      "alpha3Code": "grc",
+      "GV": false,
+      "WiSo": false,
+      "SR": true,
+      "IMO": true,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "tls",
+      "GV": false,
+      "WiSo": false,
+      "SR": false,
+      "IMO": true,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "lbn",
+      "GV": false,
+      "WiSo": false,
+      "SR": false,
+      "IMO": true,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "idn",
+      "GV": false,
+      "WiSo": false,
+      "SR": false,
+      "IMO": true,
+      "MRR": true,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "isl",
+      "GV": false,
+      "WiSo": false,
+      "SR": false,
+      "IMO": true,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "vut",
+      "GV": false,
+      "WiSo": false,
+      "SR": false,
+      "IMO": true,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "fji",
+      "GV": false,
+      "WiSo": false,
+      "SR": false,
+      "IMO": true,
+      "MRR": false,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "est",
+      "GV": false,
+      "WiSo": false,
+      "SR": false,
+      "IMO": true,
+      "MRR": true,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "chl",
+      "GV": false,
+      "WiSo": false,
+      "SR": false,
+      "IMO": true,
+      "MRR": true,
+      "KFK": false,
+      "RKL": true
+    },
+    {
+      "alpha3Code": "rou",
+      "GV": false,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": true,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "sdn",
+      "GV": false,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": true,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "kwt",
+      "GV": false,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": true,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "blr",
+      "GV": false,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": true,
+      "KFK": false,
+      "RKL": false
+    },
+    {
+      "alpha3Code": "lby",
+      "GV": false,
+      "WiSo": false,
+      "SR": false,
+      "IMO": false,
+      "MRR": false,
+      "KFK": true,
+      "RKL": false
+    }
+  ],
+  "nonStateActors": [
+    {
+      "abbreviation": "LAWG",
+      "name": "Latin America Working Group",
+      "id": "7ZLG5VY_1T-C3DwespO5e"
+    },
+    {
+      "abbreviation": "OCE",
+      "name": "Oceana",
+      "id": "TkRWwA7_dQxyuMecYlyBL"
+    },
+    {
+      "abbreviation": "NGO-FPS",
+      "name": "NGO-Arbeitsgruppe für Frauen, Frieden und Sicherheit",
+      "id": "WVC0y_U7_5CuF2njK93SH"
+    },
+    {
+      "abbreviation": "GW",
+      "name": "Global Witness",
+      "id": "YAUZX87sHVGB8b2pYFG5f"
+    },
+    {
+      "abbreviation": "PADF",
+      "name": "Pan American Development Foundation",
+      "id": "YoD-Fe1yEG4_eZNyy-MG6"
+    },
+    {
+      "abbreviation": "WHH",
+      "name": "Welthungerhilfe",
+      "id": "f-VD_T83JZbVbc6gYW287"
+    },
+    {
+      "abbreviation": "TJN",
+      "name": "Tax Justice Network",
+      "id": "h_mIerwJmZIV85Lglq6pT"
+    },
+    {
+      "abbreviation": "UNICEF",
+      "name": "UNICEF",
+      "id": "iq2yI9_gDoeRUe6wV13R6"
+    },
+    {
+      "abbreviation": "HRW",
+      "name": "Human Rights Watch",
+      "id": "zhdrdsatn8DsTmxKdgm85"
+    }
+  ]
+}

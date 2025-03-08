@@ -1,0 +1,3 @@
+[install.scopes]
+fortawesome = { url = "https://npm.fontawesome.com", token = "$FONTAWESOME_PACKAGE_TOKEN" }
+awesome.me = { url = "https://npm.fontawesome.com", token = "$FONTAWESOME_PACKAGE_TOKEN" }
