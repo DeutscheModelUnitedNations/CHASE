@@ -12,6 +12,7 @@ import {
 } from "@/lib/contexts/committee_data";
 import { StatusTimerProvider } from "@/lib/contexts/status_timer";
 import FAIcon from "../FAIcon";
+import ConfettiOnAdoption from "../confetti_on_adoption";
 
 type CommitteeArray = Awaited<
   ReturnType<ReturnType<(typeof backend)["conference"]>["committee"]["get"]>
@@ -206,6 +207,11 @@ function CommitteeCard({
               </div>
             </SmallInfoCard>
           </Link>
+          <ConfettiOnAdoption
+            adoptionDate={committee.lastAdoptedResolution}
+            committee={committee.name}
+            title={committee.agendaItems.find((x) => x.isActive)?.title}
+          />
         </StatusTimerProvider>
       </CommitteeDataProvider>
     </CommitteeIdContext.Provider>

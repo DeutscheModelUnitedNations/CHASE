@@ -13,6 +13,7 @@ import { StatusTimer } from "@/lib/contexts/status_timer";
 import { useClientSideBackendCallPoller } from "@/lib/backend/useClientSideBackendCall";
 import * as m from "@/paraglide/messages";
 import FAIcon from "@/lib/components/FAIcon";
+import ConfettiOnAdoption from "@/lib/components/confetti_on_adoption";
 
 export default function CommitteePresentationMode({
   params,
@@ -143,6 +144,11 @@ export default function CommitteePresentationMode({
           onClick={() => setRemSize(remSize + 1)}
         />
       </div>
+      <ConfettiOnAdoption
+        adoptionDate={committeeData?.lastAdoptedResolution}
+        title={committeeData?.agendaItems.find((x) => x.isActive)?.title}
+        committee={committeeData?.name}
+      />
     </>
   );
 }

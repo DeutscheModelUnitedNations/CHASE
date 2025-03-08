@@ -20,6 +20,7 @@ import {
 import { useSpeakersListMiniature } from "@/lib/contexts/speakers_list_miniature";
 import Button from "@/lib/components/Button";
 import * as m from "@/paraglide/messages";
+import ResolutionAdoption from "@/lib/components/dashboard/resolution_adoption";
 
 export default function ChairDashboardPage() {
   const conferenceId = useContext(ConferenceIdContext);
@@ -107,6 +108,7 @@ export default function ChairDashboardPage() {
                     />
                   </div>
                 </ConfigWrapper>
+                <ResolutionAdoption />
               </div>
             </div>
           </ScrollPanel>

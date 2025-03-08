@@ -11,6 +11,7 @@ import { conferenceRoleTranslation } from "@/lib/translationUtils";
 import { languageTag } from "@/paraglide/runtime";
 import { LargeFlag } from "@/lib/components/Flag";
 import * as m from "@/paraglide/messages";
+import ConfettiOnAdoption from "@/lib/components/confetti_on_adoption";
 
 export default function ChairHub() {
   const conferenceId = useContext(ConferenceIdContext);
