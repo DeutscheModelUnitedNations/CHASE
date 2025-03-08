@@ -253,6 +253,7 @@ export const committee = new Elysia({
     const members = await db.committeeMember.findMany({
       include: {
         user: true,
+        delegation: true,
       },
     });
 
